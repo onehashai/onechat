@@ -14,16 +14,28 @@
       <div class="small-12 medium-6 large-5 column">
         <form class="signup--box login-box" @submit.prevent="submit">
           <woot-input
-            v-model="credentials.fullName"
-            :class="{ error: $v.credentials.fullName.$error }"
-            :label="$t('REGISTER.FULL_NAME.LABEL')"
-            :placeholder="$t('REGISTER.FULL_NAME.PLACEHOLDER')"
+            v-model="credentials.firstName"
+            :class="{ error: $v.credentials.firstName.$error }"
+            :label="$t('REGISTER.FIRST_NAME.LABEL')"
+            :placeholder="$t('REGISTER.FIRST_NAME.PLACEHOLDER')"
             :error="
-              $v.credentials.fullName.$error
-                ? $t('REGISTER.FULL_NAME.ERROR')
+              $v.credentials.firstName.$error
+                ? $t('REGISTER.FIRST_NAME.ERROR')
                 : ''
             "
-            @blur="$v.credentials.fullName.$touch"
+            @blur="$v.credentials.firstName.$touch"
+          />
+          <woot-input
+            v-model="credentials.lastName"
+            :class="{ error: $v.credentials.lastName.$error }"
+            :label="$t('REGISTER.LAST_NAME.LABEL')"
+            :placeholder="$t('REGISTER.LAST_NAME.PLACEHOLDER')"
+            :error="
+              $v.credentials.lastName.$error
+                ? $t('REGISTER.LAST_NAME.ERROR')
+                : ''
+            "
+            @blur="$v.credentials.lastName.$touch"
           />
           <woot-input
             v-model.trim="credentials.email"
@@ -47,6 +59,16 @@
                 : ''
             "
             @blur="$v.credentials.accountName.$touch"
+          />
+          <woot-input
+              v-model="credentials.phone"
+              :class="{ error: $v.credentials.phone.$error }"
+              :label="$t('REGISTER.PHONE.LABEL')"
+              :placeholder="$t('REGISTER.PHONE.PLACEHOLDER')"
+              :error="
+              $v.credentials.phone.$error ? $t('REGISTER.PHONE.ERROR') : ''
+            "
+              @blur="$v.credentials.phone.$touch"
           />
           <woot-input
             v-model.trim="credentials.password"
@@ -114,10 +136,12 @@ export default {
     return {
       credentials: {
         accountName: '',
-        fullName: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         confirmPassword: '',
+        phone: '',
       },
       isSignupInProgress: false,
       error: '',
@@ -129,7 +153,15 @@ export default {
         required,
         minLength: minLength(2),
       },
-      fullName: {
+      firstName: {
+        required,
+        minLength: minLength(2),
+      },
+      phone: {
+        required,
+        minLength: minLength(9),
+      },
+      lastName: {
         required,
         minLength: minLength(2),
       },

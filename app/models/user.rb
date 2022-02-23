@@ -7,16 +7,16 @@
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
+#  country                :string
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  custom_attributes      :jsonb
-#  display_name           :string
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
+#  phone                  :string
 #  message_signature      :text
-#  name                   :string           not null
 #  provider               :string           default("email"), not null
 #  pubsub_token           :string
 #  remember_created_at    :datetime
@@ -66,8 +66,8 @@ class User < ApplicationRecord
   # work because :validatable in devise overrides this.
   # validates_uniqueness_of :email, scope: :account_id
 
-  validates :email, :name, presence: true
-  validates_length_of :name, minimum: 1, maximum: 255
+  validates :email, :first_name, :last_name, presence: true
+  validates_length_of :first_name, :last_name, minimum: 1
 
   has_many :account_users, dependent: :destroy_async
   has_many :accounts, through: :account_users
@@ -180,6 +180,13 @@ class User < ApplicationRecord
     }
   end
 
+  def name
+    display_name
+  end
+
+  def display_name
+    "#{first_name} #{last_name}"
+  end
   # https://github.com/lynndylanhurley/devise_token_auth/blob/6d7780ee0b9750687e7e2871b9a1c6368f2085a9/app/models/devise_token_auth/concerns/user.rb#L45
   # Since this method is overriden in devise_token_auth it breaks the email reconfirmation flow.
   def will_save_change_to_email?

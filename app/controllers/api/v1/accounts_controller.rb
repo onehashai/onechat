@@ -15,10 +15,13 @@ class Api::V1::AccountsController < Api::BaseController
   def create
     @user, @account = AccountBuilder.new(
       account_name: account_params[:account_name],
-      user_full_name: account_params[:user_full_name],
+      first_name: account_params[:first_name],
+      last_name: account_params[:last_name],
       email: account_params[:email],
+      phone: account_params[:phone],
       user_password: account_params[:password],
-      user: current_user
+      user: current_user,
+      country:  request.location.country,
     ).perform
     if @user
       send_auth_headers(@user)
@@ -51,7 +54,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:account_name, :email, :name, :password, :locale, :domain, :support_email, :auto_resolve_duration, :user_full_name)
+    params.permit(:account_name,:first_name, :last_name, :email, :name, :password, :locale, :domain, :support_email, :auto_resolve_duration,:phone, :account_subdomain)
   end
 
   def check_signup_enabled
