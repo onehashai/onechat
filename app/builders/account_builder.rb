@@ -67,8 +67,7 @@ class AccountBuilder
                      first_name: @first_name,
                      last_name: @last_name,
                      phone: @phone,
-                     country: @country
-    )
+                     country: @country)
     @user.type = 'SuperAdmin' if @super_admin
     @user.confirm if @confirmed
     @user.save!

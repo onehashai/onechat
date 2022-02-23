@@ -14,7 +14,10 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #
-
+# Indexes
+#
+#  index_accounts_on_sub_domain  (sub_domain)
+#
 class Account < ApplicationRecord
   # used for single column multi flags
   include FlagShihTzu
