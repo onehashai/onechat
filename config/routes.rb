@@ -34,7 +34,9 @@ Rails.application.routes.draw do
         member do
           post :update_active_at
         end
-
+        collection do
+          get :country_based_on_ip
+        end
         scope module: :accounts do
           namespace :actions do
             resource :contact_merge, only: [:create]

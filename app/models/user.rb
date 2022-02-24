@@ -11,6 +11,7 @@
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  custom_attributes      :jsonb
+#  display_name           :string
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  last_sign_in_at        :datetime
@@ -65,7 +66,8 @@ class User < ApplicationRecord
   # The validation below has been commented out as it does not
   # work because :validatable in devise overrides this.
   # validates_uniqueness_of :email, scope: :account_id
-
+  attr_accessor :firebase_token
+  validate :firebase_verification, on: :create
   validates :email, :first_name, :last_name, presence: true
   validates_length_of :first_name, :last_name, minimum: 1
 
@@ -93,8 +95,7 @@ class User < ApplicationRecord
 
   before_validation :set_password_and_uid, on: :create
 
-  scope :order_by_full_name, -> { order('lower(name) ASC') }
-
+  scope :order_by_full_name, -> { order('lower(first_name) ASC') }
   def send_devise_notification(notification, *args)
     devise_mailer.with(account: Current.account).send(notification, self, *args).deliver_later
   end
@@ -181,11 +182,21 @@ class User < ApplicationRecord
   end
 
   def name
-    display_name
+    "#{first_name} #{last_name}"
   end
 
   def display_name
     "#{first_name} #{last_name}"
+  end
+  def firebase_verification
+    url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo?key=#{ENV['FIREBASE_API_KEY']}"
+    firebase_verification_call = HTTParty.post(url, headers: { 'Content-Type' => 'application/json' }, body: { 'idToken' => firebase_token }.to_json)
+    if firebase_verification_call.response.code == '200'
+      firebase_infos = firebase_verification_call.parsed_response
+      self.phone = firebase_infos['users'][0]['providerUserInfo'][0]['phoneNumber']
+    else
+      errors.add(:phone, I18n.t('errors.signup.invalid_phone'))
+    end
   end
   # https://github.com/lynndylanhurley/devise_token_auth/blob/6d7780ee0b9750687e7e2871b9a1c6368f2085a9/app/models/devise_token_auth/concerns/user.rb#L45
   # Since this method is overriden in devise_token_auth it breaks the email reconfirmation flow.
