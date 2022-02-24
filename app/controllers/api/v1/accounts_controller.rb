@@ -4,6 +4,9 @@ class Api::V1::AccountsController < Api::BaseController
   skip_before_action :authenticate_user!, :set_current_user, :handle_with_exception,
                      only: [:create, :country_based_on_ip], raise: false
   before_action :check_signup_enabled, only: [:create]
+
+  skip_before_action :verify_subscription,
+                     only: [:billing_subscription, :start_billing_subscription], raise: false
   before_action :fetch_account, except: [:create, :country_based_on_ip]
   before_action :check_authorization, except: [:create, :country_based_on_ip]
 
@@ -49,6 +52,18 @@ class Api::V1::AccountsController < Api::BaseController
   def country_based_on_ip
     render json: { country: request.location.country || 'PK' }, status: :ok
   end
+
+  def billing_subscription
+    @billing_subscription = @account.account_billing_subscriptions.last
+    @available_product_prices = Enterprise::BillingProductPrice.all.includes(:billing_product).limit(4)
+    render 'api/v1/accounts/ee/billing_subscription.json'
+  end
+
+  def start_billing_subscription
+    url = @account.create_checkout_link(Enterprise::BillingProductPrice.find(params[:product_price]))
+    render json: { url: url }
+  end
+
   private
 
   def fetch_account

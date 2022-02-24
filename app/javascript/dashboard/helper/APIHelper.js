@@ -1,8 +1,15 @@
 /* eslint no-console: 0 */
 import Auth from '../api/auth';
+import Cookies from 'js-cookie';
+import { BUS_EVENTS } from '../../shared/constants/busEvents';
 
-const parseErrorCode = error => Promise.reject(error);
-
+const parseErrorCode = error => {
+  if (error.response.status == 402) {
+    Cookies.set('subscription', error.response);
+    bus.$emit(BUS_EVENTS.SHOW_PLAN_MODAL);
+  }
+  return Promise.reject(error);
+};
 export default axios => {
   const { apiHost = '' } = window.chatwootConfig || {};
   const wootApi = axios.create({ baseURL: `${apiHost}/` });

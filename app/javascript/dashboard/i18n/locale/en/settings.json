@@ -92,6 +92,7 @@
         "ERROR": "Please enter a valid phone number",
         "PLACEHOLDER": "Please enter your phone number"
       },
+
       "DISPLAY_NAME": {
         "LABEL": "Display name",
         "ERROR": "Please enter a valid display name",
@@ -134,7 +135,7 @@
   },
   "APP_GLOBAL": {
     "TRIAL_MESSAGE": "days trial remaining.",
-    "TRAIL_BUTTON": "Buy Now",
+    "TRAIL_BUTTON": "Choose a Plan",
     "DELETED_USER": "Deleted User"
   },
   "COMPONENTS": {
@@ -171,6 +172,7 @@
     "INTEGRATIONS": "Integrations",
     "PROFILE_SETTINGS": "Profile Settings",
     "ACCOUNT_SETTINGS": "Account Settings",
+    "BILLING": "Billing",
     "APPLICATIONS": "Applications",
     "LABELS": "Labels",
     "CUSTOM_ATTRIBUTES": "Custom Attributes",
@@ -234,6 +236,29 @@
       "WINDOWS_KEY_AND_COMMAND_KEY": "Win / ⌘",
       "ALT_OR_OPTION_KEY": "Alt / ⌥",
       "FORWARD_SLASH_KEY": "/"
+    },
+    "BILLING_SETTINGS": {
+      "TITLE": "Billing settings",
+      "SUBMIT": "Update settings",
+      "BACK": "Back",
+      "FORM": {
+        "CURRENT_PLAN": {
+          "TITLE": "Current Plan",
+          "NOTE": "Your current Chatwoot Subscription Plan",
+          "PLAN_NOTE": "You are currently under the Chatwoot {plan} Plan"
+        },
+        "CHANGE_PLAN": {
+          "TITLE": "Change Plan",
+          "NOTE": "Change your current Chatwoot Subscription Plan",
+          "SELECT_PLAN": "Select A Plan"
+        }
+      },
+      "ERROR": {
+        "MESSAGE": "Subscription plan not changed"
+      },
+      "SUCCESS": {
+        "MESSAGE": "Subscription plan changed successfully"
+      }
     }
   }
 }

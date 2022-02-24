@@ -4,6 +4,12 @@
     <section class="app-content columns" :class="contentClassName">
       <router-view></router-view>
       <command-bar />
+      <ShowPlans
+        :is-subscription-valid="!isSubscriptionValid"
+        :available-product-prices="availableProductPrices"
+        :plan-id="planId"
+        @hideModal="hideModal"
+      />
     </section>
   </div>
 </template>
@@ -12,21 +18,36 @@
 import Sidebar from '../../components/layout/Sidebar';
 import CommandBar from './commands/commandbar.vue';
 import { BUS_EVENTS } from 'shared/constants/busEvents';
+import Cookies from 'js-cookie';
+import ShowPlans from './ShowPlans';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
     Sidebar,
     CommandBar,
+    ShowPlans,
   },
   data() {
     return {
       isSidebarOpen: false,
       isOnDesktop: true,
+      isSubscriptionValid: true,
+      availableProductPrices: [],
+      planId: 0,
     };
   },
   computed: {
     currentRoute() {
       return ' ';
+    },
+    ...mapGetters({
+      globalConfig: 'globalConfig/get',
+      getAccount: 'accounts/getAccount',
+      uiFlags: 'accounts/getUIFlags',
+    }),
+    isUpdating() {
+      return this.uiFlags.isUpdating;
     },
     sidebarClassName() {
       if (this.isOnDesktop) {
@@ -52,6 +73,8 @@ export default {
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
     bus.$on(BUS_EVENTS.TOGGLE_SIDEMENU, this.toggleSidebar);
+    this.initializeAccountBillingSubscription();
+    bus.$on(BUS_EVENTS.SHOW_PLAN_MODAL, this.showModal);
   },
   beforeDestroy() {
     bus.$off(BUS_EVENTS.TOGGLE_SIDEMENU, this.toggleSidebar);
@@ -64,6 +87,25 @@ export default {
       } else {
         this.isOnDesktop = false;
       }
+    },
+    async initializeAccountBillingSubscription() {
+      try {
+        await this.$store.dispatch('accounts/getBillingSubscription');
+        const { available_product_prices, plan_id } = this.getAccount(
+          this.$route.params.accountId
+        );
+        this.availableProductPrices = available_product_prices;
+        this.planId = plan_id;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    hideModal() {
+      Cookies.remove('subscription');
+      this.isSubscriptionValid = true;
+    },
+    showModal() {
+      this.isSubscriptionValid = false;
     },
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen;

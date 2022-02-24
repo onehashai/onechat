@@ -2,7 +2,8 @@
 
 class AccountBuilder
   include CustomExceptions::Account
-  pattr_initialize [:account_name!, :email!, :confirmed, :user, :user_full_name, :firebase_jwt,:user_password, :super_admin]
+  pattr_initialize [:account_name!, :email!, :confirmed, :user, :first_name, :last_name, :firebase_jwt, :user_password, :country,
+                    :super_admin]
 
   def perform
     if @user.nil?
@@ -10,9 +11,11 @@ class AccountBuilder
       validate_user
     end
     ActiveRecord::Base.transaction do
-      @account = create_account
+      @account = SUB
       @user = create_and_link_user
     end
+    Databases::CreateAccountDatabase.create_data_base(@account, @user)
+    @user = User.find_by(email: @user.email)
     [@user, @account]
   rescue StandardError => e
     puts e.inspect
