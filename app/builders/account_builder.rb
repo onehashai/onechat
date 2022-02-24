@@ -2,7 +2,7 @@
 
 class AccountBuilder
   include CustomExceptions::Account
-  pattr_initialize [:account_name!, :email!, :confirmed, :user, :user_full_name, :phon,:user_password, :super_admin]
+  pattr_initialize [:account_name!, :email!, :confirmed, :user, :user_full_name, :firebase_jwt,:user_password, :super_admin]
 
   def perform
     if @user.nil?
@@ -66,7 +66,7 @@ class AccountBuilder
                      password_confirmation: user_password,
                      first_name: @first_name,
                      last_name: @last_name,
-                     phone: @phone,
+                     firebase_token: @firebase_jwt,
                      country: @country)
     @user.type = 'SuperAdmin' if @super_admin
     @user.confirm if @confirmed

@@ -18,7 +18,30 @@ import AddAccountModal from '../dashboard/components/layout/sidebarComponents/Ad
 import WootSnackbarBox from './components/SnackbarContainer';
 import NetworkNotification from './components/NetworkNotification';
 import { accountIdFromPathname } from './helper/URLHelper';
-
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+console.log(process.env, 'env');
+const firebaseConfig = {
+  apiKey:
+    process.env.FIREBASE_API_KEY || 'AIzaSyBSvmAj5FZtMtEysYDCVxuftles6Qs7qms',
+  authDomain:
+    process.env.FIREBASE_AUTH_DOMAIN || 'onechat-3b3b4.firebaseapp.com',
+  projectId: process.env.FIREBASE_PROJECT_ID || 'onechat-3b3b4',
+  storageBucket:
+    process.env.FIREBASE_STORAGE_BUCKET || 'onechat-3b3b4.appspot.com',
+  messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID || '661340067942',
+  appId:
+    process.env.FIREBASE_APP_ID || '1:661340067942:web:2f9308849614b9cc95f5a7',
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID || 'G-6HMEZCLM44',
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 export default {
   name: 'App',
 

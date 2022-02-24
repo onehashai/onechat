@@ -32,6 +32,8 @@ input {
 
 .help-text {
   font-weight: $font-weight-normal;
+  position: absolute;
+  top: 82px;
 }
 
 .input-group.small {
@@ -43,4 +45,8 @@ input {
   .error {
     border-color: var(--r-400);
   }
+}
+.country-selector__input,
+#MazPhoneNumberInput input {
+  border: 1px solid #EBF0F5 !important;
 }

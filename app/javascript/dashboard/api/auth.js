@@ -21,7 +21,7 @@ export default {
     });
   },
 
-  register(creds) {
+  register(creds, firebase, code) {
     const urlData = endPoints('register');
     const fetchPromise = new Promise((resolve, reject) => {
       axios
@@ -33,6 +33,8 @@ export default {
           user_full_name: creds.fullName.trim(),
           email: creds.email,
           password: creds.password,
+          firebase_jwt: firebase,
+          code: code,
         })
         .then(response => {
           setAuthCredentials(response);
@@ -47,6 +49,19 @@ export default {
   validityCheck() {
     const urlData = endPoints('validityCheck');
     return axios.get(urlData.url);
+  },
+  getCountryCode() {
+    const fetchPromise = new Promise((resolve, reject) => {
+      axios
+        .get('api/v1/accounts/country_based_on_ip')
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+    return fetchPromise;
   },
   logout() {
     const urlData = endPoints('logout');

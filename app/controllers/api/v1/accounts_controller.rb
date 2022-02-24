@@ -2,10 +2,10 @@ class Api::V1::AccountsController < Api::BaseController
   include AuthHelper
 
   skip_before_action :authenticate_user!, :set_current_user, :handle_with_exception,
-                     only: [:create], raise: false
+                     only: [:create, :country_based_on_ip], raise: false
   before_action :check_signup_enabled, only: [:create]
-  before_action :fetch_account, except: [:create]
-  before_action :check_authorization, except: [:create]
+  before_action :fetch_account, except: [:create, :country_based_on_ip]
+  before_action :check_authorization, except: [:create, :country_based_on_ip]
 
   rescue_from CustomExceptions::Account::InvalidEmail,
               CustomExceptions::Account::UserExists,
@@ -18,7 +18,7 @@ class Api::V1::AccountsController < Api::BaseController
       first_name: account_params[:first_name],
       last_name: account_params[:last_name],
       email: account_params[:email],
-      phone: account_params[:phone],
+      firebase_jwt: account_params[:firebase_jwt],
       user_password: account_params[:password],
       user: current_user,
       country:  request.location.country,
@@ -46,6 +46,9 @@ class Api::V1::AccountsController < Api::BaseController
     head :ok
   end
 
+  def country_based_on_ip
+    render json: { country: request.location.country || "PK" }, status: 200
+  end
   private
 
   def fetch_account
@@ -54,7 +57,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:account_name,:first_name, :last_name, :email, :name, :password, :locale, :domain, :support_email, :auto_resolve_duration,:phone, :account_subdomain)
+    params.permit(:account_name,:first_name, :last_name, :email, :name, :password, :locale, :domain, :support_email, :auto_resolve_duration,:firebase_jwt, :account_subdomain)
   end
 
   def check_signup_enabled
