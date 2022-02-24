@@ -47,7 +47,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def country_based_on_ip
-    render json: { country: request.location.country || "PK" }, status: 200
+    render json: { country: request.location.country || 'PK' }, status: :ok
   end
   private
 

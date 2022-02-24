@@ -16,6 +16,7 @@
 #  encrypted_password     :string           default(""), not null
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
+#  name                   :string
 #  phone                  :string
 #  message_signature      :text
 #  provider               :string           default("email"), not null
@@ -66,11 +67,12 @@ class User < ApplicationRecord
   # The validation below has been commented out as it does not
   # work because :validatable in devise overrides this.
   # validates_uniqueness_of :email, scope: :account_id
-  attr_accessor :firebase_token
-  validate :firebase_verification, on: :create
-  validates :email, :first_name, :last_name, presence: true
-  validates_length_of :first_name, :last_name, minimum: 1
-
+  attr_accessor :firebase_token, :is_an_agent
+  validate :firebase_verification, on: :create, unless: :an_agent?
+  validates :email, :name, presence: true
+  validates :first_name, :last_name, presence: true, unless: :an_agent?
+  validates_length_of :name, minimum: 1
+  validates_length_of :first_name, :last_name, minimum: 1, unless: :an_agent?
   has_many :account_users, dependent: :destroy_async
   has_many :accounts, through: :account_users
   accepts_nested_attributes_for :account_users
@@ -93,7 +95,7 @@ class User < ApplicationRecord
   has_many :team_members, dependent: :destroy_async
   has_many :teams, through: :team_members
 
-  before_validation :set_password_and_uid, on: :create
+  before_validation :set_password_and_uid, :set_name, on: :create
 
   scope :order_by_full_name, -> { order('lower(first_name) ASC') }
   def send_devise_notification(notification, *args)
@@ -110,6 +112,10 @@ class User < ApplicationRecord
 
   def current_account_user
     account_users.find_by(account_id: Current.account.id) if Current.account
+  end
+
+  def an_agent?
+    is_an_agent || role == 'agent'
   end
 
   def available_name
@@ -181,8 +187,8 @@ class User < ApplicationRecord
     }
   end
 
-  def name
-    "#{first_name} #{last_name}"
+  def set_name
+    self.name = "#{first_name} #{last_name}" if name.blank?
   end
 
   def display_name
