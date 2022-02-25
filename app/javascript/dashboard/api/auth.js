@@ -35,6 +35,8 @@ export default {
           password: creds.password,
           firebase_jwt: firebase,
           code: code,
+          /* TODO Uncomment this
+           * h_captcha_client_response: creds.hCaptchaClientResponse, */
         })
         .then(response => {
           setAuthCredentials(response);

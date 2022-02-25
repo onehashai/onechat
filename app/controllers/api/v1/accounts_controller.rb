@@ -4,6 +4,7 @@ class Api::V1::AccountsController < Api::BaseController
   skip_before_action :authenticate_user!, :set_current_user, :handle_with_exception,
                      only: [:create, :country_based_on_ip], raise: false
   before_action :check_signup_enabled, only: [:create]
+  before_action :validate_captcha, only: [:create]
 
   skip_before_action :verify_subscription,
                      only: [:billing_subscription, :start_billing_subscription], raise: false
@@ -78,6 +79,11 @@ class Api::V1::AccountsController < Api::BaseController
 
   def check_signup_enabled
     raise ActionController::RoutingError, 'Not Found' if GlobalConfigService.load('ENABLE_ACCOUNT_SIGNUP', 'false') == 'false'
+  end
+
+  def validate_captcha
+    #TODO Uncomment this line
+    # raise ActionController::InvalidAuthenticityToken, 'Invalid Captcha' unless ChatwootCaptcha.new(params[:h_captcha_client_response]).valid?
   end
 
   def pundit_user
