@@ -18,6 +18,7 @@ class ConversationFinder
     @current_user = current_user
     @current_account = current_user.account
     @params = params
+    @history = @current_account.usage_limits[:history]
   end
 
   def perform
@@ -72,9 +73,9 @@ class ConversationFinder
   def find_all_conversations
     if params[:conversation_type] == 'mention'
       conversation_ids = current_account.mentions.where(user: current_user).pluck(:conversation_id)
-      @conversations = current_account.conversations.where(id: conversation_ids)
+      @conversations = current_account.conversations.where(id: conversation_ids).account_conversations_limit(@history)
     else
-      @conversations = current_account.conversations.where(inbox_id: @inbox_ids)
+      @conversations = current_account.conversations.where(inbox_id: @inbox_ids).account_conversations_limit(@history)
     end
   end
 
@@ -95,7 +96,7 @@ class ConversationFinder
     @conversations = conversations.joins(:messages).where('messages.content ILIKE :search', search: "%#{params[:q]}%")
                                   .where(messages: { message_type: allowed_message_types }).includes(:messages)
                                   .where('messages.content ILIKE :search', search: "%#{params[:q]}%")
-                                  .where(messages: { message_type: allowed_message_types })
+                                  .where(messages: { message_type: allowed_message_types }).account_conversations_limit(@history)
   end
 
   def filter_by_status
@@ -127,7 +128,7 @@ class ConversationFinder
   def conversations
     @conversations = @conversations.includes(
       :taggings, :inbox, { assignee: { avatar_attachment: [:blob] } }, { contact: { avatar_attachment: [:blob] } }, :team, :contact_inbox
-    )
+    ).account_conversations_limit(@history)
     if params[:conversation_type] == 'mention'
       @conversations.page(current_page)
     else

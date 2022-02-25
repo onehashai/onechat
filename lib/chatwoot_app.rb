@@ -17,6 +17,10 @@ module ChatwootApp
     @enterprise ||= root.join('enterprise').exist?
   end
 
+  def self.chatwoot_saas?
+    true
+  end
+
   def self.custom?
     @custom ||= root.join('custom').exist?
   end
@@ -29,5 +33,9 @@ module ChatwootApp
     else
       %w[]
     end
+  end
+
+  def self.trial_ending_time
+    15.days.from_now
   end
 end

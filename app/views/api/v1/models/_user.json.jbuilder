@@ -4,6 +4,10 @@ json.available_name resource.available_name
 json.avatar_url resource.avatar_url
 json.confirmed resource.confirmed?
 json.display_name resource.display_name
+json.first_name resource.first_name
+json.last_name resource.last_name
+json.country resource.country
+json.phone resource.phone
 json.message_signature resource.message_signature
 json.email resource.email
 json.hmac_identifier resource.hmac_identifier if GlobalConfig.get('CHATWOOT_INBOX_HMAC_KEY')['CHATWOOT_INBOX_HMAC_KEY'].present?

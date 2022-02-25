@@ -33,8 +33,12 @@ Rails.application.routes.draw do
       resources :accounts, only: [:create, :show, :update] do
         member do
           post :update_active_at
+          get :billing_subscription
+          post :start_billing_subscription
         end
-
+        collection do
+          get :country_based_on_ip
+        end
         scope module: :accounts do
           namespace :actions do
             resource :contact_merge, only: [:create]
@@ -274,6 +278,7 @@ Rails.application.routes.draw do
   post 'webhooks/sms/:phone_number', to: 'webhooks/sms#process_payload'
   get 'webhooks/instagram', to: 'webhooks/instagram#verify'
   post 'webhooks/instagram', to: 'webhooks/instagram#events'
+  post 'webhooks/stripe', to: 'webhooks/stripe#process_payload'
 
   namespace :twitter do
     resource :callback, only: [:show]
@@ -304,6 +309,11 @@ Rails.application.routes.draw do
       # order of resources affect the order of sidebar navigation in super admin
       resources :accounts
       resources :users, only: [:index, :new, :create, :show, :edit, :update]
+      namespace :enterprise do
+        resources :billing_products
+        resources :billing_product_prices
+        resources :account_billing_subscriptions
+      end
       resources :access_tokens, only: [:index, :show]
       resources :installation_configs, only: [:index, :new, :create, :show, :edit, :update]
       resources :agent_bots, only: [:index, :new, :create, :show, :edit, :update]

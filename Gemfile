@@ -69,7 +69,7 @@ gem 'jwt'
 gem 'pundit'
 # super admin
 gem 'administrate'
-
+gem 'administrate-field-jsonb'
 ##--- gems for pubsub service ---##
 # https://karolgalanciak.com/blog/2019/11/30/from-activerecord-callbacks-to-publish-slash-subscribe-pattern-and-event-driven-design/
 gem 'wisper', '2.0.0'
@@ -116,6 +116,8 @@ gem 'geocoder'
 # to parse maxmind db
 gem 'maxminddb'
 
+# for the billing logic in chatwoot
+gem 'stripe'
 # to create db triggers
 gem 'hairtrigger'
 

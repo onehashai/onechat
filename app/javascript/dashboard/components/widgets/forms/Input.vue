@@ -9,7 +9,7 @@
       @input="onChange"
       @blur="onBlur"
     />
-    <p v-if="helpText" class="help-text"></p>
+    <p v-if="helpText" class="help-text-input">{{ helpText }}</p>
     <span v-if="error" class="message">
       {{ error }}
     </span>

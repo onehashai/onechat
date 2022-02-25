@@ -25,7 +25,7 @@ class Api::V1::Accounts::Conversations::MessagesController < Api::V1::Accounts::
   end
 
   def message_finder
-    @message_finder ||= MessageFinder.new(@conversation, params)
+    @message_finder ||= MessageFinder.new(@conversation, params, Current.account)
   end
 
   def permitted_params

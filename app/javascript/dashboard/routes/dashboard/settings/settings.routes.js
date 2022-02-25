@@ -1,5 +1,6 @@
 import { frontendURL } from '../../../helper/URLHelper';
 import account from './account/account.routes';
+import billing from './billing/billing.routes';
 import agent from './agents/agent.routes';
 import canned from './canned/canned.routes';
 import inbox from './inbox/inbox.routes';
@@ -30,6 +31,7 @@ export default {
     ...account.routes,
     ...agent.routes,
     ...canned.routes,
+    ...billing.routes,
     ...inbox.routes,
     ...integrations.routes,
     ...labels.routes,

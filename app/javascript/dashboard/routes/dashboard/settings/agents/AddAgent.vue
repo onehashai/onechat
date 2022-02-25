@@ -129,8 +129,10 @@ export default {
       } catch (error) {
         if (error.response.status === 422) {
           this.showAlert(this.$t('AGENT_MGMT.ADD.API.EXIST_MESSAGE'));
+        } else if (error.response.status === 402) {
+          this.showAlert('Please subscribe to a Plan');
         } else {
-          this.showAlert(this.$t('AGENT_MGMT.ADD.API.ERROR_MESSAGE'));
+          this.showAlert(this.$t('AGENT_MGMT.ADD.API.EXIST_MESSAGE'));
         }
       }
     },

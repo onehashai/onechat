@@ -41,9 +41,10 @@ en:
       invalid_email: You have entered an invalid email
       email_already_exists: "You have already signed up for an account with %{email}"
       failed: Signup failed
+      invalid_phone: Number is invalid
     contacts:
       import:
-        failed: File is blank  
+        failed: File is blank
 
   reports:
     period: Reporting period %{since} to %{until}

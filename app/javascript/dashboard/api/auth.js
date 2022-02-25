@@ -21,16 +21,21 @@ export default {
     });
   },
 
-  register(creds) {
+  register(creds, firebase, code) {
     const urlData = endPoints('register');
     const fetchPromise = new Promise((resolve, reject) => {
       axios
         .post(urlData.url, {
           account_name: creds.accountName.trim(),
-          user_full_name: creds.fullName.trim(),
+          first_name: creds.firstName.trim(),
+          last_name: creds.lastName.trim(),
+          phone: creds.phone.trim(),
           email: creds.email,
           password: creds.password,
-          h_captcha_client_response: creds.hCaptchaClientResponse,
+          firebase_jwt: firebase,
+          code: code,
+          /* TODO Uncomment this
+           * h_captcha_client_response: creds.hCaptchaClientResponse, */
         })
         .then(response => {
           setAuthCredentials(response);
@@ -45,6 +50,19 @@ export default {
   validityCheck() {
     const urlData = endPoints('validityCheck');
     return axios.get(urlData.url);
+  },
+  getCountryCode() {
+    const fetchPromise = new Promise((resolve, reject) => {
+      axios
+        .get('api/v1/accounts/country_based_on_ip')
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+    return fetchPromise;
   },
   logout() {
     const urlData = endPoints('logout');

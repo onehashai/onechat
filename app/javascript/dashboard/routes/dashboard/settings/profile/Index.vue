@@ -25,16 +25,40 @@
               {{ $t('PROFILE_SETTINGS.DELETE_AVATAR') }}
             </woot-button>
           </div>
-          <label :class="{ error: $v.name.$error }">
-            {{ $t('PROFILE_SETTINGS.FORM.NAME.LABEL') }}
+          <label :class="{ error: $v.first_name.$error }">
+            {{ $t('PROFILE_SETTINGS.FORM.FIRST_NAME.LABEL') }}
             <input
-              v-model="name"
+              v-model="first_name"
               type="text"
-              :placeholder="$t('PROFILE_SETTINGS.FORM.NAME.PLACEHOLDER')"
-              @input="$v.name.$touch"
+              :placeholder="$t('PROFILE_SETTINGS.FORM.FIRST_NAME.PLACEHOLDER')"
+              @input="$v.first_name.$touch"
             />
-            <span v-if="$v.name.$error" class="message">
-              {{ $t('PROFILE_SETTINGS.FORM.NAME.ERROR') }}
+            <span v-if="$v.first_name.$error" class="message">
+              {{ $t('PROFILE_SETTINGS.FORM.FIRST_NAME.ERROR') }}
+            </span>
+          </label>
+          <label :class="{ error: $v.last_name.$error }">
+            {{ $t('PROFILE_SETTINGS.FORM.LAST_NAME.LABEL') }}
+            <input
+              v-model="last_name"
+              type="text"
+              :placeholder="$t('PROFILE_SETTINGS.FORM.LAST_NAME.PLACEHOLDER')"
+              @input="$v.last_name.$touch"
+            />
+            <span v-if="$v.last_name.$error" class="message">
+              {{ $t('PROFILE_SETTINGS.FORM.LAST_NAME.ERROR') }}
+            </span>
+          </label>
+          <label :class="{ error: $v.phone.$error }">
+            {{ $t('PROFILE_SETTINGS.FORM.PHONE.LABEL') }}
+            <input
+              v-model="phone"
+              type="text"
+              :placeholder="$t('PROFILE_SETTINGS.FORM.PHONE.PLACEHOLDER')"
+              @input="$v.phone.$touch"
+            />
+            <span v-if="$v.phone.$error" class="message">
+              {{ $t('PROFILE_SETTINGS.FORM.PHONE.ERROR') }}
             </span>
           </label>
           <label :class="{ error: $v.displayName.$error }">
@@ -111,7 +135,9 @@ export default {
     return {
       avatarFile: '',
       avatarUrl: '',
-      name: '',
+      first_name: '',
+      last_name: '',
+      phone: '',
       displayName: '',
       email: '',
       isProfileUpdating: false,
@@ -119,7 +145,15 @@ export default {
     };
   },
   validations: {
-    name: {
+    first_name: {
+      required,
+      minLength: minLength(1),
+    },
+    last_name: {
+      required,
+      minLength: minLength(1),
+    },
+    phone: {
       required,
       minLength: minLength(1),
     },
@@ -150,7 +184,9 @@ export default {
   },
   methods: {
     initializeUser() {
-      this.name = this.currentUser.name;
+      this.first_name = this.currentUser.first_name;
+      this.last_name = this.currentUser.last_name;
+      this.phone = this.currentUser.phone;
       this.email = this.currentUser.email;
       this.avatarUrl = this.currentUser.avatar_url;
       this.displayName = this.currentUser.display_name;
@@ -166,7 +202,9 @@ export default {
       const hasEmailChanged = this.currentUser.email !== this.email;
       try {
         await this.$store.dispatch('updateProfile', {
-          name: this.name,
+          first_name: this.first_name,
+          last_name: this.last_name,
+          phone: this.phone,
           email: this.email,
           avatar: this.avatarFile,
           displayName: this.displayName,

@@ -47,8 +47,6 @@ class Conversation < ApplicationRecord
   include RoundRobinHandler
   include ActivityMessageHandler
 
-  validates :account_id, presence: true
-  validates :inbox_id, presence: true
   before_validation :validate_additional_attributes
 
   enum status: { open: 0, resolved: 1, pending: 2, snoozed: 3 }
@@ -61,6 +59,13 @@ class Conversation < ApplicationRecord
     return [] if auto_resolve_duration.to_i.zero?
 
     open.where('last_activity_at < ? ', Time.now.utc - auto_resolve_duration.days)
+  }
+  scope :account_conversations_limit, lambda { |days|
+    if days.present?
+      where('created_at > ? ', days.to_i.days.ago)
+    else
+      where('created_at > ? ', 20.years.ago)
+    end
   }
 
   belongs_to :account

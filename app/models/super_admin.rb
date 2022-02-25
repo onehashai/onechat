@@ -7,16 +7,20 @@
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
+#  country                :string
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  custom_attributes      :jsonb
 #  display_name           :string
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  message_signature      :text
 #  name                   :string           not null
+#  phone                  :string
 #  provider               :string           default("email"), not null
 #  pubsub_token           :string
 #  remember_created_at    :datetime
