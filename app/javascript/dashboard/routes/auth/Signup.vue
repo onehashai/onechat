@@ -44,23 +44,7 @@
             </div>
           </div>
           <div class="row flex-no-wrap justify-space-between">
-            <div class="small-12 medium-6 large-6 column margin-right-small">
-              <woot-input
-                v-model.trim="credentials.subdomain"
-                type="text"
-                :class="{ error: $v.credentials.subdomain.$error }"
-                :label="$t('REGISTER.SUBDOMAIN.LABEL')"
-                :placeholder="$t('REGISTER.SUBDOMAIN.PLACEHOLDER')"
-                :error="
-                  $v.credentials.subdomain.$error
-                    ? $t('REGISTER.SUBDOMAIN.ERROR')
-                    : ''
-                "
-                :helptext="credentials.subdomain + '.onehash.com'"
-                @blur="$v.credentials.subdomain.$touch"
-              />
-            </div>
-            <div class="small-12 medium-6 large-6 column">
+            <div class="small-12 medium-12 large-12 column">
               <woot-input
                 v-model.trim="credentials.email"
                 type="email"

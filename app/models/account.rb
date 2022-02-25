@@ -75,6 +75,8 @@ class Account < ApplicationRecord
   has_many :sms_channels, dependent: :destroy_async, class_name: '::Channel::Sms'
   has_many :working_hours, dependent: :destroy_async
   has_many :automation_rules, dependent: :destroy
+  has_many :account_billing_subscriptions, dependent: :destroy_async,
+                                           class_name: '::Enterprise::AccountBillingSubscription'
 
   has_flags ACCOUNT_SETTINGS_FLAGS.merge(column: 'settings_flags').merge(DEFAULT_QUERY_SETTING)
 
@@ -82,6 +84,7 @@ class Account < ApplicationRecord
 
   before_validation :validate_limit_keys
   after_create_commit :notify_creation
+  after_create :subscribe_for_plan
 
   def agents
     users.where(account_users: { role: :agent })
@@ -121,6 +124,18 @@ class Account < ApplicationRecord
       agents: ChatwootApp.max_limit.to_i,
       inboxes: ChatwootApp.max_limit.to_i
     }
+  end
+
+  def subscribe_for_plan(name = 'Trial', end_time = ChatwootApp.trial_ending_time)
+    trail_plan = Enterprise::BillingProduct.find_by(product_name: name)
+    plan_price = trail_plan.billing_product_prices.last
+    account_billing_subscriptions.create!(billing_product_price: plan_price, current_period_end: end_time)
+    set_limits_for_account plan_price
+  end
+
+  def set_limits_for_account(plan_price)
+    self.limits = plan_price.limits
+    save!
   end
 
   private

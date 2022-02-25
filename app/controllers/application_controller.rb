@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
       current_user.accounts.last
     end
   end
+
   def pundit_user
     {
       user: Current.user,
@@ -35,13 +36,14 @@ class ApplicationController < ActionController::Base
       account_user: Current.account_user
     }
   end
+
   def verify_subscription
     return if current_super_admin
     if current_subscription.blank?
       render_payment_required('Please subscribe to a Plan') and return
     elsif current_subscription.current_period_end < Time.current
       if current_subscription.billing_product_price.billing_product.product_name == 'Trial'
-        current_account_by_user.subscribe_for_plan('Free', Time.current + 3.years)
+        current_account_by_user.subscribe_for_plan('Free', 3.years.from_now)
       else
         render_payment_required('Payment Required for the Plan') and return
       end

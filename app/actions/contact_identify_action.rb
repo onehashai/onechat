@@ -55,9 +55,7 @@ class ContactIdentifyAction
     custom_attributes = params[:custom_attributes] ? @contact.custom_attributes.merge(params[:custom_attributes]) : @contact.custom_attributes
     # blank identifier or email will throw unique index error
     # TODO: replace reject { |_k, v| v.blank? } with compact_blank when rails is upgraded
-    @contact.update!(params.slice(:name, :email, :identifier, :phone_number).reject do |_k, v|
-                       v.blank?
-                     end.merge({ custom_attributes: custom_attributes }))
+    @contact.update!(params.slice(:name, :email, :identifier, :phone_number).compact_blank.merge({ custom_attributes: custom_attributes }))
     ContactAvatarJob.perform_later(@contact, params[:avatar_url]) if params[:avatar_url].present?
   end
 

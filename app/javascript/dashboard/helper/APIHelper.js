@@ -5,7 +5,14 @@ import { BUS_EVENTS } from '../../shared/constants/busEvents';
 
 const parseErrorCode = error => {
   if (error.response.status == 402) {
-    Cookies.set('subscription', error.response);
+      if (error?.response?.data?.error) {
+          Cookies.set('subscription', error.response.data.error);
+      } else {
+          Cookies.set(
+              'subscription',
+              'Account limit exceeded. Upgrade to a higher plan\n'
+          );
+      }
     bus.$emit(BUS_EVENTS.SHOW_PLAN_MODAL);
   }
   return Promise.reject(error);

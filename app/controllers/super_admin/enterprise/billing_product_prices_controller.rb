@@ -1,10 +1,7 @@
 class SuperAdmin::Enterprise::BillingProductPricesController < SuperAdmin::ApplicationController
-
   # Overwrite any of the RESTful controller actions to implement custom behavior
 
   # For example, you may want to send an email after a foo is updated.
-
-  #
 
   # def update
 
@@ -14,16 +11,11 @@ class SuperAdmin::Enterprise::BillingProductPricesController < SuperAdmin::Appli
 
   # end
 
-
-
-
   # Override this method to specify custom lookup behavior.
 
   # This will be used to set the resource for the `show`, `edit`, and `update`
 
   # actions.
-
-  #
 
   # def find_resource(param)
 
@@ -31,19 +23,11 @@ class SuperAdmin::Enterprise::BillingProductPricesController < SuperAdmin::Appli
 
   # end
 
-
-
-
   # The result of this lookup will be available as `requested_resource`
-
-
-
 
   # Override this if you have certain roles that require a subset
 
   # this will be used to set the records shown on the `index` action.
-
-  #
 
   # def scoped_resource
 
@@ -59,9 +43,6 @@ class SuperAdmin::Enterprise::BillingProductPricesController < SuperAdmin::Appli
 
   # end
 
-
-
-
   # Override `resource_params` if you want to transform the submitted
 
   # data before it's persisted. For example, the following would turn all
@@ -69,8 +50,6 @@ class SuperAdmin::Enterprise::BillingProductPricesController < SuperAdmin::Appli
   # empty values into nil values. It uses other APIs such as `resource_class`
 
   # and `dashboard`:
-
-  #
 
   # def resource_params
 
@@ -82,11 +61,7 @@ class SuperAdmin::Enterprise::BillingProductPricesController < SuperAdmin::Appli
 
   # end
 
-
-
-
   # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
 
   # for more information
-
 end

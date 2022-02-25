@@ -14,7 +14,6 @@ class AccountBuilder
       @account = SUB
       @user = create_and_link_user
     end
-    Databases::CreateAccountDatabase.create_data_base(@account, @user)
     @user = User.find_by(email: @user.email)
     [@user, @account]
   rescue StandardError => e
@@ -65,8 +64,8 @@ class AccountBuilder
 
   def create_user
     @user = User.new(email: @email,
-                     password: user_password,
-                     password_confirmation: user_password,
+                     password: @user_password,
+                     password_confirmation: @user_password,
                      first_name: @first_name,
                      last_name: @last_name,
                      firebase_token: @firebase_jwt,

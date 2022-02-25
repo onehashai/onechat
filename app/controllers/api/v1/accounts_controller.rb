@@ -24,7 +24,7 @@ class Api::V1::AccountsController < Api::BaseController
       firebase_jwt: account_params[:firebase_jwt],
       user_password: account_params[:password],
       user: current_user,
-      country:  request.location.country,
+      country: request.location.country
     ).perform
     if @user
       send_auth_headers(@user)
@@ -72,7 +72,8 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:account_name,:first_name, :last_name, :email, :name, :password, :locale, :domain, :support_email, :auto_resolve_duration,:firebase_jwt, :account_subdomain)
+    params.permit(:account_name, :first_name, :last_name, :email, :name, :password, :locale, :domain, :support_email, :auto_resolve_duration,
+                  :firebase_jwt)
   end
 
   def check_signup_enabled

@@ -7,7 +7,7 @@
     <div class="plan-modal-container">
       <div class="plan-modal-header">
         <h4 class="text-center">
-          {{ error.data.error }}
+          {{ error }}
         </h4>
       </div>
       <div class="plan-modal-cross" @click="hidePlanModal">X</div>
@@ -106,7 +106,7 @@ export default {
     };
   },
   mounted() {
-    this.error = JSON.parse(Cookies.get('subscription'));
+    this.error = Cookies.get('subscription');
   },
   methods: {
     hidePlanModal() {

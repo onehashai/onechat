@@ -85,6 +85,9 @@ GEM
       momentjs-rails (~> 2.8)
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
+    administrate-field-jsonb (0.4.5)
+      administrate (< 1.0.0)
+      rails (>= 4.2)
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
@@ -582,6 +585,7 @@ GEM
       sprockets (>= 3.0.0)
     squasher (0.6.2)
     statsd-ruby (1.5.0)
+    stripe (5.44.0)
     telephone_number (1.4.12)
     thor (1.2.1)
     tilt (2.0.10)
@@ -650,6 +654,7 @@ DEPENDENCIES
   activerecord-import
   acts-as-taggable-on
   administrate
+  administrate-field-jsonb
   annotate
   attr_extras
   aws-sdk-s3
@@ -733,6 +738,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen
   squasher
+  stripe
   telephone_number
   time_diff
   twilio-ruby (~> 5.32.0)

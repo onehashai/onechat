@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_15_060751) do
+ActiveRecord::Schema.define(version: 2022_02_22_123248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_060751) do
     t.integer "feature_flags", default: 0, null: false
     t.integer "auto_resolve_duration"
     t.jsonb "limits", default: {}
+    t.jsonb "custom_attributes", default: {}
   end
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
@@ -350,7 +351,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_060751) do
     t.datetime "agent_last_seen_at"
     t.jsonb "additional_attributes", default: {}
     t.bigint "contact_inbox_id"
-    t.uuid "uuid", default: -> { "public.gen_random_uuid()" }, null: false
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "identifier"
     t.datetime "last_activity_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.bigint "team_id"
@@ -421,6 +422,44 @@ ActiveRecord::Schema.define(version: 2022_02_15_060751) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_data_imports_on_account_id"
+  end
+
+  create_table "ee_account_billing_subscriptions", force: :cascade do |t|
+    t.string "subscription_stripe_id"
+    t.bigint "account_id", null: false
+    t.bigint "billing_product_price_id", null: false
+    t.string "status", default: "true", null: false
+    t.datetime "current_period_end"
+    t.datetime "cancelled_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_ee_account_billing_subscriptions_on_account_id"
+    t.index ["billing_product_price_id"], name: "billing_product_price_index"
+    t.index ["subscription_stripe_id"], name: "subscription_stripe_id_index", unique: true
+  end
+
+  create_table "ee_billing_product_prices", force: :cascade do |t|
+    t.string "price_stripe_id"
+    t.bigint "billing_product_id"
+    t.boolean "active", default: false
+    t.string "stripe_nickname"
+    t.integer "unit_amount"
+    t.integer "features", default: 0, null: false
+    t.jsonb "limits", default: {}, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["billing_product_id"], name: "index_ee_billing_product_prices_on_billing_product_id"
+    t.index ["price_stripe_id"], name: "index_ee_billing_product_prices_on_price_stripe_id", unique: true
+  end
+
+  create_table "ee_billing_products", force: :cascade do |t|
+    t.string "product_stripe_id"
+    t.string "product_name"
+    t.string "product_description"
+    t.boolean "active", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_stripe_id"], name: "index_ee_billing_products_on_product_stripe_id", unique: true
   end
 
   create_table "email_templates", force: :cascade do |t|
@@ -746,6 +785,10 @@ ActiveRecord::Schema.define(version: 2022_02_15_060751) do
     t.jsonb "custom_attributes", default: {}
     t.string "type"
     t.text "message_signature"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "country"
     t.index ["email"], name: "index_users_on_email"
     t.index ["pubsub_token"], name: "index_users_on_pubsub_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -773,6 +816,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_060751) do
     t.integer "close_minutes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "open_all_day", default: false
     t.index ["account_id"], name: "index_working_hours_on_account_id"
     t.index ["inbox_id"], name: "index_working_hours_on_inbox_id"
   end

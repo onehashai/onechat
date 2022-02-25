@@ -1,15 +1,9 @@
 require 'administrate/base_dashboard'
 
-
-
-
 class Enterprise::AccountBillingSubscriptionDashboard < Administrate::BaseDashboard
-
   # ATTRIBUTE_TYPES
 
   # a hash that describes the type of each of the model's fields.
-
-  #
 
   # Each different type represents an Administrate::Field object,
 
@@ -39,14 +33,9 @@ class Enterprise::AccountBillingSubscriptionDashboard < Administrate::BaseDashbo
 
   }.freeze
 
-
-
-
   # COLLECTION_ATTRIBUTES
 
   # an array of attributes that will be displayed on the model's index page.
-
-  #
 
   # By default, it's limited to four items to reduce clutter on index pages.
 
@@ -63,9 +52,6 @@ class Enterprise::AccountBillingSubscriptionDashboard < Administrate::BaseDashbo
     subscription_stripe_id
 
   ].freeze
-
-
-
 
   # SHOW_PAGE_ATTRIBUTES
 
@@ -93,9 +79,6 @@ class Enterprise::AccountBillingSubscriptionDashboard < Administrate::BaseDashbo
 
   ].freeze
 
-
-
-
   # FORM_ATTRIBUTES
 
   # an array of attributes that will be displayed
@@ -118,22 +101,15 @@ class Enterprise::AccountBillingSubscriptionDashboard < Administrate::BaseDashbo
 
   ].freeze
 
-
-
-
   # COLLECTION_FILTERS
 
   # a hash that defines filters that can be used while searching via the search
 
   # field of the dashboard.
 
-  #
-
   # For example to add an option to search for open resources by typing "open:"
 
   # in the search field:
-
-  #
 
   #   COLLECTION_FILTERS = {
 
@@ -143,19 +119,13 @@ class Enterprise::AccountBillingSubscriptionDashboard < Administrate::BaseDashbo
 
   COLLECTION_FILTERS = {}.freeze
 
-
-
-
   # Overwrite this method to customize how account billing subscriptions are displayed
 
   # across all pages of the admin dashboard.
-
-  #
 
   # def display_resource(account_billing_subscription)
 
   #   "Enterprise::AccountBillingSubscription ##{account_billing_subscription.id}"
 
   # end
-
 end
