@@ -30,7 +30,6 @@ export default {
           first_name: creds.firstName.trim(),
           last_name: creds.lastName.trim(),
           phone: creds.phone.trim(),
-          user_full_name: creds.fullName.trim(),
           email: creds.email,
           password: creds.password,
           firebase_jwt: firebase,

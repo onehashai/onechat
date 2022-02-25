@@ -11,7 +11,7 @@ class AccountBuilder
       validate_user
     end
     ActiveRecord::Base.transaction do
-      @account = SUB
+      @account = create_account
       @user = create_and_link_user
     end
     [@user, @account]
