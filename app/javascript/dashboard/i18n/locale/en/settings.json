@@ -236,29 +236,30 @@
       "WINDOWS_KEY_AND_COMMAND_KEY": "Win / ⌘",
       "ALT_OR_OPTION_KEY": "Alt / ⌥",
       "FORWARD_SLASH_KEY": "/"
-    },
-    "BILLING_SETTINGS": {
-      "TITLE": "Billing settings",
-      "SUBMIT": "Update settings",
-      "BACK": "Back",
-      "FORM": {
-        "CURRENT_PLAN": {
-          "TITLE": "Current Plan",
-          "NOTE": "Your current OneChat Subscription Plan",
-          "PLAN_NOTE": "You are currently under the OneChat {plan} Plan"
-        },
-        "CHANGE_PLAN": {
-          "TITLE": "Change Plan",
-          "NOTE": "Change your current OneChat Subscription Plan",
-          "SELECT_PLAN": "Select A Plan"
-        }
+    }
+  },
+  "BILLING_SETTINGS": {
+    "TITLE": "Billing settings",
+    "SUBMIT": "Update settings",
+    "BACK": "Back",
+    "FORM": {
+      "CURRENT_PLAN": {
+        "TITLE": "Current Plan",
+        "NOTE": "Your current OneChat Subscription Plan",
+        "PLAN_NOTE": "You are currently under the OneChat {plan} Plan"
       },
-      "ERROR": {
-        "MESSAGE": "Subscription plan not changed"
-      },
-      "SUCCESS": {
-        "MESSAGE": "Subscription plan changed successfully"
+      "CHANGE_PLAN": {
+        "TITLE": "Change Plan",
+        "NOTE": "Change your current OneChat Subscription Plan",
+        "SELECT_PLAN": "Select A Plan"
       }
+    },
+    "ERROR": {
+      "MESSAGE": "Subscription plan not changed"
+    },
+    "SUCCESS": {
+      "MESSAGE": "Subscription plan changed successfully"
     }
   }
+
 }

@@ -26,7 +26,7 @@ module Enterprise::Account
                                                         customer: stripe_customer_id,
                                                         mode: 'subscription',
                                                         mode: 'subscription',
-                                                        subscription_data: { 'metadata': { id: id, sub_domain: sub_domain } }
+                                                        subscription_data: { 'metadata': { id: id, website: 'OneChat' } }
                                                       })
 
     stripe_session.url
