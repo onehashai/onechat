@@ -118,7 +118,7 @@ class User < ApplicationRecord
   end
 
   def an_agent?
-    is_an_agent || role == 'agent' || type == 'SuperAdmin'
+    is_an_agent || role == 'agent' || agent? || type == 'SuperAdmin'
   end
 
   def available_name
