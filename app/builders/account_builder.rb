@@ -14,7 +14,6 @@ class AccountBuilder
       @account = SUB
       @user = create_and_link_user
     end
-    @user = User.find_by(email: @user.email)
     [@user, @account]
   rescue StandardError => e
     puts e.inspect

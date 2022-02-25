@@ -82,7 +82,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def validate_captcha
-    #TODO Uncomment this line
+    # TODO: Uncomment this line
     # raise ActionController::InvalidAuthenticityToken, 'Invalid Captcha' unless ChatwootCaptcha.new(params[:h_captcha_client_response]).valid?
   end
 

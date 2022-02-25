@@ -2,6 +2,7 @@ class MessageFinder
   def initialize(conversation, params, account = nil)
     @conversation = conversation
     @params = params
+    @history_limit = account.present? ? account.usage_limits[:history] : nil
   end
 
   def perform

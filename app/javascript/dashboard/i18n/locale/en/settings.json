@@ -197,7 +197,7 @@
     "SET_AVAILABILITY_TITLE": "Set yourself as"
   },
   "CREATE_ACCOUNT": {
-    "NO_ACCOUNT_WARNING": "Uh oh! We could not find any Chatwoot accounts. Please create a new account to continue.",
+    "NO_ACCOUNT_WARNING": "Uh oh! We could not find any OneChat accounts. Please create a new account to continue.",
     "NEW_ACCOUNT": "New Account",
     "SELECTOR_SUBTITLE": "Create a new account",
     "API": {
@@ -244,12 +244,12 @@
       "FORM": {
         "CURRENT_PLAN": {
           "TITLE": "Current Plan",
-          "NOTE": "Your current Chatwoot Subscription Plan",
-          "PLAN_NOTE": "You are currently under the Chatwoot {plan} Plan"
+          "NOTE": "Your current OneChat Subscription Plan",
+          "PLAN_NOTE": "You are currently under the OneChat {plan} Plan"
         },
         "CHANGE_PLAN": {
           "TITLE": "Change Plan",
-          "NOTE": "Change your current Chatwoot Subscription Plan",
+          "NOTE": "Change your current OneChat Subscription Plan",
           "SELECT_PLAN": "Select A Plan"
         }
       },
