@@ -35,7 +35,9 @@ class Api::V1::ProfilesController < Api::BaseController
   def profile_params
     params.require(:profile).permit(
       :email,
-      :name,
+      :first_name,
+      :last_name,
+      :phone,
       :display_name,
       :avatar,
       :message_signature,

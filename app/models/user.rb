@@ -7,16 +7,20 @@
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
+#  country                :string
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  custom_attributes      :jsonb
 #  display_name           :string
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  message_signature      :text
 #  name                   :string           not null
+#  phone                  :string
 #  provider               :string           default("email"), not null
 #  pubsub_token           :string
 #  remember_created_at    :datetime
@@ -65,10 +69,13 @@ class User < ApplicationRecord
   # The validation below has been commented out as it does not
   # work because :validatable in devise overrides this.
   # validates_uniqueness_of :email, scope: :account_id
+  attr_accessor :firebase_token, :is_an_agent
 
+  validate :firebase_verification, on: :create, unless: :an_agent?
   validates :email, :name, presence: true
-  validates_length_of :name, minimum: 1, maximum: 255
-
+  validates :first_name, :last_name, presence: true, unless: :an_agent?
+  validates_length_of :name, minimum: 1
+  validates_length_of :first_name, :last_name, minimum: 1, unless: :an_agent?
   has_many :account_users, dependent: :destroy_async
   has_many :accounts, through: :account_users
   accepts_nested_attributes_for :account_users
@@ -91,10 +98,9 @@ class User < ApplicationRecord
   has_many :team_members, dependent: :destroy_async
   has_many :teams, through: :team_members
 
-  before_validation :set_password_and_uid, on: :create
+  before_validation :set_password_and_uid, :set_name, on: :create
 
-  scope :order_by_full_name, -> { order('lower(name) ASC') }
-
+  scope :order_by_full_name, -> { order('lower(first_name) ASC') }
   def send_devise_notification(notification, *args)
     devise_mailer.with(account: Current.account).send(notification, self, *args).deliver_later
   end
@@ -109,6 +115,10 @@ class User < ApplicationRecord
 
   def current_account_user
     account_users.find_by(account_id: Current.account.id) if Current.account
+  end
+
+  def an_agent?
+    is_an_agent || role == 'agent' || type == 'SuperAdmin'
   end
 
   def available_name
@@ -178,6 +188,25 @@ class User < ApplicationRecord
       email: email,
       type: 'user'
     }
+  end
+
+  def set_name
+    self.name = "#{first_name} #{last_name}" if name.blank?
+  end
+
+  def display_name
+    "#{first_name} #{last_name}"
+  end
+
+  def firebase_verification
+    url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo?key=#{ENV['FIREBASE_API_KEY']}"
+    firebase_verification_call = HTTParty.post(url, headers: { 'Content-Type' => 'application/json' }, body: { 'idToken' => firebase_token }.to_json)
+    if firebase_verification_call.response.code == '200'
+      firebase_infos = firebase_verification_call.parsed_response
+      self.phone = firebase_infos['users'][0]['providerUserInfo'][0]['phoneNumber']
+    else
+      errors.add(:phone, I18n.t('errors.signup.invalid_phone'))
+    end
   end
 
   # https://github.com/lynndylanhurley/devise_token_auth/blob/6d7780ee0b9750687e7e2871b9a1c6368f2085a9/app/models/devise_token_auth/concerns/user.rb#L45

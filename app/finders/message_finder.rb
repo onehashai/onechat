@@ -1,7 +1,8 @@
 class MessageFinder
-  def initialize(conversation, params)
+  def initialize(conversation, params, account = nil)
     @conversation = conversation
     @params = params
+    @history_limit = account.present? ? account.usage_limits[:history] : nil
   end
 
   def perform
@@ -11,7 +12,12 @@ class MessageFinder
   private
 
   def conversation_messages
-    @conversation.messages.includes(:attachments, :sender, sender: { avatar_attachment: [:blob] })
+    if @history_limit.present?
+      messages_after = @history_limit.to_i.days.ago
+      @conversation.messages.includes(:attachments, :sender, sender: { avatar_attachment: [:blob] }).where('created_at > ? ', messages_after)
+    else
+      @conversation.messages.includes(:attachments, :sender, sender: { avatar_attachment: [:blob] })
+    end
   end
 
   def messages

@@ -41,7 +41,7 @@ class Api::V1::Accounts::AgentsController < Api::V1::Accounts::BaseController
   def create_user
     return if @user
 
-    @user = User.create!(new_agent_params.slice(:email, :name, :password, :password_confirmation))
+    @user = User.create!(new_agent_params.slice(:email, :name, :password, :password_confirmation).merge(is_an_agent: true))
   end
 
   def save_account_user

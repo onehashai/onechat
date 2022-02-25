@@ -13,6 +13,14 @@
     margin-bottom: $space-one;
     margin-top: -$space-normal;
     width: 100%;
+
+    &.phone-message {
+      margin-top: 0;
+    }
+  }
+
+  .country-selector__input, #MazPhoneNumberInput input {
+    border: 1px solid var(--r-400) !important;
   }
 }
 
@@ -30,8 +38,10 @@ input {
   font-weight: $font-weight-medium;
 }
 
-.help-text {
+.help-text-input {
   font-weight: $font-weight-normal;
+  position: absolute;
+  top: 82px;
 }
 
 .input-group.small {
@@ -43,4 +53,8 @@ input {
   .error {
     border-color: var(--r-400);
   }
+}
+.country-selector__input,
+#MazPhoneNumberInput input {
+  border: 1px solid #EBF0F5 !important;
 }

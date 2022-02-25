@@ -4,14 +4,29 @@
     "TITLE": "Register",
     "TERMS_ACCEPT": "By signing up, you agree to our <a href=\"https://www.chatwoot.com/terms\">T & C</a> and <a href=\"https://www.chatwoot.com/privacy-policy\">Privacy policy</a>",
     "ACCOUNT_NAME": {
-      "LABEL": "Account name",
-      "PLACEHOLDER": "Enter an account name. eg: Wayne Enterprises",
-      "ERROR": "Account name is too short"
+      "LABEL": "Account Name",
+      "PLACEHOLDER": "Enter an Account Name. eg: Wayne Enterprises",
+      "ERROR": "Account Name is too short"
     },
     "FULL_NAME": {
       "LABEL": "Full name",
       "PLACEHOLDER": "Enter your full name. eg: Bruce Wayne",
       "ERROR": "Full name is too short"
+    },
+    "FIRST_NAME": {
+      "LABEL": "First Name",
+      "PLACEHOLDER": "Enter your First Name. eg: Bruce ",
+      "ERROR": "First Name is too short"
+    },
+    "LAST_NAME": {
+      "LABEL": "Last Name",
+      "PLACEHOLDER": "Enter your Last Name. eg: Wyne ",
+      "ERROR": "Last Name is too short"
+    },
+    "PHONE": {
+      "LABEL": "Phone Number",
+      "PLACEHOLDER": "Enter your Phone Number.",
+      "ERROR": "Phone Number is too short"
     },
     "EMAIL": {
       "LABEL": "Work email",

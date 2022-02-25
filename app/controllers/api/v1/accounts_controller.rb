@@ -2,10 +2,14 @@ class Api::V1::AccountsController < Api::BaseController
   include AuthHelper
 
   skip_before_action :authenticate_user!, :set_current_user, :handle_with_exception,
-                     only: [:create], raise: false
+                     only: [:create, :country_based_on_ip], raise: false
   before_action :check_signup_enabled, only: [:create]
-  before_action :fetch_account, except: [:create]
-  before_action :check_authorization, except: [:create]
+  before_action :validate_captcha, only: [:create]
+
+  skip_before_action :verify_subscription,
+                     only: [:billing_subscription, :start_billing_subscription], raise: false
+  before_action :fetch_account, except: [:create, :country_based_on_ip]
+  before_action :check_authorization, except: [:create, :country_based_on_ip]
 
   rescue_from CustomExceptions::Account::InvalidEmail,
               CustomExceptions::Account::UserExists,
@@ -15,10 +19,13 @@ class Api::V1::AccountsController < Api::BaseController
   def create
     @user, @account = AccountBuilder.new(
       account_name: account_params[:account_name],
-      user_full_name: account_params[:user_full_name],
+      first_name: account_params[:first_name],
+      last_name: account_params[:last_name],
       email: account_params[:email],
+      firebase_jwt: account_params[:firebase_jwt],
       user_password: account_params[:password],
-      user: current_user
+      user: current_user,
+      country: request.location.country
     ).perform
     if @user
       send_auth_headers(@user)
@@ -43,6 +50,21 @@ class Api::V1::AccountsController < Api::BaseController
     head :ok
   end
 
+  def country_based_on_ip
+    render json: { country: request.location.country || 'PK' }, status: :ok
+  end
+
+  def billing_subscription
+    @billing_subscription = @account.account_billing_subscriptions.last
+    @available_product_prices = Enterprise::BillingProductPrice.all.includes(:billing_product).limit(4)
+    render 'api/v1/accounts/ee/billing_subscription.json'
+  end
+
+  def start_billing_subscription
+    url = @account.create_checkout_link(Enterprise::BillingProductPrice.find(params[:product_price]))
+    render json: { url: url }
+  end
+
   private
 
   def fetch_account
@@ -51,11 +73,17 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:account_name, :email, :name, :password, :locale, :domain, :support_email, :auto_resolve_duration, :user_full_name)
+    params.permit(:account_name, :first_name, :last_name, :email, :name, :password, :locale, :domain, :support_email, :auto_resolve_duration,
+                  :firebase_jwt)
   end
 
   def check_signup_enabled
     raise ActionController::RoutingError, 'Not Found' if GlobalConfigService.load('ENABLE_ACCOUNT_SIGNUP', 'false') == 'false'
+  end
+
+  def validate_captcha
+    # TODO: Uncomment this line
+    # raise ActionController::InvalidAuthenticityToken, 'Invalid Captcha' unless ChatwootCaptcha.new(params[:h_captcha_client_response]).valid?
   end
 
   def pundit_user

@@ -21,7 +21,8 @@ import SubmitButton from './buttons/FormSubmitButton';
 import Tabs from './ui/Tabs/Tabs';
 import TabsItem from './ui/Tabs/TabsItem';
 import Thumbnail from './widgets/Thumbnail.vue';
-
+import VuePhoneNumberInput from 'vue-phone-number-input';
+import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 const WootUIKit = {
   AvatarUploader,
   Bar,
@@ -57,6 +58,7 @@ const WootUIKit = {
 
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(WootUIKit);
+  window.Vue.use(VuePhoneNumberInput);
 }
 
 export default WootUIKit;
