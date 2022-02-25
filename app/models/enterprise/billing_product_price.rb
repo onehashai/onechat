@@ -4,6 +4,7 @@
 #
 #  id                 :bigint           not null, primary key
 #  active             :boolean          default(FALSE)
+#  amount             :decimal(, )
 #  features           :integer          default(0), not null
 #  limits             :jsonb            not null
 #  stripe_nickname    :string

@@ -18,8 +18,6 @@
 #  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
-#  name                   :string
-#  phone                  :string
 #  message_signature      :text
 #  name                   :string           not null
 #  phone                  :string
@@ -120,7 +118,7 @@ class User < ApplicationRecord
   end
 
   def an_agent?
-    is_an_agent || role == 'agent'
+    is_an_agent || role == 'agent' || type == 'SuperAdmin'
   end
 
   def available_name
