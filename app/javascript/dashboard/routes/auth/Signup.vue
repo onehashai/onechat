@@ -451,4 +451,9 @@ export default {
     padding-bottom: var(--space-medium);
   }
 }
+@media screen and (max-width: 548px) {
+  .signup--box .flex-no-wrap {
+    flex-wrap: wrap !important;
+  }
+}
 </style>
