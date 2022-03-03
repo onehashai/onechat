@@ -251,7 +251,7 @@
       "CHANGE_PLAN": {
         "TITLE": "Change Plan",
         "NOTE": "Change your current OneChat Subscription Plan",
-        "SELECT_PLAN": "Select A Plan"
+        "SELECT_PLAN": "Change Plan"
       }
     },
     "ERROR": {
