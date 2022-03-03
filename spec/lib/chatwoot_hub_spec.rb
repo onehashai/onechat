@@ -8,7 +8,7 @@ describe ChatwootHub do
   end
 
   context 'when fetching latest_version' do
-    it 'get latest version from chatwoot hub' do
+    it 'get latest version from OneChat hub' do
       version = '1.1.1'
       allow(RestClient).to receive(:post).and_return({ version: version }.to_json)
       expect(described_class.latest_version).to eq version

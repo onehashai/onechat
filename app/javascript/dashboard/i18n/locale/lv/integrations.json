@@ -21,7 +21,7 @@
         "BUTTON_TEXT": "Edit",
         "TITLE": "Edit webhook",
         "CANCEL": "Cancel",
-        "DESC": "Webhook events provide you the realtime information about what's happening in your Chatwoot account. Please enter a valid URL to configure a callback.",
+        "DESC": "Webhook events provide you the realtime information about what's happening in your OneChat account. Please enter a valid URL to configure a callback.",
         "FORM": {
           "END_POINT": {
             "LABEL": "Webhook URL",
@@ -38,7 +38,7 @@
       "ADD": {
         "CANCEL": "Cancel",
         "TITLE": "Add new webhook",
-        "DESC": "Webhook events provide you the realtime information about what's happening in your Chatwoot account. Please enter a valid URL to configure a callback.",
+        "DESC": "Webhook events provide you the realtime information about what's happening in your OneChat account. Please enter a valid URL to configure a callback.",
         "FORM": {
           "END_POINT": {
             "LABEL": "Webhook URL",

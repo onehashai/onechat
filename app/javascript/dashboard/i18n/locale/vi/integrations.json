@@ -21,7 +21,7 @@
         "BUTTON_TEXT": "Chỉnh sửa",
         "TITLE": "Sửa webhook",
         "CANCEL": "Huỷ",
-        "DESC": "Webhook events cung cấp cho bạn thông tin thời gian thực về những gì đang xảy ra trong tài khoản Chatwoot của bạn. Vui lòng nhập một URL hợp lệ để định cấu hình một cuộc gọi lại.",
+        "DESC": "Webhook events cung cấp cho bạn thông tin thời gian thực về những gì đang xảy ra trong tài khoản OneChat của bạn. Vui lòng nhập một URL hợp lệ để định cấu hình một cuộc gọi lại.",
         "FORM": {
           "END_POINT": {
             "LABEL": "Webhook URL",
@@ -38,7 +38,7 @@
       "ADD": {
         "CANCEL": "Xoá",
         "TITLE": "Thêm mới webhook",
-        "DESC": "Webhook events cung cấp cho bạn thông tin thời gian thực về những gì đang xảy ra trong tài khoản Chatwoot của bạn. Vui lòng nhập một URL hợp lệ để định cấu hình một cuộc gọi lại.",
+        "DESC": "Webhook events cung cấp cho bạn thông tin thời gian thực về những gì đang xảy ra trong tài khoản OneChat của bạn. Vui lòng nhập một URL hợp lệ để định cấu hình một cuộc gọi lại.",
         "FORM": {
           "END_POINT": {
             "LABEL": "Webhook URL",
@@ -69,7 +69,7 @@
     "SLACK": {
       "HELP_TEXT": {
         "TITLE": "Dùng tích hợp Slack",
-        "BODY": "<br/><p>Chatwoot giờ đây sẽ đồng bộ hóa tất cả các cuộc trò chuyện đến vào kênh <b><i>cuộc trò chuyện với khách hàng</i></b> bên trong nơi làm việc Slack của bạn.</p><p>Trả lời chuỗi hội thoại trong kênh Slack <b><i>cuộc trò chuyện với khách hàng</i></b> sẽ tạo phản hồi lại cho khách hàng thông qua chatwoot. </p><p>Bắt đầu câu trả lời bằng <b><i>ghi chú:</i></b> để tạo ghi chú riêng tư thay vì trả lời.</p><p>Nếu người trả lời trên slack có hồ sơ đại lý trong chatwoot dưới cùng một email, thì các câu trả lời sẽ được liên kết theo đó.</p><p>Khi người trả lời không có hồ sơ đại lý được liên kết, các câu trả lời sẽ được thực hiện từ hồ sơ bot.</p>"
+        "BODY": "<br/><p>Chatwoot giờ đây sẽ đồng bộ hóa tất cả các cuộc trò chuyện đến vào kênh <b><i>cuộc trò chuyện với khách hàng</i></b> bên trong nơi làm việc Slack của bạn.</p><p>Trả lời chuỗi hội thoại trong kênh Slack <b><i>cuộc trò chuyện với khách hàng</i></b> sẽ tạo phản hồi lại cho khách hàng thông qua chatwoot. </p><p>Bắt đầu câu trả lời bằng <b><i>ghi chú:</i></b> để tạo ghi chú riêng tư thay vì trả lời.</p><p>Nếu người trả lời trên slack có hồ sơ đại lý trong OneChat dưới cùng một email, thì các câu trả lời sẽ được liên kết theo đó.</p><p>Khi người trả lời không có hồ sơ đại lý được liên kết, các câu trả lời sẽ được thực hiện từ hồ sơ bot.</p>"
       }
     },
     "DELETE": {

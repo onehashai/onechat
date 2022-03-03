@@ -9,7 +9,7 @@
       {
         "title": "選擇頻道",
         "route": "settings_inbox_new",
-        "body": "選擇你想要與 Chatwoot 整合的提供商。"
+        "body": "選擇你想要與 OneChat 整合的提供商。"
       },
       {
         "title": "新增收件匣",
@@ -312,7 +312,7 @@
       },
       "FINISH": {
         "TITLE": "做得漂亮！",
-        "DESC": "您已成功地將您的 Facebook 頁面與 Chatwoot 整合。下次客户發送消息到您的頁面時，對話將自動出現在收件匣中。<br>我們還為您提供了一個小元件脚本，您可以輕鬆地建立到您的網站。 在您的網站上登入後， 客户可以在没有任何外部工具幫助的情况下，從您的網站向您發送消息，對話將會在這裡出現在 Chatwoot 上。<br>酷，對吧？好吧，我們很肯定 :)"
+        "DESC": "您已成功地將您的 Facebook 頁面與 OneChat 整合。下次客户發送消息到您的頁面時，對話將自動出現在收件匣中。<br>我們還為您提供了一個小元件脚本，您可以輕鬆地建立到您的網站。 在您的網站上登入後， 客户可以在没有任何外部工具幫助的情况下，從您的網站向您發送消息，對話將會在這裡出現在 OneChat 上。<br>酷，對吧？好吧，我們很肯定 :)"
       }
     },
     "DETAILS": {
@@ -415,7 +415,7 @@
       "HMAC_VERIFICATION": "使用者身份驗證",
       "HMAC_DESCRIPTION": "Inorder to validate the user's identity, the SDK allows you to pass an `identifier_hash` for each user. You can generate HMAC using 'sha256' with the key shown here.",
       "HMAC_MANDATORY_VERIFICATION": "Enforce User Identity Validation",
-      "HMAC_MANDATORY_DESCRIPTION": "If enabled, Chatwoot SDKs setUser method will not work unless the `identifier_hash` is provided for each user.",
+      "HMAC_MANDATORY_DESCRIPTION": "If enabled, OneChat SDKs setUser method will not work unless the `identifier_hash` is provided for each user.",
       "INBOX_IDENTIFIER": "Inbox Identifier",
       "INBOX_IDENTIFIER_SUB_TEXT": "Use the `inbox_identifier` token shown here to authentication your API clients.",
       "FORWARD_EMAIL_TITLE": "Forward to Email",

@@ -7,7 +7,7 @@ class SupportMailbox < ApplicationMailbox
                     :decorate_mail
 
   def process
-    # prevent loop from chatwoot notification emails
+    # prevent loop from OneChat notification emails
     return if notification_email_from_chatwoot?
 
     ActiveRecord::Base.transaction do

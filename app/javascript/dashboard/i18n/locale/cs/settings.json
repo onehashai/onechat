@@ -184,7 +184,7 @@
     "SET_AVAILABILITY_TITLE": "Set yourself as"
   },
   "CREATE_ACCOUNT": {
-    "NO_ACCOUNT_WARNING": "Uh oh! We could not find any Chatwoot accounts. Please create a new account to continue.",
+    "NO_ACCOUNT_WARNING": "Uh oh! We could not find any OneChat accounts. Please create a new account to continue.",
     "NEW_ACCOUNT": "Nový účet",
     "SELECTOR_SUBTITLE": "Vytvořit nový účet",
     "API": {
