@@ -1,4 +1,4 @@
-# This class creates both outgoing messages from chatwoot and echo outgoing messages based on the flag `outgoing_echo`
+# This class creates both outgoing messages from OneChat and echo outgoing messages based on the flag `outgoing_echo`
 # Assumptions
 # 1. Incase of an outgoing message which is echo, source_id will NOT be nil,
 #    based on this we are showing "not sent from chatwoot" message in frontend

@@ -1,8 +1,8 @@
 <template>
   <div
-      v-if="isSubscriptionValid"
-      transition="modal"
-      class="account-selector--modal modal-mask "
+    v-if="isSubscriptionValid"
+    transition="modal"
+    class="account-selector--modal modal-mask "
   >
     <div class="plan-modal-container">
       <div class="plan-modal-header">
@@ -14,8 +14,8 @@
       <br />
       <div class="row justify-content-center w-100">
         <div
-            v-for="availableProductPrice in availableProductPrices"
-            class="card plan-column"
+          v-for="availableProductPrice in availableProductPrices"
+          class="card plan-column"
         >
           <div class="badge badge-pill badge-primary-soft">
             {{ availableProductPrice.name }}
@@ -30,8 +30,8 @@
             </div>
           </div>
           <sub
-              v-if="planId === availableProductPrice.id"
-              class="badge badge-pill"
+            v-if="planId === availableProductPrice.id"
+            class="badge badge-pill"
           >
             Current
           </sub>
@@ -45,8 +45,8 @@
           <div class="solution-description">
             {{
               availableProductPrice.allowed_no_agents
-                  ? availableProductPrice.allowed_no_agents
-                  : '&#8734;'
+                ? availableProductPrice.allowed_no_agents
+                : '&#8734;'
             }}
           </div>
           <h6>
@@ -55,20 +55,20 @@
           <div class="solution-description">
             {{
               availableProductPrice.chat_history
-                  ? availableProductPrice.chat_history
-                  : '&#8734;'
+                ? availableProductPrice.chat_history
+                : '&#8734;'
             }}
           </div>
           <h6>
             Plan Includes
           </h6>
           <div
-              class="solution-description"
-              v-html="availableProductPrice.description"
+            class="solution-description"
+            v-html="availableProductPrice.description"
           />
           <woot-button
-              title="Select this Plan"
-              @click="() => submitSubscription(availableProductPrice.id)"
+            title="Select this Plan"
+            @click="() => submitSubscription(availableProductPrice.id)"
           >
             Select this plan
           </woot-button>
@@ -103,24 +103,34 @@ export default {
   data() {
     return {
       error: '',
+      products: '',
     };
   },
+
   mounted() {
     this.error = Cookies.get('subscription');
+    // this.removeTrail();
   },
   methods: {
     hidePlanModal() {
       this.$emit('hideModal');
     },
+    // removeTrail() {
+    //   this.products = this.availableProductPrices.filter(item => {
+    //     return item.unit == 0 && item.name == 'Trial';
+    //   });
+    //   console.log(this.products, "Product");
+    //   debugger;
+    // },
     submitSubscription(value) {
       const payload = { product_price: value };
       AccountAPI.startBillingSubscription(payload)
-          .then(response => {
-            window.location.href = response.data.url;
-          })
-          .catch(error => {
-            console.log(error, 'error');
-          });
+        .then(response => {
+          window.location.href = response.data.url;
+        })
+        .catch(error => {
+          console.log(error, 'error');
+        });
     },
   },
 };

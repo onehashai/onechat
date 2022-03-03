@@ -37,7 +37,7 @@
         "PLACEHOLDER": "Wprowadź nazwę swojej strony (np. Acme Inc)"
       },
       "FB": {
-        "HELP": "PS: Logując się, uzyskujemy dostęp tylko do wiadomości Twojej strony. Chatwoot nigdy nie może uzyskać dostępu do prywatnych wiadomości.",
+        "HELP": "PS: Logując się, uzyskujemy dostęp tylko do wiadomości Twojej strony. OneChat nigdy nie może uzyskać dostępu do prywatnych wiadomości.",
         "CHOOSE_PAGE": "Wybierz stronę",
         "CHOOSE_PLACEHOLDER": "Wybierz stronę z listy",
         "INBOX_NAME": "Nazwa skrzynki odbiorczej",
@@ -415,7 +415,7 @@
       "HMAC_VERIFICATION": "Weryfikacja tożsamości użytkownika",
       "HMAC_DESCRIPTION": "Polecenie weryfikacji tożsamości użytkownika, SDK pozwala na przekazanie pliku `identifier_hash` dla każdego użytkownika. Możesz wygenerować HMAC używając 'sha256' z kluczem pokazanym tutaj.",
       "HMAC_MANDATORY_VERIFICATION": "Wymuś sprawdzanie tożsamości użytkownika",
-      "HMAC_MANDATORY_DESCRIPTION": "Jeśli włączone, chatwoot SDKs setUser nie będzie działać, chyba że `identifier_hash` jest dostarczony dla każdego użytkownika.",
+      "HMAC_MANDATORY_DESCRIPTION": "Jeśli włączone, OneChat SDKs setUser nie będzie działać, chyba że `identifier_hash` jest dostarczony dla każdego użytkownika.",
       "INBOX_IDENTIFIER": "Identyfikator skrzynki odbiorczej",
       "INBOX_IDENTIFIER_SUB_TEXT": "Use the `inbox_identifier` token shown here to authentication your API clients.",
       "FORWARD_EMAIL_TITLE": "Przekaż do wiadomości e-mail",

@@ -25,7 +25,6 @@ module Enterprise::Account
                                                         ],
                                                         customer: stripe_customer_id,
                                                         mode: 'subscription',
-                                                        mode: 'subscription',
                                                         subscription_data: { 'metadata': { id: id, website: 'OneChat' } }
                                                       })
 
@@ -81,16 +80,16 @@ module Enterprise::Account
     errors.add(:limits, ': Invalid data') unless self[:limits].is_a? Hash
     self[:limits] = {} if self[:limits].blank?
 
-    limit_schema = {
-      'type' => 'object',
-      'properties' => {
-        'inboxes' => { 'type': 'number' },
-        'agents' => { 'type': 'number' }
-      },
-      'required' => [],
-      'additionalProperties' => false
-    }
+    # limit_schema = {
+    #   'type' => 'object',
+    #   'properties' => {
+    #     'inboxes' => { 'type': 'number' },
+    #     'agents' => { 'type': 'number' }
+    #   },
+    #   'required' => [],
+    #   'additionalProperties' => false
+    # }
 
-    errors.add(:limits, ': Invalid data') unless JSONSchemer.schema(limit_schema).valid?(self[:limits])
+    errors.add(:limits, ': Invalid data') unless JSONSchemer.schema(self[:limits]).valid?(self[:limits])
   end
 end

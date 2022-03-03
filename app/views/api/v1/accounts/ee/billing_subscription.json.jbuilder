@@ -11,7 +11,7 @@ json.available_product_prices do
     json.id product_price.id
     json.description '<p>ABC DEF</p>'
     json.name product_price.billing_product.product_name
-    json.display_name "#{product_price.billing_product.product_name} - #{product_price.unit_amount.to_i / 100} $ / agent / month"
+    json.display_name "#{product_price.billing_product.product_name} - #{product_price.unit_amount.to_i / 100} $ / #{product_price.limits['agents'].blank? ? '∞'.html_safe : product_price.limits['agents'] } agent / month"
     json.unit (product_price.unit_amount.to_i / 100).to_s
     json.allowed_no_agents product_price.limits['agents']
     json.chat_history product_price.limits['history']

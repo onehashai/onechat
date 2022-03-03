@@ -31,6 +31,7 @@
                 v-for="productPrice in availableProductPrices"
                 :key="productPrice.id"
                 :value="productPrice.id"
+                :disabled="checkStatus(productPrice)"
               >
                 {{ productPrice.display_name }}
               </option>
@@ -94,6 +95,12 @@ export default {
           console.log('kuxh b nhi');
         }
       }
+    },
+    checkStatus(product) {
+      if(product.unit == 0 && product.name == 'Trial') {
+        return true
+      }
+      return false;
     },
     async initializeAccountBillingSubscription() {
       try {

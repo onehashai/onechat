@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is the API documentation for Chatwoot server.",
+    "description": "This is the API documentation for OneChat server.",
     "version": "1.0.0",
     "title": "Chatwoot",
     "termsOfService": "https://www.chatwoot.com/terms-of-service/",
@@ -1856,7 +1856,7 @@
         ],
         "operationId": "newConversation",
         "summary": "Create New Conversation",
-        "description": "Creating a conversation in chatwoot requires a source id. \n\n Learn more about source_id: https://github.com/chatwoot/chatwoot/wiki/Building-on-Top-of-Chatwoot:-Importing-Existing-Contacts-and-Creating-Conversations",
+        "description": "Creating a conversation in OneChat requires a source id. \n\n Learn more about source_id: https://github.com/chatwoot/chatwoot/wiki/Building-on-Top-of-Chatwoot:-Importing-Existing-Contacts-and-Creating-Conversations",
         "security": [
           {
             "userApiKey": [
@@ -4077,7 +4077,7 @@
         },
         "pubsub_token": {
           "type": "string",
-          "description": "The token to be used to connect to chatwoot websocket"
+          "description": "The token to be used to connect to OneChat websocket"
         }
       }
     },
@@ -4745,7 +4745,7 @@
       "name": "source_id",
       "required": true,
       "type": "string",
-      "description": "Id of the session for which the conversation is created.\n\n\n\n Source Ids can be obtained through contactable inboxes API or via generated.<br/><br/>Website: Chatwoot generated string which can be obtained from webhook events. <br/> Phone Channels(Twilio): Phone number in e164 format <br/> Email Channels: Contact Email address <br/> API Channel: Any Random String"
+      "description": "Id of the session for which the conversation is created.\n\n\n\n Source Ids can be obtained through contactable inboxes API or via generated.<br/><br/>Website: OneChat generated string which can be obtained from webhook events. <br/> Phone Channels(Twilio): Phone number in e164 format <br/> Email Channels: Contact Email address <br/> API Channel: Any Random String"
     },
     "conversation_id": {
       "in": "path",

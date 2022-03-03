@@ -73,9 +73,7 @@ class User < ApplicationRecord
 
   validate :firebase_verification, on: :create, unless: :an_agent?
   validates :email, :name, presence: true
-  validates :first_name, :last_name, presence: true, unless: :an_agent?
   validates_length_of :name, minimum: 1
-  validates_length_of :first_name, :last_name, minimum: 1, unless: :an_agent?
   has_many :account_users, dependent: :destroy_async
   has_many :accounts, through: :account_users
   accepts_nested_attributes_for :account_users
@@ -118,14 +116,14 @@ class User < ApplicationRecord
   end
 
   def an_agent?
-    is_an_agent || role == 'agent' || type == 'SuperAdmin'
+    is_an_agent || role == 'agent' || agent? || type == 'SuperAdmin'
   end
 
   def available_name
     self[:display_name].presence || name
   end
 
-  # Used internally for Chatwoot in Chatwoot
+  # Used internally for OneChat in Chatwoot
   def hmac_identifier
     hmac_key = GlobalConfig.get('CHATWOOT_INBOX_HMAC_KEY')['CHATWOOT_INBOX_HMAC_KEY']
     return OpenSSL::HMAC.hexdigest('sha256', hmac_key, email) if hmac_key.present?
