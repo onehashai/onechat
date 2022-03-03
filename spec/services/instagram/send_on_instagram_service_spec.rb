@@ -27,14 +27,14 @@ describe Instagram::SendOnInstagramService do
         )
       end
 
-      it 'if message is sent from chatwoot and is outgoing' do
+      it 'if message is sent from OneChat and is outgoing' do
         message = create(:message, message_type: 'outgoing', inbox: instagram_inbox, account: account, conversation: conversation)
         response = ::Instagram::SendOnInstagramService.new(message: message).perform
 
         expect(response).to eq({  message_id: 'anyrandommessageid1234567890' })
       end
 
-      it 'if message with attachment is sent from chatwoot and is outgoing' do
+      it 'if message with attachment is sent from OneChat and is outgoing' do
         message = build(:message, message_type: 'outgoing', inbox: instagram_inbox, account: account, conversation: conversation)
         attachment = message.attachments.new(account_id: message.account_id, file_type: :image)
         attachment.file.attach(io: File.open(Rails.root.join('spec/assets/avatar.png')), filename: 'avatar.png', content_type: 'image/png')

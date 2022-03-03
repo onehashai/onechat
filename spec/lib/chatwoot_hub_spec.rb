@@ -26,7 +26,7 @@ describe ChatwootHub do
       end
     end
 
-    it 'returns nil when chatwoot hub is down' do
+    it 'returns nil when OneChat hub is down' do
       allow(RestClient).to receive(:post).and_raise(ExceptionList::REST_CLIENT_EXCEPTIONS.sample)
       expect(described_class.latest_version).to eq nil
     end
