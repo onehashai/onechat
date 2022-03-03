@@ -8,6 +8,7 @@
         :is-subscription-valid="!isSubscriptionValid"
         :available-product-prices="availableProductPrices"
         :plan-id="planId"
+        :plan-name="planName"
         @hideModal="hideModal"
       />
     </section>
@@ -35,6 +36,7 @@ export default {
       isSubscriptionValid: true,
       availableProductPrices: [],
       planId: 0,
+      planName: 0,
     };
   },
   computed: {
@@ -91,13 +93,14 @@ export default {
     async initializeAccountBillingSubscription() {
       try {
         await this.$store.dispatch('accounts/getBillingSubscription');
-        const { available_product_prices, plan_id } = this.getAccount(
+        const { available_product_prices, plan_id, plan_name } = this.getAccount(
           this.$route.params.accountId
         );
         this.availableProductPrices = available_product_prices.filter(
           item => item.name != 'Trial' && item.amount != 0
         );
         this.planId = plan_id;
+        this.planName = plan_name;
       } catch (error) {
         console.log(error);
       }

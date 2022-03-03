@@ -21,21 +21,15 @@
           <h4 class="block-title">
             {{ $t('BILLING_SETTINGS.FORM.CHANGE_PLAN.TITLE') }}
           </h4>
-          <p>{{ $t('BILLING_SETTINGS.FORM.CURRENT_PLAN.NOTE') }}</p>
         </div>
         <div class="columns small-9 medium-5">
           <label>
-            {{ $t('BILLING_SETTINGS.FORM.CHANGE_PLAN.SELECT_PLAN') }}
-            <select v-model="selectedProductPrice" @change="submitSubscription">
-              <option
-                v-for="productPrice in availableProductPrices"
-                :key="productPrice.id"
-                :value="productPrice.id"
-                :disabled="checkStatus(productPrice)"
-              >
-                {{ productPrice.display_name }}
-              </option>
-            </select>
+            <woot-button
+                title="Change the Plan"
+                @click="openPlanModal"
+            >
+              {{ $t('BILLING_SETTINGS.FORM.CHANGE_PLAN.SELECT_PLAN') }}
+            </woot-button>
           </label>
         </div>
       </div>
@@ -52,7 +46,10 @@ import configMixin from 'shared/mixins/configMixin';
 import accountMixin from '../../../../mixins/account';
 import AccountAPI from '../../../../api/account';
 import Cookies from 'js-cookie';
+import WootButton from "../../../../components/ui/WootButton";
+import {BUS_EVENTS} from "../../../../../shared/constants/busEvents";
 export default {
+  components: {WootButton},
   mixins: [accountMixin, alertMixin, configMixin],
   data() {
     return {
@@ -101,6 +98,9 @@ export default {
         return true
       }
       return false;
+    },
+    openPlanModal() {
+      bus.$emit(BUS_EVENTS.SHOW_PLAN_MODAL);
     },
     async initializeAccountBillingSubscription() {
       try {

@@ -423,6 +423,13 @@ export default {
     box-shadow: var(--shadow);
     padding: var(--space-medium);
     z-index: var(--z-index-high);
+    min-width: 500px;
+    @media only screen and (max-width: 548px) {
+      width: 100%;
+      min-width: 320px;
+      height: 320px;
+      padding: var(--space-normal);
+    }
   }
 
   &-header {

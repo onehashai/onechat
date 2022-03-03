@@ -9,18 +9,32 @@
         <h4 class="text-center">
           {{ error }}
         </h4>
+        <h6 class="text-center">
+          Your current plan is
+          <b>
+            {{ planName }}
+          </b>
+        </h6>
       </div>
       <div class="plan-modal-cross" @click="hidePlanModal">X</div>
       <br />
-      <div class="row justify-content-center w-100">
+      <div class="row justify-content-center flex-dir-row-reverse w-100">
         <div
           v-for="availableProductPrice in availableProductPrices"
           class="card plan-column"
         >
-          <div class="badge badge-pill badge-primary-soft">
+          <h4 class="">
             {{ availableProductPrice.name }}
+          </h4>
+          <div v-if="availableProductPrice.name == 'Free'" class="description">
+            Auto Renewable subscription
           </div>
-
+          <div
+            v-if="availableProductPrice.name == 'Business'"
+            class="description"
+          >
+            Auto Renewable <subscription></subscription>
+          </div>
           <div class="solution--price">
             <div class="price mb-0 mt-2">
               $
@@ -28,49 +42,40 @@
             <div class="h2 display-2 mb-0">
               {{ availableProductPrice.unit }}
             </div>
+            <div class="price mb-0 mt-2">/month</div>
           </div>
-          <sub
-            v-if="planId === availableProductPrice.id"
-            class="badge badge-pill"
-          >
-            Current
-          </sub>
-          <!--          <div class="solution-description">-->
-          <!--            {{ availableProductPrice.display_name }}-->
-          <!--          </div>-->
-          <!--          <br />-->
-          <h6>
-            Number of agent(s)
-          </h6>
+          <!--          <sub-->
+          <!--            v-if="planId === availableProductPrice.id"-->
+          <!--            class="badge badge-pill"-->
+          <!--          >-->
+          <!--            Current-->
+          <!--          </sub>-->
           <div class="solution-description">
+            <fluent-icon icon="people" style="height: 14px;width: 14px;" />
             {{
               availableProductPrice.allowed_no_agents
                 ? availableProductPrice.allowed_no_agents
                 : '&#8734;'
             }}
+            agent(s)
           </div>
-          <h6>
-            Chat History
-          </h6>
-          <div class="solution-description">
-            {{
-              availableProductPrice.chat_history
-                ? availableProductPrice.chat_history
-                : '&#8734;'
-            }}
-          </div>
-          <h6>
-            Plan Includes
-          </h6>
           <div
             class="solution-description"
             v-html="availableProductPrice.description"
           />
           <woot-button
+            v-if="planId !== availableProductPrice.id"
             title="Select this Plan"
             @click="() => submitSubscription(availableProductPrice.id)"
           >
             Select this plan
+          </woot-button>
+          <woot-button
+            v-if="planId == availableProductPrice.id"
+            title="Current Plan"
+            style="opacity: 0.5; cursor: not-allowed"
+          >
+            Current Plan
           </woot-button>
         </div>
       </div>
@@ -94,6 +99,10 @@ export default {
     planId: {
       type: [String, Number],
       default: 0,
+    },
+    planName: {
+      type: [String, Number],
+      default: 'Free',
     },
     availableProductPrices: {
       type: Array,
@@ -175,7 +184,7 @@ export default {
   width: 23%;
   margin-right: 20px;
   box-shadow: 0 1.5rem 4rem rgba(22, 28, 45, 0.1) !important;
-  &:last-child {
+  &:first-child {
     margin-right: 0;
   }
 }
@@ -202,5 +211,8 @@ export default {
 }
 .justify-content-center {
   justify-content: center;
+}
+.description {
+  height: 30px;
 }
 </style>
