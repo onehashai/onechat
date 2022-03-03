@@ -1,17 +1,17 @@
 # if you dont specify locked attribute, the default value will be true
 # which means the particular config will be locked
 - name: INSTALLATION_NAME
-  value: 'OneHash'
+  value: 'OneChat'
 - name: LOGO_THUMBNAIL
-  value: '/brand-assets/oneHash.png'
+  value: '/brand-assets/oneChat.jpeg'
 - name: LOGO
-  value: '/brand-assets/oneHash.png'
+  value: '/brand-assets/oneChat.jpeg'
 - name: BRAND_URL
-  value: 'https://www.onehash.com'
+  value: 'https://www.oneChat.is'
 - name: WIDGET_BRAND_URL
-  value: 'https://www.onehash.com'
+  value: 'https://www.oneChat.is'
 - name: BRAND_NAME
-  value: 'OneHash'
+  value: 'OneChat'
 - name: TERMS_URL
   value: 'https://www.chatwoot.com/terms-of-service'
 - name: PRIVACY_URL

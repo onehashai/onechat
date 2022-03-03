@@ -61,7 +61,13 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def start_billing_subscription
-    url = @account.create_checkout_link(Enterprise::BillingProductPrice.find(params[:product_price]))
+    @billing_subscription = Enterprise::BillingProductPrice.find(params[:product_price])
+    if(@billing_subscription.unit_amount == 0)
+      url = "#{ENV['FRONTEND_URL']}/app/accounts/#{@account.id}/settings/billing?subscription_status=success"
+      @account.subscribe_for_plan("Free", 2.years.from_now);
+    else
+      url = @account.create_checkout_link(@billing_subscription)
+    end
     render json: { url: url }
   end
 
