@@ -64,6 +64,21 @@ export default {
     });
     return fetchPromise;
   },
+  checkEmailStatus(email) {
+    const fetchPromise = new Promise((resolve, reject) => {
+      axios
+        .post('api/v1/accounts/check_email_status', {
+          email: email,
+        })
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+    return fetchPromise;
+  },
   logout() {
     const urlData = endPoints('logout');
     const fetchPromise = new Promise((resolve, reject) => {
