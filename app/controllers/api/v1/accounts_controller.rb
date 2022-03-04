@@ -2,14 +2,14 @@ class Api::V1::AccountsController < Api::BaseController
   include AuthHelper
 
   skip_before_action :authenticate_user!, :set_current_user, :handle_with_exception,
-                     only: [:create, :country_based_on_ip], raise: false
+                     only: [:create, :country_based_on_ip, :check_email_status], raise: false
   before_action :check_signup_enabled, only: [:create]
   before_action :validate_captcha, only: [:create]
 
   skip_before_action :verify_subscription,
                      only: [:billing_subscription, :start_billing_subscription], raise: false
-  before_action :fetch_account, except: [:create, :country_based_on_ip]
-  before_action :check_authorization, except: [:create, :country_based_on_ip]
+  before_action :fetch_account, except: [:create, :country_based_on_ip, :check_email_status]
+  before_action :check_authorization, except: [:create, :country_based_on_ip, :check_email_status]
 
   rescue_from CustomExceptions::Account::InvalidEmail,
               CustomExceptions::Account::UserExists,
@@ -52,6 +52,14 @@ class Api::V1::AccountsController < Api::BaseController
 
   def country_based_on_ip
     render json: { country: request.location.country || 'PK' }, status: :ok
+  end
+  def check_email_status
+    @user =  User.find_by(email: request.params[:email])
+    if @user
+      render json: {found: true }, status: :ok
+    else
+      render json: {found: false }, status: :ok
+    end
   end
 
   def billing_subscription

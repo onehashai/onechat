@@ -12,7 +12,7 @@
     </div>
     <div class="row align-center">
       <div class="small-12 medium-9 large-9 column">
-        <form class="signup--box login-box" @submit.prevent="submit">
+        <form class="signup--box login-box" @submit.prevent="checkEmailStatus">
           <div class="row flex-no-wrap justify-space-between">
             <div class="small-12 medium-6 large-6 column margin-right-small">
               <woot-input
@@ -341,8 +341,17 @@ export default {
         this.isSignupInProgress = false;
       }
     },
+    async checkEmailStatus() {
+      await Auth.checkEmailStatus(this.credentials.email).then(res => {
+        console.log(res, 'response');
+        if (res.data.found) {
+          this.showAlert("Email Already Exist");
+        } else {
+          this.submit();
+        }
+      });
+    },
     async submit() {
-      ``;
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;

@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         end
         collection do
           get :country_based_on_ip
+          post :check_email_status
         end
         scope module: :accounts do
           namespace :actions do
