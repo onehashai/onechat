@@ -14,14 +14,14 @@ class Enterprise::Billing::HandleStripeEventService
         account = Account.where("custom_attributes->>'stripe_customer_id' = ?", subscription.customer).first
         subscription_price = Enterprise::BillingProductPrice.find_by(price_stripe_id: subscription.plan.id)
         active_subscription = account.account_billing_subscriptions.where(subscription_stripe_id: subscription.id)&.last
-        active_subscription&.update(current_period_end: Time.at(subscription.current_period_end), billing_product_price_id: subscription_price.id)
+        active_subscription&.update(current_period_end: Time.zone.at(subscription.current_period_end), billing_product_price_id: subscription_price.id)
         account.set_limits_for_account subscription_price
       when 'customer.subscription.deleted'
         subscription = event.data.object
         account = Account.where("custom_attributes->>'stripe_customer_id' = ?", subscription.customer).first
         subscription_price = Enterprise::BillingProductPrice.find_by(price_stripe_id: subscription.plan.id)
         active_subscription = account.account_billing_subscriptions.where(subscription_stripe_id: subscription.id)&.last
-        active_subscription.update(current_period_end: Time.at(subscription.current_period_end), cancelled_at: Time.current) if active_subscription
+        active_subscription&.update(current_period_end: Time.zone.at(subscription.current_period_end), cancelled_at: Time.current)
         account.set_limits_for_account subscription_price
       else
         Rails.logger.debug { "Unhandled event type: #{event.type}" }

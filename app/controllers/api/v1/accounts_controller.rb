@@ -53,12 +53,13 @@ class Api::V1::AccountsController < Api::BaseController
   def country_based_on_ip
     render json: { country: request.location.country || 'PK' }, status: :ok
   end
+
   def check_email_status
-    @user =  User.find_by(email: request.params[:email])
+    @user = User.find_by(email: request.params[:email])
     if @user
-      render json: {found: true }, status: :ok
+      render json: { found: true }, status: :ok
     else
-      render json: {found: false }, status: :ok
+      render json: { found: false }, status: :ok
     end
   end
 
@@ -87,7 +88,7 @@ class Api::V1::AccountsController < Api::BaseController
           ]
         }
       )
-    elsif @billing_subscription.unit_amount == 0
+    elsif @billing_subscription.unit_amount.zero?
       @account.subscribe_for_plan(@billing_subscription.billing_product.product_name, 2.years.from_now)
     else
       url = @account.create_checkout_link(@billing_subscription)

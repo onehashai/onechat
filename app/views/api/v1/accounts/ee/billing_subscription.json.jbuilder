@@ -13,7 +13,7 @@ json.available_product_prices do
                       <p>&#9745;  ABC DEF</p>
                       <p><span style="color: #00ff00">&#10003; </span> ABC DEF</p> <p>&#10003;  ABC DEF</p>'
     json.name product_price.billing_product.product_name
-    json.display_name "#{product_price.billing_product.product_name} - #{product_price.unit_amount.to_i / 100} $ / #{product_price.limits['agents'].blank? ? '∞'.html_safe : product_price.limits['agents'] } agent / month"
+    json.display_name "#{product_price.billing_product.product_name} - #{product_price.unit_amount.to_i / 100} $ / #{product_price.limits['agents'].presence || '∞'.html_safe} agent / month"
     json.unit (product_price.unit_amount.to_i / 100).to_s
     json.allowed_no_agents product_price.limits['agents']
     json.chat_history product_price.limits['history']
