@@ -3,19 +3,19 @@
 - name: INSTALLATION_NAME
   value: 'OneChat'
 - name: LOGO_THUMBNAIL
-  value: '/brand-assets/oneChat.jpeg'
+  value: '/brand-assets/logo.svg'
 - name: LOGO
-  value: '/brand-assets/oneChat.jpeg'
+  value: '/brand-assets/OneChatlogo.svg'
 - name: BRAND_URL
-  value: 'https://www.oneChat.is'
+  value: 'https://app.oneChat.is'
 - name: WIDGET_BRAND_URL
-  value: 'https://www.oneChat.is'
+  value: 'https://app.oneChat.is'
 - name: BRAND_NAME
   value: 'OneChat'
 - name: TERMS_URL
-  value: 'https://www.chatwoot.com/terms-of-service'
+  value: 'https://app.oneChat.is/terms-of-service'
 - name: PRIVACY_URL
-  value: 'https://www.chatwoot.com/privacy-policy'
+  value: 'https://app.oneChat.is/privacy-policy'
 - name: DISPLAY_MANIFEST
   value: true
 - name: MAILER_INBOUND_EMAIL_DOMAIN
