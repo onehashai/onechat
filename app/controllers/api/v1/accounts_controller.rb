@@ -69,10 +69,26 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def start_billing_subscription
+    active_subscription = @account.account_billing_subscriptions.where.not(subscription_stripe_id: nil)&.last
     @billing_subscription = Enterprise::BillingProductPrice.find(params[:product_price])
-    if(@billing_subscription.unit_amount == 0)
-      url = "#{ENV['FRONTEND_URL']}/app/accounts/#{@account.id}/settings/billing?subscription_status=success"
-      @account.subscribe_for_plan("Free", 2.years.from_now);
+    subscription = Stripe::Subscription.retrieve(active_subscription.subscription_stripe_id) if active_subscription
+    url = "#{ENV['FRONTEND_URL']}/app/accounts/#{@account.id}/settings/billing?subscription_status=success"
+    if subscription.present?
+      Stripe::Subscription.update(
+        subscription.id,
+        {
+          cancel_at_period_end: false,
+          proration_behavior: 'always_invoice',
+          items: [
+            {
+              id: subscription.items.data[0].id,
+              price: @billing_subscription.price_stripe_id
+            }
+          ]
+        }
+      )
+    elsif @billing_subscription.unit_amount == 0
+      @account.subscribe_for_plan(@billing_subscription.billing_product.product_name, 2.years.from_now)
     else
       url = @account.create_checkout_link(@billing_subscription)
     end
