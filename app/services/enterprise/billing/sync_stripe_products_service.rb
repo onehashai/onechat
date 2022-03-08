@@ -14,7 +14,8 @@ class Enterprise::Billing::SyncStripeProductsService
                                })
       else
         billing_product = Enterprise::BillingProduct.find_by(product_stripe_id: product['id'])
-        billing_product&.update({
+        next if billing_product.blank?
+        billing_product.update({
                                   product_name: product['name'],
                                   product_description: product['description'],
                                   active: product['active']
