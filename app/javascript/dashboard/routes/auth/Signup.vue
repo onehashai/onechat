@@ -153,12 +153,13 @@
         </div>
       </div>
     </div>
-    <div v-if="openComfirmation" class="confirmation-modal-back-draw"></div>
-    <div v-if="openComfirmation" class="confirmation-modal-container">
+    <div v-if="openConfirmation" class="confirmation-modal-back-draw"></div>
+    <div v-if="openConfirmation" class="confirmation-modal-container">
       <div class="confirmation-modal-header">
         <div class="confirmation-modal-header-text">
           Enter code received on your number
         </div>
+
         <div class="confirmation-modal-body">
           <woot-input
             v-model.trim="code"
@@ -166,6 +167,16 @@
             :label="$t('CONFIRM_PASSWORD.ENTER_CODE')"
             :placeholder="$t('CONFIRM_PASSWORD.ENTER_CODE')"
           />
+          <div class="description-reset" >
+            Resend code at
+            <span @click="submit">
+              {{ formattedObject.e164 }}
+            </span>
+            or
+            <span @click="setChangeNumber">
+              Change number
+            </span>
+          </div>
           <div
             class="confirmation-modal-submit-button button nice large expanded width-50 m-auto"
             @click="verifyConfirmatinCode"
@@ -211,7 +222,7 @@ export default {
       },
       isSignupInProgress: false,
       error: '',
-      openComfirmation: false,
+      openConfirmation: false,
       code: '',
       country: 'US',
       formattedObject: null,
@@ -301,6 +312,9 @@ export default {
       const countryObj = await Auth.getCountryCode();
       this.country = countryObj.data.country;
     },
+    setChangeNumber () {
+      this.openConfirmation = false;
+    },
     verifyConfirmatinCode() {
       if (this.code.length > 5) {
         window.confirmationResult
@@ -317,7 +331,7 @@ export default {
     },
     async sendRequestForSignUp(firebaseToken) {
       this.isSignupInProgress = true;
-      this.openComfirmation = false;
+      this.openConfirmation = false;
       this.credentials.phone = this.formattedObject.e164;
       try {
         const response = await Auth.register(
@@ -342,7 +356,7 @@ export default {
       await Auth.checkEmailStatus(this.credentials.email).then(res => {
         console.log(res, 'response');
         if (res.data.found) {
-          this.showAlert("Email Already Exist");
+          this.showAlert('Email Already Exist');
         } else {
           this.submit();
         }
@@ -359,7 +373,7 @@ export default {
       signInWithPhoneNumber(auth, this.formattedObject.e164, appVerifier)
         .then(confirmationResult => {
           window.confirmationResult = confirmationResult;
-          this.openComfirmation = true;
+          this.openConfirmation = true;
           // ...
         })
         .catch(error => {
@@ -418,7 +432,7 @@ export default {
 
 .confirmation-modal {
   &-container {
-    height: 250px;
+    height: 260px;
     width: 35%;
     background-color: var(--white);
     margin: auto;
@@ -468,6 +482,17 @@ export default {
 @media screen and (max-width: 548px) {
   .signup--box .flex-no-wrap {
     flex-wrap: wrap !important;
+  }
+}
+
+.description-reset {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 7px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  & span {
+    color: #1f93ff;
   }
 }
 </style>
