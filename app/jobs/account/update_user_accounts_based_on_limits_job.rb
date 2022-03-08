@@ -19,14 +19,10 @@ class Account::UpdateUserAccountsBasedOnLimitsJob < ApplicationJob
       end
     else
       if no_of_user < allowed_no_of_users.to_i
-        puts "---------------------------------------------"
         difference = allowed_no_of_users.to_i - no_of_user
-        puts "-------------------------#{difference}------------"
         AccountUser.unscoped.where(account_id: account.id, is_deleted: true).limit(difference).each do |account_user|
-          puts "----ACID---------------------#{account_user.id}------------"
           User.unscoped.find(account_user.user_id).update!(is_deleted: false)
           account_user.update!(is_deleted: false)
-
         end
       end
     end
