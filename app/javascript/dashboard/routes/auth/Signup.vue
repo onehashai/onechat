@@ -235,10 +235,6 @@ export default {
         required,
         minLength: minLength(2),
       },
-      // subdomain: {
-      //   required,
-      //   minLength: minLength(1),
-      // },
       email: {
         required,
         email,
@@ -468,9 +464,30 @@ export default {
     padding-bottom: var(--space-medium);
   }
 }
+
 @media screen and (max-width: 548px) {
   .signup--box .flex-no-wrap {
     flex-wrap: wrap !important;
   }
+}
+</style>
+<style>
+.input-tel.has-hint .input-tel__label,
+.input-tel.has-value .input-tel__label {
+  display: none;
+}
+.country-selector.has-hint .country-selector__label,
+.country-selector.has-value .country-selector__label {
+  display: none;
+}
+.country-selector.lg.has-value .country-selector__input {
+  padding-top: 12px !important;
+}
+.country-selector.lg .country-selector__country-flag {
+  top: 50% !important;
+  transform: translateY(-50%);
+}
+.flex.align-center.country-selector__list__item {
+  justify-content: flex-start;
 }
 </style>

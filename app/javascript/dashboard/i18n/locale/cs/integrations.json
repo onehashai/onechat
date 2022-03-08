@@ -8,7 +8,7 @@
       "HEADER_BTN_TXT": "Přidat nový webový háček",
       "LOADING": "Načítání připojených webhooků",
       "SEARCH_404": "Neexistují žádné položky odpovídající tomuto dotazu",
-      "SIDEBAR_TXT": "<p><b>Webové háčky</b> </p> <p>jsou HTTP zpětné volání, které lze definovat pro každý účet. Jsou spouštěny událostmi, jako je vytváření zpráv v Chatwoot. Můžete vytvořit více než jeden webový háček pro tento účet. <br /><br /> Pro vytvoření webového háčku <b></b>klikněte na tlačítko <b>Přidat nový webhook</b> . Kliknutím na tlačítko Odstranit můžete také odstranit jakýkoli existující webový háček.</p>",
+      "SIDEBAR_TXT": "<p><b>Webové háčky</b> </p> <p>jsou HTTP zpětné volání, které lze definovat pro každý účet. Jsou spouštěny událostmi, jako je vytváření zpráv v OneChat. Můžete vytvořit více než jeden webový háček pro tento účet. <br /><br /> Pro vytvoření webového háčku <b></b>klikněte na tlačítko <b>Přidat nový webhook</b> . Kliknutím na tlačítko Odstranit můžete také odstranit jakýkoli existující webový háček.</p>",
       "LIST": {
         "404": "Pro tento účet nejsou nakonfigurovány žádné webové háčky.",
         "TITLE": "Spravovat webové háčky",
@@ -69,7 +69,7 @@
     "SLACK": {
       "HELP_TEXT": {
         "TITLE": "Using Slack Integration",
-        "BODY": "<br/><p>Chatwoot will now sync all the incoming conversations into the <b><i>customer-conversations</i></b> channel inside your slack workplace.</p><p>Replying to a conversation thread in <b><i>customer-conversations</i></b> slack channel will create a response back to the customer through chatwoot.</p><p>Start the replies with <b><i>note:</i></b> to create private notes instead of replies.</p><p>If the replier on slack has an agent profile in OneChat under the same email, the replies will be associated accordingly.</p><p>When the replier doesn't have an associated agent profile, the replies will be made from the bot profile.</p>"
+        "BODY": "<br/><p>OneChat will now sync all the incoming conversations into the <b><i>customer-conversations</i></b> channel inside your slack workplace.</p><p>Replying to a conversation thread in <b><i>customer-conversations</i></b> slack channel will create a response back to the customer through chatwoot.</p><p>Start the replies with <b><i>note:</i></b> to create private notes instead of replies.</p><p>If the replier on slack has an agent profile in OneChat under the same email, the replies will be associated accordingly.</p><p>When the replier doesn't have an associated agent profile, the replies will be made from the bot profile.</p>"
       }
     },
     "DELETE": {
