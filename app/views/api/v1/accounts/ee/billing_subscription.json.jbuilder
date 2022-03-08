@@ -12,7 +12,7 @@ json.available_product_prices do
     json.description "<p> #{product_price.limits['agents'].presence || '∞ '.html_safe} Agents</p>
                       <p> #{product_price.limits['history'].presence || '∞ '.html_safe} History</p>
                       <p> #{product_price.limits['contacts'].presence || '∞ '.html_safe} Contacts</p>
-                      <p> #{product_price.limits['inboxes'].presence || '∞ '.html_safe} Contacts</p>"
+                      <p> #{product_price.limits['inboxes'].presence || '∞ '.html_safe} Inboxes</p>"
     json.name product_price.billing_product.product_name
     json.display_name "#{product_price.billing_product.product_name} - #{product_price.unit_amount.to_i / 100} $ / #{product_price.limits['agents'].presence || '∞'.html_safe} agent / month"
     json.unit (product_price.unit_amount.to_i / 100).to_s

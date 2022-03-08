@@ -79,6 +79,7 @@
                 <VuePhoneNumberInput
                   v-model="credentials.phone"
                   :default-country-code="country"
+                  no-example="true"
                   valid-color="#6cb8ff"
                   error-color="#F94B4A"
                   size="lg"
