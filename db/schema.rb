@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_22_123248) do
+ActiveRecord::Schema.define(version: 2022_03_08_013236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_123248) do
     t.datetime "active_at"
     t.integer "availability", default: 0, null: false
     t.boolean "auto_offline", default: true, null: false
+    t.boolean "is_deleted", default: false
     t.index ["account_id", "user_id"], name: "uniq_user_id_per_account_id", unique: true
     t.index ["account_id"], name: "index_account_users_on_account_id"
     t.index ["user_id"], name: "index_account_users_on_user_id"
@@ -790,6 +791,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_123248) do
     t.string "last_name"
     t.string "phone"
     t.string "country"
+    t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["pubsub_token"], name: "index_users_on_pubsub_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

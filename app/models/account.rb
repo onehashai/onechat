@@ -133,6 +133,7 @@ class Account < ApplicationRecord
   def set_limits_for_account(plan_price)
     self.limits = plan_price.limits
     save!
+    Account::UpdateUserAccountsBasedOnLimitsJob.perform_later(self.id)
   end
 
   private

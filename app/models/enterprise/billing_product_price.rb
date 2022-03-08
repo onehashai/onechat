@@ -20,6 +20,9 @@
 #
 class Enterprise::BillingProductPrice < ApplicationRecord
   belongs_to :billing_product, class_name: 'Enterprise::BillingProduct'
+  has_many :enterprise_account_billing_subscriptions, class_name: 'Enterprise::AccountBillingSubscription'
+
+  after_save :update_limits_job
 
   def amount
     unit_amount
@@ -28,4 +31,15 @@ class Enterprise::BillingProductPrice < ApplicationRecord
   def limits=(value)
     self[:limits] = value.is_a?(String) ? JSON.parse(value) : value
   end
+
+  def update_limits_job
+    Account::UpdateAccountsLimitsJob.perform_later(self.id)
+  end
+
+  def update_accounts_limits
+    enterprise_account_billing_subscriptions.each do |billing_subscriptions|
+      billing_subscriptions.account.set_limits_for_account(self)
+    end
+  end
+
 end

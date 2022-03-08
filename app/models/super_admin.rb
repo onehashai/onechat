@@ -15,6 +15,7 @@
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
+#  is_deleted             :boolean          default(FALSE)
 #  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string

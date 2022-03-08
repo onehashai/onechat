@@ -15,6 +15,7 @@
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
+#  is_deleted             :boolean          default(FALSE)
 #  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
@@ -97,7 +98,7 @@ class User < ApplicationRecord
   has_many :teams, through: :team_members
 
   before_validation :set_password_and_uid, :set_name, on: :create
-
+  default_scope { where(is_deleted: false) }
   scope :order_by_full_name, -> { order('lower(first_name) ASC') }
   def send_devise_notification(notification, *args)
     devise_mailer.with(account: Current.account).send(notification, self, *args).deliver_later
