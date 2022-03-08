@@ -38,7 +38,7 @@
       "ADD": {
         "CANCEL": "Stornieren",
         "TITLE": "Neuen Webhook hinzufügen",
-        "DESC": "Webhook-Ereignisse bieten Ihnen Echtzeitinformationen darüber, was in Ihrem Chatwoot-Konto passiert. Bitte geben Sie eine gültige URL ein, um einen Rückruf zu konfigurieren.",
+        "DESC": "Webhook-Ereignisse bieten Ihnen Echtzeitinformationen darüber, was in Ihrem OneChat-Konto passiert. Bitte geben Sie eine gültige URL ein, um einen Rückruf zu konfigurieren.",
         "FORM": {
           "END_POINT": {
             "LABEL": "Webhook-URL",

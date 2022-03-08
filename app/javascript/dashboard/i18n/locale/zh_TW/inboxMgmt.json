@@ -1,7 +1,7 @@
 {
   "INBOX_MGMT": {
     "HEADER": "收件匣",
-    "SIDEBAR_TXT": "<p><b>收件匣</b></p> <p> 當您將網站或 Facebook 頁面連接到 OneChat 它被稱為一個 <b>收件匣</b>。 您可以在Chatwoot 帳戶中擁有無限的收件匣。 </p><p> 點擊 <b>建立收件匣</b> 連接網站或 Facebook 頁面。 </p><p> 在儀表板中 您可以在一個地方看到所有收件匣中的所有對話，並在“對話”選項卡下回覆。 </p><p> 您也可以通過點擊儀表板左側面板上的收件匣名稱看到該收件匣的對話。 </p>",
+    "SIDEBAR_TXT": "<p><b>收件匣</b></p> <p> 當您將網站或 Facebook 頁面連接到 OneChat 它被稱為一個 <b>收件匣</b>。 您可以在OneChat 帳戶中擁有無限的收件匣。 </p><p> 點擊 <b>建立收件匣</b> 連接網站或 Facebook 頁面。 </p><p> 在儀表板中 您可以在一個地方看到所有收件匣中的所有對話，並在“對話”選項卡下回覆。 </p><p> 您也可以通過點擊儀表板左側面板上的收件匣名稱看到該收件匣的對話。 </p>",
     "LIST": {
       "404": "此帳戶没有收件匣。"
     },
@@ -298,7 +298,7 @@
       },
       "AUTH": {
         "TITLE": "Choose a channel",
-        "DESC": "Chatwoot supports live-chat widget, Facebook page, Twitter profile, WhatsApp, Email etc., as channels. If you want to build a custom channel, you can create it using the API channel. Select one channel from the options below to proceed."
+        "DESC": "OneChat supports live-chat widget, Facebook page, Twitter profile, WhatsApp, Email etc., as channels. If you want to build a custom channel, you can create it using the API channel. Select one channel from the options below to proceed."
       },
       "AGENTS": {
         "TITLE": "客服",

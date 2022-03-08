@@ -298,7 +298,7 @@
       },
       "AUTH": {
         "TITLE": "Välj en kanal",
-        "DESC": "Chatwoot stöder live-chat widget, Facebook-sida, Twitter-profil, WhatsApp, E-post etc., som kanaler. Om du vill bygga en anpassad kanal kan du skapa den med hjälp av API-kanalen. Välj en kanal från alternativen nedan för att fortsätta."
+        "DESC": "OneChat stöder live-chat widget, Facebook-sida, Twitter-profil, WhatsApp, E-post etc., som kanaler. Om du vill bygga en anpassad kanal kan du skapa den med hjälp av API-kanalen. Välj en kanal från alternativen nedan för att fortsätta."
       },
       "AGENTS": {
         "TITLE": "Agenter",
