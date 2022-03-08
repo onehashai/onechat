@@ -65,7 +65,7 @@ class Api::V1::AccountsController < Api::BaseController
 
   def billing_subscription
     @billing_subscription = @account.account_billing_subscriptions.last
-    @available_product_prices = Enterprise::BillingProductPrice.all.includes(:billing_product).limit(4)
+    @available_product_prices = Enterprise::BillingProductPrice.where(active: true).includes(:billing_product)
     render 'api/v1/accounts/ee/billing_subscription.json'
   end
 

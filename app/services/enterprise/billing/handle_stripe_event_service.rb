@@ -27,5 +27,17 @@ class Enterprise::Billing::HandleStripeEventService
         Rails.logger.debug { "Unhandled event type: #{event.type}" }
       end
     end
+
+    return unless event['data']['object']['metadata']['product'] == 'OneChat'
+
+    case event.type
+    when 'product.created', 'product.updated', 'product.deleted'
+      Enterprise::Billing::SyncStripeProductsService.perform
+    when 'plan.created', 'plan.updated', 'plan.deleted'
+      Enterprise::Billing::SyncStripeProductsService.perform
+    else
+      Rails.logger.debug { "Unhandled event type: #{event.type}" }
+    end
+
   end
 end
