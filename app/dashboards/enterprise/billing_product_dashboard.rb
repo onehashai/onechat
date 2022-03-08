@@ -69,7 +69,7 @@ class Enterprise::BillingProductDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how billing products are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(billing_product)
-  #   "Enterprise::BillingProduct ##{billing_product.id}"
-  # end
+  def display_resource(billing_product)
+    "Enterprise::BillingProduct ##{billing_product.id} #{billing_product.product_name}"
+  end
 end
