@@ -26,14 +26,8 @@
           <h4 class="">
             {{ availableProductPrice.name }}
           </h4>
-          <div v-if="availableProductPrice.name == 'Free'" class="description">
+          <div  class="description">
             Auto Renewable subscription
-          </div>
-          <div
-            v-if="availableProductPrice.name == 'Business'"
-            class="description"
-          >
-            Auto Renewable <subscription></subscription>
           </div>
           <div class="solution--price">
             <div class="price mb-0 mt-2">
@@ -44,21 +38,7 @@
             </div>
             <div class="price mb-0 mt-2">/month</div>
           </div>
-          <!--          <sub-->
-          <!--            v-if="planId === availableProductPrice.id"-->
-          <!--            class="badge badge-pill"-->
-          <!--          >-->
-          <!--            Current-->
-          <!--          </sub>-->
-          <div class="solution-description">
-            <fluent-icon icon="people" style="height: 14px;width: 14px;" />
-            {{
-              availableProductPrice.allowed_no_agents
-                ? availableProductPrice.allowed_no_agents
-                : '&#8734;'
-            }}
-            agent(s)
-          </div>
+
           <div
             class="solution-description"
             v-html="availableProductPrice.description"
@@ -124,13 +104,6 @@ export default {
     hidePlanModal() {
       this.$emit('hideModal');
     },
-    // removeTrail() {
-    //   this.products = this.availableProductPrices.filter(item => {
-    //     return item.unit == 0 && item.name == 'Trial';
-    //   });
-    //   console.log(this.products, "Product");
-    //   debugger;
-    // },
     submitSubscription(value) {
       const payload = { product_price: value };
       AccountAPI.startBillingSubscription(payload)
