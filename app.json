@@ -30,7 +30,7 @@
       "value": "https://onehash.herokuapp.com"
     },
     "INSTALLATION_ENV": {
-      "description": "Installation method used for Chatwoot.",
+      "description": "Installation method used for OneChat.",
       "value": "heroku"
     }
   },

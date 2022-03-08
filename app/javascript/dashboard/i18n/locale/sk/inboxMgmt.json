@@ -298,7 +298,7 @@
       },
       "AUTH": {
         "TITLE": "Vybrať kanál",
-        "DESC": "Chatwoot podporuje live-chat widget, Facebook stránku, Twitter profil, WhatsApp, E-mail atď., ako kanály. Ak chcete vytvoriť vlastný kanál, môžete ho vytvoriť pomocou kanála API. Ak chcete pokračovať, vyberte jeden kanál z nižšie uvedených možností."
+        "DESC": "OneChat podporuje live-chat widget, Facebook stránku, Twitter profil, WhatsApp, E-mail atď., ako kanály. Ak chcete vytvoriť vlastný kanál, môžete ho vytvoriť pomocou kanála API. Ak chcete pokračovať, vyberte jeden kanál z nižšie uvedených možností."
       },
       "AGENTS": {
         "TITLE": "Agenti",

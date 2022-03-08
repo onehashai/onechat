@@ -298,7 +298,7 @@
       },
       "AUTH": {
         "TITLE": "Chọn kênh",
-        "DESC": "Chatwoot hỗ trợ tiện ích trò chuyện trực tiếp, trang Facebook, hồ sơ Twitter, WhatsApp, Email, v. v., dưới dạng các kênh. Nếu bạn muốn xây dựng một kênh tùy chỉnh, bạn có thể tạo bằng cách sử dụng kênh API. Chọn một kênh từ các tùy chọn bên dưới để tiếp tục."
+        "DESC": "OneChat hỗ trợ tiện ích trò chuyện trực tiếp, trang Facebook, hồ sơ Twitter, WhatsApp, Email, v. v., dưới dạng các kênh. Nếu bạn muốn xây dựng một kênh tùy chỉnh, bạn có thể tạo bằng cách sử dụng kênh API. Chọn một kênh từ các tùy chọn bên dưới để tiếp tục."
       },
       "AGENTS": {
         "TITLE": "Nhà Cung Cấp",
