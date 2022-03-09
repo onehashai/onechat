@@ -255,6 +255,10 @@
       }
     },
     "ERROR": {
+      "MESSAGE": "You Can't Subscribe to this plan"
+    },
+
+    "CANCEL": {
       "MESSAGE": "Subscription plan not changed"
     },
     "SUCCESS": {

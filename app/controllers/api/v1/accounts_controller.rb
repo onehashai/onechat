@@ -70,26 +70,18 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def start_billing_subscription
-    active_subscription = @account.account_billing_subscriptions.where.not(subscription_stripe_id: nil)&.last
     @billing_subscription = Enterprise::BillingProductPrice.find(params[:product_price])
+    if @billing_subscription.billing_product.product_name == 'Trial' && verify_trail_subscription?
+      url = "#{ENV['FRONTEND_URL']}/app/accounts/#{@account.id}/settings/billing?subscription_status=error"
+      render json: { url: url } and return
+    end
+    active_subscription = @account.account_billing_subscriptions.where.not(subscription_stripe_id: nil)&.last
     subscription = Stripe::Subscription.retrieve(active_subscription.subscription_stripe_id) if active_subscription
     url = "#{ENV['FRONTEND_URL']}/app/accounts/#{@account.id}/settings/billing?subscription_status=success"
     if subscription.present?
-      Stripe::Subscription.update(
-        subscription.id,
-        {
-          cancel_at_period_end: false,
-          proration_behavior: 'always_invoice',
-          items: [
-            {
-              id: subscription.items.data[0].id,
-              price: @billing_subscription.price_stripe_id
-            }
-          ]
-        }
-      )
+      create_subscription(subscription)
     elsif @billing_subscription.unit_amount.zero?
-      @account.subscribe_for_plan(@billing_subscription.billing_product.product_name, 2.years.from_now)
+      @account.subscribe_for_plan(@billing_subscription.billing_product.product_name, plan_duration)
     else
       url = @account.create_checkout_link(@billing_subscription)
     end
@@ -123,5 +115,29 @@ class Api::V1::AccountsController < Api::BaseController
       account: @account,
       account_user: @current_account_user
     }
+  end
+
+  def verify_trail_subscription?
+    @account.account_billing_subscriptions.where(billing_product_price_id: @billing_subscription.id).present?
+  end
+
+  def create_subscription(subscription)
+    Stripe::Subscription.update(
+      subscription.id,
+      {
+        cancel_at_period_end: false,
+        proration_behavior: 'always_invoice',
+        items: [
+          {
+            id: subscription.items.data[0].id,
+            price: @billing_subscription.price_stripe_id
+          }
+        ]
+      }
+    )
+  end
+
+  def plan_duration
+    @billing_subscription.billing_product.product_name == 'Trial' ? ChatwootApp.trial_ending_time : ChatwootApp.free_plan_ending_time
   end
 end

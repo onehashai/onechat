@@ -96,9 +96,7 @@ export default {
         const { available_product_prices, plan_id, plan_name } = this.getAccount(
           this.$route.params.accountId
         );
-        this.availableProductPrices = available_product_prices.filter(
-          item => item.name != 'Trial' && item.amount != 0
-        );
+        this.availableProductPrices = available_product_prices
         this.planId = plan_id;
         this.planName = plan_name;
       } catch (error) {

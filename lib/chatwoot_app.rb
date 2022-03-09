@@ -38,4 +38,8 @@ module ChatwootApp
   def self.trial_ending_time
     15.days.from_now
   end
+
+  def self.free_plan_ending_time
+    15.years.from_now
+  end
 end
