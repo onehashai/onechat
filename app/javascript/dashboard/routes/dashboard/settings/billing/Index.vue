@@ -87,9 +87,10 @@ export default {
           Cookies.remove('subscription');
         } else if (status === 'cancel') {
           console.log('cancelled');
+          this.showAlert(this.$t('BILLING_SETTINGS.CANCEL.MESSAGE'));
+        } else if (status === 'error') {
+          console.log('error');
           this.showAlert(this.$t('BILLING_SETTINGS.ERROR.MESSAGE'));
-        } else {
-          console.log('kuxh b nhi');
         }
       }
     },

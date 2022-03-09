@@ -5,6 +5,7 @@
 #  id                    :integer          not null, primary key
 #  auto_resolve_duration :integer
 #  custom_attributes     :jsonb
+#  deletion_reminder     :boolean          default(FALSE)
 #  domain                :string(100)
 #  feature_flags         :integer          default(0), not null
 #  limits                :jsonb
@@ -123,9 +124,9 @@ class Account < ApplicationRecord
     }
   end
 
-  def subscribe_for_plan(name = 'Trial', end_time = ChatwootApp.trial_ending_time)
-    trail_plan = Enterprise::BillingProduct.find_by(product_name: name)
-    plan_price = trail_plan.billing_product_prices.last
+  def subscribe_for_plan(name = 'Free', end_time = ChatwootApp.free_plan_ending_time)
+    _plan = Enterprise::BillingProduct.find_by(product_name: name)
+    plan_price = _plan.billing_product_prices.last
     account_billing_subscriptions.create!(billing_product_price: plan_price, current_period_end: end_time)
     set_limits_for_account plan_price
   end
