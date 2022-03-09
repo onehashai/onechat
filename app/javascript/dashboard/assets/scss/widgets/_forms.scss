@@ -57,4 +57,12 @@ input {
 .country-selector__input,
 #MazPhoneNumberInput input {
   border: 1px solid #EBF0F5 !important;
+  color: #3c4858 !important;
+  font-family: inherit !important;
+  font-weight: 400;
+  font-size: 1.6rem;
+  &::placeholder {
+    color: $input-placeholder-color;
+    font-weight: 500;
+  }
 }
