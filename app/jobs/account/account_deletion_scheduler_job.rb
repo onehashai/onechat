@@ -25,7 +25,7 @@ class Account::AccountDeletionSchedulerJob < ApplicationJob
       user = account.account_users.where(inviter_id: nil).last.user
       if user.created_at < no_days.days.ago
         AdministratorNotifications::AccountMailer.account_deletion(account).deliver_now
-        account.users.destroy
+        account.users.destroy_all
         account.destroy
       end
     end
