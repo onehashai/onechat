@@ -21,7 +21,7 @@ module Enterprise::Account
                                                         success_url: "#{billing_url}?subscription_status=success",
                                                         cancel_url: "#{billing_url}?subscription_status=cancel",
                                                         line_items: [
-                                                          { price: product_price.price_stripe_id, quantity: account_users.count }
+                                                          { price: product_price.price_stripe_id, quantity: 1 }
                                                         ],
                                                         customer: stripe_customer_id,
                                                         mode: 'subscription',
