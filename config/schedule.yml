@@ -19,3 +19,21 @@ trigger_imap_email_inboxes_job:
   cron: '*/5 * * * *'
   class: 'Inboxes::FetchImapEmailInboxesJob'
   queue: scheduled_jobs
+
+# executed At every day..
+account_initial_warning_scheduler_job:
+  cron: '0 4 * * *'
+  class: 'Account::InitialWarningSchedulerJob'
+  queue: scheduled_jobs
+
+# executed At every day..
+account_second_warning_scheduler:
+  cron: '0 5 * * *'
+  class: 'Account::SecondWarningSchedulerJob'
+  queue: scheduled_jobs
+
+#executed At every day..
+account_account_deletion_scheduler_job:
+  cron: '0 6 * * *'
+  class: 'Account::AccountDeletionSchedulerJob'
+  queue: scheduled_jobs
