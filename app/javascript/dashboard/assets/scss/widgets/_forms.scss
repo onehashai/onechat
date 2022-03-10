@@ -21,6 +21,9 @@
 
   .country-selector__input, #MazPhoneNumberInput input {
     border: 1px solid var(--r-400) !important;
+    &:invalid {
+      border: 1px solid var(--r-400) !important;
+    }
   }
 }
 
@@ -64,5 +67,10 @@ input {
   &::placeholder {
     color: $input-placeholder-color;
     font-weight: 500;
+  }
+  &:focus {
+    border: 1px solid #6cb8ff !important;
+    outline: none !important;
+    box-shadow: none !important;
   }
 }

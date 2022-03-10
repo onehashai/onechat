@@ -26,7 +26,7 @@
           <h4 class="">
             {{ availableProductPrice.name }}
           </h4>
-          <div  class="description">
+          <div class="description">
             Auto Renewable subscription
           </div>
           <div class="solution--price">
@@ -49,6 +49,7 @@
             @click="() => submitSubscription(availableProductPrice.id)"
           >
             Select this plan
+            <woot-spinner v-if="isPlanClicked"></woot-spinner>
           </woot-button>
           <woot-button
             v-if="planId == availableProductPrice.id"
@@ -93,6 +94,7 @@ export default {
     return {
       error: '',
       products: '',
+      isPlanClicked: false,
     };
   },
 
@@ -106,11 +108,14 @@ export default {
     },
     submitSubscription(value) {
       const payload = { product_price: value };
+      this.isPlanClicked = true;
       AccountAPI.startBillingSubscription(payload)
         .then(response => {
           window.location.href = response.data.url;
+          this.isPlanClicked = false;
         })
         .catch(error => {
+          this.isPlanClicked = false;
           console.log(error, 'error');
         });
     },

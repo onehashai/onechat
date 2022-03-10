@@ -167,7 +167,7 @@
             :label="$t('CONFIRM_PASSWORD.ENTER_CODE')"
             :placeholder="$t('CONFIRM_PASSWORD.ENTER_CODE')"
           />
-          <div class="description-reset" >
+          <div class="description-reset">
             Resend code at
             <span @click="submit">
               {{ formattedObject.e164 }}
@@ -312,8 +312,9 @@ export default {
       const countryObj = await Auth.getCountryCode();
       this.country = countryObj.data.country;
     },
-    setChangeNumber () {
+    setChangeNumber() {
       this.openConfirmation = false;
+      this.isSignupInProgress = false;
     },
     verifyConfirmatinCode() {
       if (this.code.length > 5) {
@@ -367,6 +368,7 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
+      this.isSignupInProgress = true;
       const appVerifier = window.recaptchaVerifier;
 
       const auth = getAuth();
@@ -496,7 +498,7 @@ export default {
   }
 }
 </style>
-<style>
+<style lang="scss">
 .input-tel.has-hint .input-tel__label,
 .input-tel.has-value .input-tel__label {
   display: none;
@@ -514,5 +516,8 @@ export default {
 }
 .flex.align-center.country-selector__list__item {
   justify-content: flex-start;
+  &.selected {
+    background-color: #6cb8ff !important;
+  }
 }
 </style>
