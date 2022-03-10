@@ -33,7 +33,7 @@ class Enterprise::BillingProductPrice < ApplicationRecord
   end
 
   def update_limits_job
-    Account::UpdateAccountsLimitsJob.perform_later(self.id)
+    Account::UpdateAccountsLimitsJob.perform_later(id)
   end
 
   def update_accounts_limits
@@ -41,5 +41,4 @@ class Enterprise::BillingProductPrice < ApplicationRecord
       billing_subscriptions.account.set_limits_for_account(self)
     end
   end
-
 end

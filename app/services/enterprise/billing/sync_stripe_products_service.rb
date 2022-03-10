@@ -1,6 +1,5 @@
 class Enterprise::Billing::SyncStripeProductsService
   def self.perform
-
     # Fetch all of our active products from Stripe
     Stripe::Product.list['data'].each do |product|
       next unless product&.metadata['product'] == 'OneChat'
@@ -15,11 +14,12 @@ class Enterprise::Billing::SyncStripeProductsService
       else
         billing_product = Enterprise::BillingProduct.find_by(product_stripe_id: product['id'])
         next if billing_product.blank?
+
         billing_product.update({
-                                  product_name: product['name'],
-                                  product_description: product['description'],
-                                  active: product['active']
-                                })
+                                 product_name: product['name'],
+                                 product_description: product['description'],
+                                 active: product['active']
+                               })
         billing_product.billing_product_prices.update_all(active: false)
       end
     end
