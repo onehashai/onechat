@@ -2,7 +2,7 @@ class Account::SecondWarningSchedulerJob < ApplicationJob
   queue_as :scheduled_jobs
 
   def perform
-    config_name = "INITIAL_WARNING_AFTER_DAYS"
+    config_name = 'INITIAL_WARNING_AFTER_DAYS'
     no_days = GlobalConfig.get(config_name)[config_name] || 30
     no_days = no_days.to_i
     intemediatry_config_name = 'INTEMEDIATRY_WARNING'

@@ -1,7 +1,7 @@
 class AdministratorNotifications::AccountMailer < ApplicationMailer
-
   def initial_warning(account)
     return unless smtp_config_set_or_development?
+
     @account = account
     @initial_warning_days = initial_warning_days
     @number_of_days = intermediary_days
@@ -13,6 +13,7 @@ class AdministratorNotifications::AccountMailer < ApplicationMailer
 
   def second_warning(account)
     return unless smtp_config_set_or_development?
+
     @account = account
     @initial_warning_days = initial_warning_days + intermediary_days
     @number_of_days = deletion_days
@@ -25,6 +26,7 @@ class AdministratorNotifications::AccountMailer < ApplicationMailer
 
   def account_deletion(account)
     return unless smtp_config_set_or_development?
+
     @account = account
     @warning_days = initial_warning_days + intermediary_days + deletion_days
     @admin_name = admin.name
@@ -70,5 +72,4 @@ class AdministratorNotifications::AccountMailer < ApplicationMailer
   def deletion_for_second_warning_date
     Date.current + deletion_days.days
   end
-
 end

@@ -2,7 +2,7 @@ class Account::AccountDeletionSchedulerJob < ApplicationJob
   queue_as :scheduled_jobs
 
   def perform
-    config_name = "INITIAL_WARNING_AFTER_DAYS"
+    config_name = 'INITIAL_WARNING_AFTER_DAYS'
     no_days = GlobalConfig.get(config_name)[config_name] || 30
     no_days = no_days.to_i
     intemediatry_config_name = 'INTEMEDIATRY_WARNING'
@@ -23,11 +23,11 @@ class Account::AccountDeletionSchedulerJob < ApplicationJob
       next if users.any?
 
       user = account.account_users.where(inviter_id: nil).last.user
-      if user.created_at < no_days.days.ago
-        AdministratorNotifications::AccountMailer.account_deletion(account).deliver_now
-        account.users.destroy_all
-        account.destroy
-      end
+      next unless user.created_at < no_days.days.ago
+
+      AdministratorNotifications::AccountMailer.account_deletion(account).deliver_now
+      account.users.destroy_all
+      account.destroy
     end
   end
 end
