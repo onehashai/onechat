@@ -3,13 +3,13 @@
     <span v-if="label">{{ label }}</span>
     <div class="input-container">
       <input
-          :value="value"
-          :type="type"
-          :placeholder="placeholder"
-          :readonly="readonly"
-          class="subdomain"
-          @input="onChange"
-          @blur="onBlur"
+        :value="value"
+        :type="type"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        class="subdomain"
+        @input="onChange"
+        @blur="onBlur"
       />
       <div class="subdomain-text">
         onechat.is

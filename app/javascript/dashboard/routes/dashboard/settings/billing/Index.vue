@@ -24,10 +24,7 @@
         </div>
         <div class="columns small-9 medium-5">
           <label>
-            <woot-button
-                title="Change the Plan"
-                @click="openPlanModal"
-            >
+            <woot-button title="Change the Plan" @click="openPlanModal">
               {{ $t('BILLING_SETTINGS.FORM.CHANGE_PLAN.SELECT_PLAN') }}
             </woot-button>
           </label>
@@ -46,10 +43,10 @@ import configMixin from 'shared/mixins/configMixin';
 import accountMixin from '../../../../mixins/account';
 import AccountAPI from '../../../../api/account';
 import Cookies from 'js-cookie';
-import WootButton from "../../../../components/ui/WootButton";
-import {BUS_EVENTS} from "../../../../../shared/constants/busEvents";
+import WootButton from '../../../../components/ui/WootButton';
+import { BUS_EVENTS } from '../../../../../shared/constants/busEvents';
 export default {
-  components: {WootButton},
+  components: { WootButton },
   mixins: [accountMixin, alertMixin, configMixin],
   data() {
     return {
@@ -95,8 +92,9 @@ export default {
       }
     },
     checkStatus(product) {
-      if(product.unit == 0 && product.name == 'Trial') {
-        return true
+      // eslint-disable-next-line eqeqeq
+      if (product.unit == 0 && product.name == 'Trial') {
+        return true;
       }
       return false;
     },
@@ -116,7 +114,9 @@ export default {
         this.selectedProductPrice = plan_id;
         this.agentCount = agent_count;
         this.availableProductPrices = available_product_prices;
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     },
     submitSubscription(event) {
       const payload = { product_price: event.target.value };

@@ -301,6 +301,7 @@ export default {
         callback: response => {
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           // this.sendRequestForSignUp();
+          console.log(response);
         },
       },
       auth
@@ -326,6 +327,7 @@ export default {
           })
           .catch(error => {
             this.code = '';
+            console.log(error);
             alert('code is not same try again');
           });
       }
