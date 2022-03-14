@@ -255,7 +255,7 @@
       }
     },
     "ERROR": {
-      "MESSAGE": "You Can't Subscribe to this plan"
+      "MESSAGE": "You have already taken trial please subscribe to a paid plan."
     },
 
     "CANCEL": {

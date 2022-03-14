@@ -36,12 +36,16 @@ class SuperAdmin::UsersController < SuperAdmin::ApplicationController
   def resource_params
     permitted_params = super
     permitted_params.delete(:password) if permitted_params[:password].blank?
-    permitted_params
+    permitted_params.merge(is_an_agent: true)
   end
 
   # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
   # for more information
   def find_resource(param)
     super.becomes(User)
+  end
+
+  def scoped_resource
+      resource_class.unscoped
   end
 end
