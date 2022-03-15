@@ -28,13 +28,14 @@ class ContactBuilder
   end
 
   def create_contact
-    account.contacts.create!(
+    Contact.create!(
       name: contact_attributes[:name] || ::Haikunator.haikunate(1000),
       phone_number: contact_attributes[:phone_number],
       email: contact_attributes[:email],
       identifier: contact_attributes[:identifier],
       additional_attributes: contact_attributes[:additional_attributes],
-      custom_attributes: contact_attributes[:custom_attributes]
+      custom_attributes: contact_attributes[:custom_attributes],
+      account_id: account.id
     )
   end
 
@@ -47,20 +48,19 @@ class ContactBuilder
 
   def find_contact_by_identifier(identifier)
     return if identifier.blank?
-
-    account.contacts.find_by(identifier: identifier)
+    Contact.where(account_id: account.id).find_by(identifier: identifier)
   end
 
   def find_contact_by_email(email)
     return if email.blank?
 
-    account.contacts.find_by(email: email.downcase)
+    Contact.where(account_id: account.id).find_by(email: email.downcase)
   end
 
   def find_contact_by_phone_number(phone_number)
     return if phone_number.blank?
 
-    account.contacts.find_by(phone_number: phone_number)
+    Contact.where(account_id: account.id).find_by(phone_number: phone_number)
   end
 
   def build_contact_inbox
