@@ -1,6 +1,6 @@
 <template>
   <div class="columns profile--settings">
-    <form v-if="!uiFlags.isFetchingItem" @submit.prevent="updateAccount">
+    <div v-if="!uiFlags.isFetchingItem" >
       <div class="small-12 row profile--settings--row">
         <div class="columns small-3">
           <h4 class="block-title">
@@ -30,7 +30,7 @@
           </label>
         </div>
       </div>
-    </form>
+    </div>
 
     <woot-loading-state v-if="uiFlags.isFetchingItem" />
   </div>
