@@ -8,7 +8,7 @@ namespace :db do
     #file_path = '/home/umair/rails/onechat/tmp/backup/'
 
     # process backup
-    pp `pg_dump #{ENV['POSTGRES_DATABASE']}  > #{file_path}#{backup_filename}`
+     `pg_dump #{ENV['POSTGRES_DATABASE']}  > #{file_path}#{backup_filename}`
     `gzip -9 #{file_path}#{backup_filename}`
     puts "Created backup: #{file_path}#{backup_filename}"
 

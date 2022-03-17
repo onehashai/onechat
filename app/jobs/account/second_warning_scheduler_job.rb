@@ -12,7 +12,7 @@ class Account::SecondWarningSchedulerJob < ApplicationJob
     Account.all.each do |account|
       subscription = account.account_billing_subscriptions.where(cancelled_at: nil)&.last
 
-      next unless subscription.blank? || subscription.billing_product_price&.unit_amount.zero?
+      next unless subscription.blank? || subscription.billing_product_price&.unit_amount&.zero?
 
       users = account.users.where('last_sign_in_at < ? ', total_no_days.days.ago)
 
