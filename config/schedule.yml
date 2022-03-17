@@ -37,3 +37,9 @@ account_account_deletion_scheduler_job:
   cron: '0 6 * * *'
   class: 'Account::AccountDeletionSchedulerJob'
   queue: scheduled_jobs
+
+#executed At every day..
+backup_job:
+  cron: '0 3 * * *'
+  class: 'BackupJob'
+  queue: scheduled_jobs
