@@ -91,8 +91,6 @@ class Enterprise::AccountBillingSubscriptionDashboard < Administrate::BaseDashbo
 
     account
 
-    subscription_stripe_id
-
     status
 
     current_period_end
