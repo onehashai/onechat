@@ -22,7 +22,8 @@ class Account::AccountDeletionSchedulerJob < ApplicationJob
 
       next if users.any?
 
-      user = account.account_users.where(inviter_id: nil).last.user
+      user = account.account_users.where(inviter_id: nil).last&.user
+      next if user.blank?
       next unless user.created_at < no_days.days.ago
 
       AdministratorNotifications::AccountMailer.account_deletion(account).deliver_now

@@ -15,7 +15,8 @@ class Account::InitialWarningSchedulerJob < ApplicationJob
       users = account.users.where('last_sign_in_at < ? ', no_days.days.ago)
       next if users.present?
 
-      user = account.account_users.where(inviter_id: nil).last.user
+      user = account.account_users.where(inviter_id: nil).last&.user
+      next if user.blank?
       AdministratorNotifications::AccountMailer.initial_warning(account).deliver_now if user.created_at < no_days.days.ago
     end
   end

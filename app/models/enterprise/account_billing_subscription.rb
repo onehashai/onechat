@@ -21,4 +21,9 @@
 class Enterprise::AccountBillingSubscription < ApplicationRecord
   belongs_to :billing_product_price, class_name: '::Enterprise::BillingProductPrice'
   belongs_to :account, class_name: '::Account'
+  after_save :update_account_limits
+
+  def update_account_limits
+    account.set_limits_for_account(billing_product_price)
+  end
 end
