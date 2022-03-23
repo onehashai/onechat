@@ -32,7 +32,8 @@ class UserDashboard < Administrate::BaseDashboard
     pubsub_token: Field::String,
     type: Field::Select.with_options(collection: [nil, 'SuperAdmin']),
     accounts: CountField,
-    is_deleted: Field::Boolean
+    is_deleted: Field::Boolean,
+    phone: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -45,6 +46,7 @@ class UserDashboard < Administrate::BaseDashboard
     avatar_url
     name
     email
+    phone
     accounts
     type
     is_deleted
@@ -60,6 +62,7 @@ class UserDashboard < Administrate::BaseDashboard
     type
     display_name
     email
+    phone
     is_deleted
     created_at
     updated_at
@@ -74,6 +77,7 @@ class UserDashboard < Administrate::BaseDashboard
     name
     display_name
     email
+    phone
     password
     confirmed_at
     type
