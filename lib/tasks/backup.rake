@@ -1,14 +1,14 @@
 namespace :db do
   require 'aws-sdk-s3'
-  desc "Backup database to AWS-S3"
-  task :backup => [:environment] do
-    datestamp = Time.now.strftime("%Y-%m-%d_%H-%M-%S")
+  desc 'Backup database to AWS-S3'
+  task backup: [:environment] do
+    datestamp = Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')
     backup_filename = "data-base-#{datestamp}.sql"
     file_path = '/home/chatwoot/chatwoot/tmp/backup/'
-    #file_path = '/home/umair/rails/onechat/tmp/backup/'
+    # file_path = '/home/umair/rails/onechat/tmp/backup/'
 
     # process backup
-     `pg_dump #{ENV['POSTGRES_DATABASE']}  > #{file_path}#{backup_filename}`
+    `pg_dump #{ENV['POSTGRES_DATABASE']}  > #{file_path}#{backup_filename}`
     `gzip -9 #{file_path}#{backup_filename}`
     puts "Created backup: #{file_path}#{backup_filename}"
 

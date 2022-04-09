@@ -6,5 +6,4 @@ class BackupJob < ApplicationJob
     Chatwoot::Application.load_tasks
     Rake::Task['db:backup'].invoke
   end
-
 end

@@ -46,6 +46,6 @@ class SuperAdmin::UsersController < SuperAdmin::ApplicationController
   end
 
   def scoped_resource
-      resource_class.unscoped
+    resource_class.unscoped
   end
 end

@@ -20,6 +20,7 @@ class Account::SecondWarningSchedulerJob < ApplicationJob
 
       user = account.account_users.where(inviter_id: nil).last&.user
       next if user.blank?
+
       AdministratorNotifications::AccountMailer.second_warning(account).deliver_now if user.created_at < no_days.days.ago
     end
   end

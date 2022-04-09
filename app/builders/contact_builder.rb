@@ -48,6 +48,7 @@ class ContactBuilder
 
   def find_contact_by_identifier(identifier)
     return if identifier.blank?
+
     Contact.where(account_id: account.id).find_by(identifier: identifier)
   end
 
