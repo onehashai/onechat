@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_08_013236) do
+ActiveRecord::Schema.define(version: 2022_04_12_105408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2022_03_08_013236) do
     t.integer "auto_resolve_duration"
     t.jsonb "limits", default: {}
     t.jsonb "custom_attributes", default: {}
+    t.boolean "deletion_reminder", default: false
+    t.integer "deletion_email_reminder"
   end
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
@@ -353,7 +355,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_013236) do
     t.datetime "agent_last_seen_at"
     t.jsonb "additional_attributes", default: {}
     t.bigint "contact_inbox_id"
-    t.uuid "uuid", default: -> { "public.gen_random_uuid()" }, null: false
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "identifier"
     t.datetime "last_activity_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.bigint "team_id"
@@ -450,7 +452,6 @@ ActiveRecord::Schema.define(version: 2022_03_08_013236) do
     t.jsonb "limits", default: {}, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "amount"
     t.index ["billing_product_id"], name: "index_ee_billing_product_prices_on_billing_product_id"
     t.index ["price_stripe_id"], name: "index_ee_billing_product_prices_on_price_stripe_id", unique: true
   end

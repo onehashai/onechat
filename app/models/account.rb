@@ -2,19 +2,20 @@
 #
 # Table name: accounts
 #
-#  id                    :integer          not null, primary key
-#  auto_resolve_duration :integer
-#  custom_attributes     :jsonb
-#  deletion_reminder     :boolean          default(FALSE)
-#  domain                :string(100)
-#  feature_flags         :integer          default(0), not null
-#  limits                :jsonb
-#  locale                :integer          default("en")
-#  name                  :string           not null
-#  settings_flags        :integer          default(0), not null
-#  support_email         :string(100)
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
+#  id                      :integer          not null, primary key
+#  auto_resolve_duration   :integer
+#  custom_attributes       :jsonb
+#  deletion_email_reminder :integer
+#  deletion_reminder       :boolean          default(FALSE)
+#  domain                  :string(100)
+#  feature_flags           :integer          default(0), not null
+#  limits                  :jsonb
+#  locale                  :integer          default("en")
+#  name                    :string           not null
+#  settings_flags          :integer          default(0), not null
+#  support_email           :string(100)
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
 #
 class Account < ApplicationRecord
   # used for single column multi flags
@@ -79,6 +80,7 @@ class Account < ApplicationRecord
   has_flags ACCOUNT_SETTINGS_FLAGS.merge(column: 'settings_flags').merge(DEFAULT_QUERY_SETTING)
 
   enum locale: LANGUAGES_CONFIG.map { |key, val| [val[:iso_639_1_code], key] }.to_h
+  enum deletion_email_reminder: { initial_reminder: 0, second_reminder: 1, deletion: 2 }
 
   before_validation :validate_limit_keys
   after_create_commit :notify_creation

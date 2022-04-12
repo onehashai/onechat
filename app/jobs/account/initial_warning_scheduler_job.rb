@@ -9,16 +9,17 @@ class Account::InitialWarningSchedulerJob < ApplicationJob
 
     Account.all.each do |account|
       subscription = account.account_billing_subscriptions.where(cancelled_at: nil)&.last
-
       next unless subscription.blank? || subscription.billing_product_price&.unit_amount&.zero?
 
-      users = account.users.where('last_sign_in_at < ? ', no_days.days.ago)
-      next if users.present?
+      users = account.users.where('last_sign_in_at > ? ', no_days.days.ago)
 
-      user = account.account_users.where(inviter_id: nil).last&.user
-      next if user.blank?
-
-      AdministratorNotifications::AccountMailer.initial_warning(account).deliver_now if user.created_at < no_days.days.ago
+      if users.present?
+        account.update(deletion_email_reminder: nil)
+      else
+        user = account.account_users.where(inviter_id: nil).last&.user
+        next if user.blank?
+        AdministratorNotifications::AccountMailer.initial_warning(account).deliver_now if user.created_at < no_days.days.ago
+      end
     end
   end
 end
