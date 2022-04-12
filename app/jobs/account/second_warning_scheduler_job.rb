@@ -9,19 +9,21 @@ class Account::SecondWarningSchedulerJob < ApplicationJob
     intemediatry_days = GlobalConfig.get(intemediatry_config_name)[intemediatry_config_name] || 4
     total_no_days = intemediatry_days.to_i + no_days
 
-    Account.all.each do |account|
+    Account.where(deletion_email_reminder: :initial_reminder).each do |account|
       subscription = account.account_billing_subscriptions.where(cancelled_at: nil)&.last
 
       next unless subscription.blank? || subscription.billing_product_price&.unit_amount&.zero?
 
-      users = account.users.where('last_sign_in_at < ? ', total_no_days.days.ago)
+      users = account.users.where('last_sign_in_at > ? ', total_no_days.days.ago)
 
-      next if users.present?
+      if users.present?
+        account.update(deletion_email_reminder: nil)
+      else
+        user = account.account_users.where(inviter_id: nil).last&.user
+        next if user.blank?
 
-      user = account.account_users.where(inviter_id: nil).last&.user
-      next if user.blank?
-
-      AdministratorNotifications::AccountMailer.second_warning(account).deliver_now if user.created_at < no_days.days.ago
+        AdministratorNotifications::AccountMailer.second_warning(account).deliver_now if user.created_at < no_days.days.ago
+      end
     end
   end
 end

@@ -7,7 +7,7 @@ class Account::InitialWarningSchedulerJob < ApplicationJob
     no_days = no_days.to_i
     Rails.logger.debug { "-----------------#{no_days}----------------" }
 
-    Account.all.each do |account|
+    Account.where(deletion_email_reminder: nil).each do |account|
       subscription = account.account_billing_subscriptions.where(cancelled_at: nil)&.last
       next unless subscription.blank? || subscription.billing_product_price&.unit_amount&.zero?
 

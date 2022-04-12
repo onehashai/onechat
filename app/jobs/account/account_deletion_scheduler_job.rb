@@ -13,22 +13,24 @@ class Account::AccountDeletionSchedulerJob < ApplicationJob
     deletion_days = GlobalConfig.get(deletion_days_config_name)[deletion_days_config_name] || 3
     total_no_days = intemediatry_days + no_days + deletion_days.to_i
 
-    Account.all.each do |account|
+    Account.where(deletion_email_reminder: :second_reminder).each do |account|
       subscription = account.account_billing_subscriptions.where(cancelled_at: nil)&.last
 
       next unless subscription.blank? || subscription.billing_product_price&.unit_amount&.zero?
 
-      users = account.users.where('last_sign_in_at < ? ', total_no_days.days.ago)
+      users = account.users.where('last_sign_in_at > ? ', total_no_days.days.ago)
 
-      next if users.any?
+      if users.present?
+        account.update(deletion_email_reminder: nil)
+      else
+        user = account.account_users.where(inviter_id: nil).last&.user
+        next if user.blank?
+        next unless user.created_at < no_days.days.ago
 
-      user = account.account_users.where(inviter_id: nil).last&.user
-      next if user.blank?
-      next unless user.created_at < no_days.days.ago
-
-      AdministratorNotifications::AccountMailer.account_deletion(account).deliver_now
-      account.users.destroy_all
-      account.destroy
+        AdministratorNotifications::AccountMailer.account_deletion(account).deliver_now
+        account.users.destroy_all
+        account.destroy
+      end
     end
   end
 end
