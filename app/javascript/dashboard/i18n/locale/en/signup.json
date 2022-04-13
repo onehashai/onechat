@@ -2,7 +2,7 @@
   "REGISTER": {
     "TRY_WOOT": "Register an account",
     "TITLE": "Register",
-    "TERMS_ACCEPT": "By signing up, you agree to our <a href=\"https://app.onechat.is/terms\">T & C</a> and <a href=\"https://app.onechat.is/privacy-policy\">Privacy policy</a>",
+    "TERMS_ACCEPT": "By signing up, you agree to our <a href=\"https://www.onehash.ai/legal/terms-of-services\">T & C</a> and <a href=\"https://www.onehash.ai/legal/privacy-policy\">Privacy policy</a>",
     "ACCOUNT_NAME": {
       "LABEL": "Company Name",
       "PLACEHOLDER": "Enter an Company Name. eg: Wayne Enterprises",
@@ -45,7 +45,7 @@
     },
     "API": {
       "SUCCESS_MESSAGE": "Registration Successfull",
-      "ERROR_MESSAGE": "Could not connect to Woot Server, Please try again later"
+      "ERROR_MESSAGE": "Could not connect to Server, Please try again later"
     },
     "SUBMIT": "Submit",
     "HAVE_AN_ACCOUNT": "Already have an account?"
