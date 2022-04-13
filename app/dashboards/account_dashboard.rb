@@ -12,6 +12,7 @@ class AccountDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     name: Field::String,
+    deletion_email_reminder: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     users: CountField,
@@ -28,6 +29,7 @@ class AccountDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     name
+    deletion_email_reminder
     locale
     users
     conversations
@@ -39,6 +41,7 @@ class AccountDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = (%i[
     id
     name
+    deletion_email_reminder
     created_at
     updated_at
     locale

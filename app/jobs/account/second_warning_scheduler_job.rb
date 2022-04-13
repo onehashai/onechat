@@ -17,7 +17,9 @@ class Account::SecondWarningSchedulerJob < ApplicationJob
       users = account.users.where('last_sign_in_at > ? ', total_no_days.days.ago)
 
       if users.present?
-        account.update(deletion_email_reminder: nil)
+        if account.users.where('last_sign_in_at > ? ', no_days.days.ago).present?
+          account.update(deletion_email_reminder: nil)
+        end
       else
         user = account.account_users.where(inviter_id: nil).last&.user
         next if user.blank?

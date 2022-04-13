@@ -80,7 +80,7 @@ class Account < ApplicationRecord
   has_flags ACCOUNT_SETTINGS_FLAGS.merge(column: 'settings_flags').merge(DEFAULT_QUERY_SETTING)
 
   enum locale: LANGUAGES_CONFIG.map { |key, val| [val[:iso_639_1_code], key] }.to_h
-  enum deletion_email_reminder: { initial_reminder: 0, second_reminder: 1, deletion: 2 }
+  enum deletion_email_reminder: { initial_reminder: 0, second_reminder: 1, deletion_pending: 2 }
 
   before_validation :validate_limit_keys
   after_create_commit :notify_creation
