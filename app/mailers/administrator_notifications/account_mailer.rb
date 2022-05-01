@@ -51,7 +51,7 @@ class AdministratorNotifications::AccountMailer < ApplicationMailer
 
   def initial_warning_days
     config_name = 'INITIAL_WARNING_AFTER_DAYS'
-    no_of_days = GlobalConfig.get(config_name)[config_name] || 1
+    no_of_days = GlobalConfig.get(config_name)[config_name] || 30
     no_of_days.to_i
   end
 

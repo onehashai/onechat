@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isSubscriptionValid"
+    v-if="isSubscriptionValid && responseForPlans"
     transition="modal"
     class="account-selector--modal modal-mask "
   >
@@ -18,7 +18,10 @@
       </div>
       <div class="plan-modal-cross" @click="hidePlanModal">X</div>
       <br />
-      <div class="row justify-content-center flex-dir-row-reverse w-100">
+      <div
+        v-if="planName != 0"
+        class="row justify-content-center flex-dir-row-reverse w-100"
+      >
         <div
           v-for="availableProductPrice in availableProductPrices"
           class="card plan-column"
@@ -60,6 +63,11 @@
           </woot-button>
         </div>
       </div>
+      <div v-else>
+        <h4 v-if="responseForPlans">
+          Please ask your administrator to subscribe the plan
+        </h4>
+      </div>
     </div>
   </div>
 </template>
@@ -89,6 +97,10 @@ export default {
       type: Array,
       default: () => {},
     },
+    responseForPlans: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -100,7 +112,6 @@ export default {
 
   mounted() {
     this.error = Cookies.get('subscription');
-    // this.removeTrail();
   },
   methods: {
     hidePlanModal() {

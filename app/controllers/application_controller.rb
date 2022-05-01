@@ -22,9 +22,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_account_by_user
-    if defined? current_account
-      current_account
-    else
+    begin
+      if defined? current_account
+        current_account
+      else
+        current_user.accounts.find(params[:account_id] || params[:id])
+      end
+    rescue => e
+      Rails.logger.info e.message
       current_user.accounts.last
     end
   end
@@ -40,6 +45,7 @@ class ApplicationController < ActionController::Base
   def verify_subscription
     return if current_super_admin
     return if current_account_by_user.blank?
+
     if current_subscription.blank?
       render_payment_required('Please subscribe to a Plan') and return
     elsif current_subscription.current_period_end < Time.current

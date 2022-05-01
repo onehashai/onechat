@@ -7,7 +7,7 @@ class Api::V1::AccountsController < Api::BaseController
   before_action :validate_captcha, only: [:create]
 
   skip_before_action :verify_subscription,
-                     only: [:billing_subscription, :start_billing_subscription], raise: false
+                     only: [:billing_subscription, :show, :start_billing_subscription], raise: false
   before_action :fetch_account, except: [:create, :country_based_on_ip, :check_email_status]
   before_action :check_authorization, except: [:create, :country_based_on_ip, :check_email_status]
 

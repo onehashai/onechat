@@ -9,6 +9,7 @@
         :available-product-prices="availableProductPrices"
         :plan-id="planId"
         :plan-name="planName"
+        :response-for-plans="responseForPlans"
         @hideModal="hideModal"
       />
     </section>
@@ -37,6 +38,7 @@ export default {
       availableProductPrices: [],
       planId: 0,
       planName: 0,
+      responseForPlans: false,
     };
   },
   computed: {
@@ -91,17 +93,20 @@ export default {
       }
     },
     async initializeAccountBillingSubscription() {
+      this.responseForPlans = false;
       try {
         await this.$store.dispatch('accounts/getBillingSubscription');
-        const {
-          available_product_prices,
-          plan_id,
-          plan_name,
-        } = this.getAccount(this.$route.params.accountId);
-        this.availableProductPrices = available_product_prices
-        this.planId = plan_id;
-        this.planName = plan_name;
+        const response = this.getAccount(this.$route.params.accountId);
+        if (response) {
+          const { available_product_prices, plan_id, plan_name } = response;
+          this.availableProductPrices = available_product_prices;
+          this.planId = plan_id;
+          this.planName = plan_name;
+          this.responseForPlans = true;
+        }
+        this.responseForPlans = true;
       } catch (error) {
+        this.responseForPlans = true;
         console.log(error);
       }
     },
