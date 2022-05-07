@@ -7,7 +7,7 @@ class AdministratorNotifications::AccountMailer < ApplicationMailer
     @number_of_days = intermediary_days
     @admin_name = admin.name
     @deletion_date = deletion_for_intital_warning_date.strftime('%d %b %Y')
-    account.update!(deletion_email_reminder: :initial_reminder)
+    account.update!(deletion_email_reminder: :initial_reminder, email_sent_at: Time.current)
     subject = 'OneChat Chat Account Deletion Warning'
     send_mail_with_liquid(to: admin_email, subject: subject) and return
   end
@@ -20,7 +20,7 @@ class AdministratorNotifications::AccountMailer < ApplicationMailer
     @number_of_days = deletion_days
     @admin_name = admin.name
     @deletion_date = deletion_for_second_warning_date.strftime('%d %b %Y')
-    account.update(deletion_email_reminder:  :second_reminder)
+    account.update(deletion_email_reminder:  :second_reminder, email_sent_at: Time.current)
 
     subject = 'OneChat Chat Account Deletion Warning'
     send_mail_with_liquid(to: admin_email, subject: subject) and return
@@ -34,7 +34,7 @@ class AdministratorNotifications::AccountMailer < ApplicationMailer
     @admin_name = admin.name
     @deletion_date = Date.today.strftime('%d %b %Y')
     subject = 'OneChat Chat Account Deletion'
-    account.update(deletion_email_reminder: :deletion_pending)
+    account.update(deletion_email_reminder: :deletion_pending, email_sent_at: Time.current)
     @action_url = "#{ENV['FRONTEND_URL']}/"
     send_mail_with_liquid(to: admin_email, subject: subject) and return
   end

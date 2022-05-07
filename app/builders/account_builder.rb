@@ -68,7 +68,8 @@ class AccountBuilder
                      first_name: @first_name,
                      last_name: @last_name,
                      firebase_token: @firebase_jwt,
-                     country: @country)
+                     country: @country,
+                     last_sign_in_at: Time.current)
     @user.type = 'SuperAdmin' if @super_admin
     @user.confirm if @confirmed
     @user.save!

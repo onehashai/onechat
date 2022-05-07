@@ -7,9 +7,10 @@ class Account::SecondWarningSchedulerJob < ApplicationJob
     no_days = no_days.to_i
     intemediatry_config_name = 'INTEMEDIATRY_WARNING'
     intemediatry_days = GlobalConfig.get(intemediatry_config_name)[intemediatry_config_name] || 4
-    total_no_days = intemediatry_days.to_i + no_days
+    intemediatry_days = intemediatry_days.to_i
+    total_no_days = intemediatry_days + no_days
 
-    Account.where(deletion_email_reminder: :initial_reminder).each do |account|
+    Account.where('deletion_email_reminder = ? and  email_sent_at < ?', Account.deletion_email_reminders[:initial_reminder], intemediatry_days.days.ago).each do |account|
       subscription = account.account_billing_subscriptions.where(cancelled_at: nil)&.last
 
       next unless subscription.blank? || subscription.billing_product_price&.unit_amount&.zero?
@@ -21,7 +22,7 @@ class Account::SecondWarningSchedulerJob < ApplicationJob
           account.update(deletion_email_reminder: nil)
         end
       else
-        user = account.account_users.where(inviter_id: nil).last&.user
+        user = account.account_users.where(inviter_id: nil).order(created_at: :asc).first&.user
         next if user.blank?
 
         AdministratorNotifications::AccountMailer.second_warning(account).deliver_now if user.created_at < no_days.days.ago

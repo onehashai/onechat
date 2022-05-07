@@ -11,12 +11,12 @@ class Account::AccountDeletionSchedulerJob < ApplicationJob
 
     deletion_days_config_name = 'ACCOUNT_DELETION_DAYS_AFTER_INTEMEDIATRY_WARNING'
     deletion_days = GlobalConfig.get(deletion_days_config_name)[deletion_days_config_name] || 3
-    total_no_days = intemediatry_days + no_days + deletion_days.to_i
-
+    deletion_days = deletion_days.to_i
+    total_no_days = intemediatry_days + no_days + deletion_days
     auto_delete_inactive_account_name = 'AUTO_DELETE_INACTIVE_ACCOUNT'
     auto_delete_inactive_account = GlobalConfig.get(auto_delete_inactive_account_name)[auto_delete_inactive_account_name] || false
 
-    Account.where(deletion_email_reminder: :second_reminder).each do |account|
+    Account.where('deletion_email_reminder = ? and  email_sent_at < ?', Account.deletion_email_reminders[:second_reminder], deletion_days.days.ago).each do |account|
       subscription = account.account_billing_subscriptions.where(cancelled_at: nil)&.last
 
       next unless subscription.blank? || subscription.billing_product_price&.unit_amount&.zero?

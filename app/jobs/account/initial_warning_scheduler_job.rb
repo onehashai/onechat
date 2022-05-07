@@ -14,9 +14,10 @@ class Account::InitialWarningSchedulerJob < ApplicationJob
       users = account.users.where('last_sign_in_at > ? ', no_days.days.ago)
 
       if users.present?
-        account.update(deletion_email_reminder: nil)
+        account.update(deletion_email_reminder: nil, email_sent_at: nil)
       else
-        user = account.account_users.where(inviter_id: nil).last&.user
+        #check if account is not used in 30 days
+        user = account.account_users.where(inviter_id: nil).order(created_at: :asc).first&.user
         next if user.blank?
 
         AdministratorNotifications::AccountMailer.initial_warning(account).deliver_now if user.created_at < no_days.days.ago
