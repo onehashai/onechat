@@ -185,7 +185,9 @@ class User < ApplicationRecord
       id: id,
       name: name,
       email: email,
-      type: 'user'
+      type: 'user',
+      phone: phone,
+      country: country
     }
   end
 
