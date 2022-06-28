@@ -36,7 +36,7 @@ const runSDK = ({ baseUrl, websiteToken }) => {
     websiteToken,
     locale: chatwootSettings.locale,
     type: getBubbleView(chatwootSettings.type),
-    launcherTitle: chatwootSettings.launcherTitle || '',
+    launcherTitle: chatwootSettings.launcherTitle || 'Chat With Us',
     showPopoutButton: chatwootSettings.showPopoutButton || false,
 
     toggle(state) {
