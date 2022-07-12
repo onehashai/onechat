@@ -26,7 +26,7 @@ const runSDK = ({ baseUrl, websiteToken }) => {
     return;
   }
 
-  const chatwootSettings = window.chatwootSettings || {};
+  const chatwootSettings = window.chatwootSettings || {"type":"expanded_bubble"};
   window.$chatwoot = {
     baseUrl,
     hasLoaded: false,

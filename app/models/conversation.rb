@@ -62,9 +62,9 @@ class Conversation < ApplicationRecord
   }
   scope :account_conversations_limit, lambda { |days|
     if days.present?
-      where('created_at > ? ', days.to_i.days.ago)
+      where('conversations.created_at > ? ', days.to_i.days.ago)
     else
-      where('created_at > ? ', 20.years.ago)
+      where('conversations.created_at > ? ', 20.years.ago)
     end
   }
 
