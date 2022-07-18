@@ -50,6 +50,7 @@ class Conversation < ApplicationRecord
   include RoundRobinHandler
   include ActivityMessageHandler
   include UrlHelper
+  include SortHandler
 
   before_validation :validate_additional_attributes
   validates :additional_attributes, jsonb_attributes_length: true
@@ -58,7 +59,6 @@ class Conversation < ApplicationRecord
 
   enum status: { open: 0, resolved: 1, pending: 2, snoozed: 3 }
 
-  scope :latest, -> { order(last_activity_at: :desc) }
   scope :unassigned, -> { where(assignee_id: nil) }
   scope :assigned, -> { where.not(assignee_id: nil) }
   scope :assigned_to, ->(agent) { where(assignee_id: agent.id) }
@@ -73,6 +73,13 @@ class Conversation < ApplicationRecord
     else
       where('conversations.created_at > ? ', 20.years.ago)
     end
+  }
+
+  scope :last_user_message_at, lambda {
+    joins(
+      "INNER JOIN (#{last_messaged_conversations.to_sql}) AS grouped_conversations
+      ON grouped_conversations.conversation_id = conversations.id"
+    ).sort_on_last_user_message_at
   }
 
   belongs_to :account

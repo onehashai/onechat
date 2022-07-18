@@ -269,15 +269,6 @@ export default {
           );
         },
       },
-      confirmPassword: {
-        required,
-        isEqPassword(value) {
-          if (value !== this.credentials.password) {
-            return false;
-          }
-          return true;
-        },
-      },
     },
   },
   computed: {
