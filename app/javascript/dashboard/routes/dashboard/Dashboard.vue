@@ -1,8 +1,16 @@
 <template>
   <div class="row app-wrapper">
-    <sidebar :route="currentRoute" :class="sidebarClassName"></sidebar>
+    <sidebar
+      :route="currentRoute"
+      :class="sidebarClassName"
+      @open-notification-panel="openNotificationPanel"
+      @toggle-account-modal="toggleAccountModal"
+      @open-key-shortcut-modal="toggleKeyShortcutModal"
+      @close-key-shortcut-modal="closeKeyShortcutModal"
+      @show-add-label-popup="showAddLabelPopup"
+    />
     <section class="app-content columns" :class="contentClassName">
-      <router-view></router-view>
+      <router-view />
       <command-bar />
       <ShowPlans
         :is-subscription-valid="!isSubscriptionValid"
@@ -12,6 +20,27 @@
         :response-for-plans="responseForPlans"
         @hideModal="hideModal"
       />
+      <account-selector
+        :show-account-modal="showAccountModal"
+        @close-account-modal="toggleAccountModal"
+        @show-create-account-modal="openCreateAccountModal"
+      />
+      <add-account-modal
+        :show="showCreateAccountModal"
+        @close-account-create-modal="closeCreateAccountModal"
+      />
+      <woot-key-shortcut-modal
+        v-if="showShortcutModal"
+        @close="closeKeyShortcutModal"
+        @clickaway="closeKeyShortcutModal"
+      />
+      <notification-panel
+        v-if="isNotificationPanel"
+        @close="closeNotificationPanel"
+      />
+      <woot-modal :show.sync="showAddLabelModal" :on-close="hideAddLabelPopup">
+        <add-label-modal @close="hideAddLabelPopup" />
+      </woot-modal>
     </section>
   </div>
 </template>
@@ -23,12 +52,22 @@ import { BUS_EVENTS } from 'shared/constants/busEvents';
 import Cookies from 'js-cookie';
 import ShowPlans from './ShowPlans';
 import { mapGetters } from 'vuex';
+import WootKeyShortcutModal from 'dashboard/components/widgets/modal/WootKeyShortcutModal';
+import AddAccountModal from 'dashboard/components/layout/sidebarComponents/AddAccountModal';
+import AccountSelector from 'dashboard/components/layout/sidebarComponents/AccountSelector';
+import AddLabelModal from 'dashboard/routes/dashboard/settings/labels/AddLabel.vue';
+import NotificationPanel from 'dashboard/routes/dashboard/notifications/components/NotificationPanel.vue';
 
 export default {
   components: {
     Sidebar,
     CommandBar,
     ShowPlans,
+    WootKeyShortcutModal,
+    AddAccountModal,
+    AccountSelector,
+    AddLabelModal,
+    NotificationPanel,
   },
   data() {
     return {
@@ -39,6 +78,11 @@ export default {
       planId: 0,
       planName: 0,
       responseForPlans: false,
+      showAccountModal: false,
+      showCreateAccountModal: false,
+      showAddLabelModal: false,
+      showShortcutModal: false,
+      isNotificationPanel: false,
     };
   },
   computed: {
@@ -73,7 +117,6 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('setCurrentAccountId', this.$route.params.accountId);
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
     bus.$on(BUS_EVENTS.TOGGLE_SIDEMENU, this.toggleSidebar);
@@ -119,6 +162,34 @@ export default {
     },
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen;
+    },
+    openCreateAccountModal() {
+      this.showAccountModal = false;
+      this.showCreateAccountModal = true;
+    },
+    closeCreateAccountModal() {
+      this.showCreateAccountModal = false;
+    },
+    toggleAccountModal() {
+      this.showAccountModal = !this.showAccountModal;
+    },
+    toggleKeyShortcutModal() {
+      this.showShortcutModal = true;
+    },
+    closeKeyShortcutModal() {
+      this.showShortcutModal = false;
+    },
+    showAddLabelPopup() {
+      this.showAddLabelModal = true;
+    },
+    hideAddLabelPopup() {
+      this.showAddLabelModal = false;
+    },
+    openNotificationPanel() {
+      this.isNotificationPanel = true;
+    },
+    closeNotificationPanel() {
+      this.isNotificationPanel = false;
     },
   },
 };

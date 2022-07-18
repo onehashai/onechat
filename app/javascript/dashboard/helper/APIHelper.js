@@ -1,4 +1,3 @@
-/* eslint no-console: 0 */
 import Auth from '../api/auth';
 import Cookies from 'js-cookie';
 import { BUS_EVENTS } from '../../shared/constants/busEvents';
@@ -22,7 +21,7 @@ export default axios => {
   const { apiHost = '' } = window.chatwootConfig || {};
   const wootApi = axios.create({ baseURL: `${apiHost}/` });
   // Add Auth Headers to requests if logged in
-  if (Auth.isLoggedIn()) {
+  if (Auth.hasAuthCookie()) {
     const {
       'access-token': accessToken,
       'token-type': tokenType,

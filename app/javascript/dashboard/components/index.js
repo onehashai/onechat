@@ -23,6 +23,8 @@ import TabsItem from './ui/Tabs/TabsItem';
 import Thumbnail from './widgets/Thumbnail.vue';
 import VuePhoneNumberInput from 'vue-phone-number-input';
 import 'vue-phone-number-input/dist/vue-phone-number-input.css';
+import ConfirmModal from './widgets/modal/ConfirmationModal.vue';
+
 const WootUIKit = {
   AvatarUploader,
   Bar,
@@ -46,6 +48,7 @@ const WootUIKit = {
   Tabs,
   TabsItem,
   Thumbnail,
+  ConfirmModal,
   install(Vue) {
     const keys = Object.keys(this);
     keys.pop(); // remove 'install' from keys

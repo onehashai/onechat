@@ -220,6 +220,7 @@ export default {
         phone: '',
         // subdomain: '',
       },
+      didCaptchaReset: false,
       isSignupInProgress: false,
       error: '',
       openConfirmation: false,
@@ -348,6 +349,7 @@ export default {
       } catch (error) {
         let errorMessage = this.$t('REGISTER.API.ERROR_MESSAGE');
         if (error.response && error.response.data.message) {
+          this.resetCaptcha();
           errorMessage = error.response.data.message;
         }
         this.showAlert(errorMessage);

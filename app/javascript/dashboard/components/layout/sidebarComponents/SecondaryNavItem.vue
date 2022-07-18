@@ -20,7 +20,8 @@
         data-view-component="true"
         label="Beta"
         class="beta"
-        >Beta
+      >
+        {{ $t('SIDEBAR.BETA') }}
       </span>
     </router-link>
 
@@ -33,6 +34,7 @@
         :label-color="child.color"
         :should-truncate="child.truncateLabel"
         :icon="computedInboxClass(child)"
+        :warning-icon="computedInboxErrorClass(child)"
       />
       <router-link
         v-if="showItem(menuItem)"
@@ -62,7 +64,10 @@
 import { mapGetters } from 'vuex';
 
 import adminMixin from '../../../mixins/isAdmin';
-import { getInboxClassByType } from 'dashboard/helper/inbox';
+import {
+  getInboxClassByType,
+  getInboxWarningIconClass,
+} from 'dashboard/helper/inbox';
 
 import SecondaryChildNavItem from './SecondaryChildNavItem';
 
@@ -134,6 +139,15 @@ export default {
       if (!type) return '';
       const classByType = getInboxClassByType(type, phoneNumber);
       return classByType;
+    },
+    computedInboxErrorClass(child) {
+      const { type, reauthorizationRequired } = child;
+      if (!type) return '';
+      const warningClass = getInboxWarningIconClass(
+        type,
+        reauthorizationRequired
+      );
+      return warningClass;
     },
     newLinkClick(e, navigate) {
       if (this.menuItem.newLinkRouteName) {
@@ -233,7 +247,7 @@ export default {
   padding-left: var(--space-smaller) !important;
   margin-left: var(--space-half) !important;
   display: inline-block;
-  font-size: var(--font-size-mini);
+  font-size: var(--font-size-micro);
   font-weight: var(--font-weight-medium);
   line-height: 18px;
   border: 1px solid transparent;

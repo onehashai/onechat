@@ -24,7 +24,7 @@
       @change="onChange"
     />
     <div
-      v-if="notLast7Days"
+      v-if="notLast7Days && groupByFilter"
       class="small-12 medium-3 pull-right margin-left-small"
     >
       <p aria-hidden="true" class="hide">
@@ -41,6 +41,37 @@
         @input="changeFilterSelection"
       />
     </div>
+    <div
+      v-if="agentsFilter"
+      class="small-12 medium-3 pull-right margin-left-small"
+    >
+      <multiselect
+        v-model="selectedAgents"
+        :options="agentsFilterItemsList"
+        track-by="id"
+        label="name"
+        :multiple="true"
+        :close-on-select="false"
+        :clear-on-select="false"
+        :hide-selected="true"
+        :placeholder="$t('CSAT_REPORTS.FILTERS.AGENTS.PLACEHOLDER')"
+        selected-label
+        :select-label="$t('FORMS.MULTISELECT.ENTER_TO_SELECT')"
+        :deselect-label="$t('FORMS.MULTISELECT.ENTER_TO_REMOVE')"
+        @input="handleAgentsFilterSelection"
+      />
+    </div>
+    <div
+      v-if="showBusinessHoursSwitch"
+      class="small-12 medium-3 business-hours"
+    >
+      <span class="business-hours-text margin-right-small">
+        {{ $t('REPORT.BUSINESS_HOURS') }}
+      </span>
+      <span>
+        <woot-switch v-model="businessHoursSelected" />
+      </span>
+    </div>
   </div>
 </template>
 <script>
@@ -50,6 +81,7 @@ import subDays from 'date-fns/subDays';
 import startOfDay from 'date-fns/startOfDay';
 import getUnixTime from 'date-fns/getUnixTime';
 import { GROUP_BY_FILTER } from '../constants';
+import endOfDay from 'date-fns/endOfDay';
 
 export default {
   components: {
@@ -60,9 +92,25 @@ export default {
       type: Array,
       default: () => [],
     },
+    agentsFilterItemsList: {
+      type: Array,
+      default: () => [],
+    },
     selectedGroupByFilter: {
       type: Object,
       default: () => {},
+    },
+    groupByFilter: {
+      type: Boolean,
+      default: false,
+    },
+    agentsFilter: {
+      type: Boolean,
+      default: false,
+    },
+    showBusinessHoursSwitch: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
@@ -71,6 +119,8 @@ export default {
       dateRange: this.$t('REPORT.DATE_RANGE'),
       customDateRange: [new Date(), new Date()],
       currentSelectedFilter: null,
+      selectedAgents: [],
+      businessHoursSelected: false,
     };
   },
   computed: {
@@ -79,9 +129,9 @@ export default {
     },
     to() {
       if (this.isDateRangeSelected) {
-        return this.fromCustomDate(this.customDateRange[1]);
+        return this.toCustomDate(this.customDateRange[1]);
       }
-      return this.fromCustomDate(new Date());
+      return this.toCustomDate(new Date());
     },
     from() {
       if (this.isDateRangeSelected) {
@@ -119,6 +169,9 @@ export default {
     filterItemsList() {
       this.currentSelectedFilter = this.selectedGroupByFilter;
     },
+    businessHoursSelected() {
+      this.$emit('business-hours-toggle', this.businessHoursSelected);
+    },
   },
   mounted() {
     this.onDateRangeChange();
@@ -134,6 +187,9 @@ export default {
     fromCustomDate(date) {
       return getUnixTime(startOfDay(date));
     },
+    toCustomDate(date) {
+      return getUnixTime(endOfDay(date));
+    },
     changeDateSelection(selectedRange) {
       this.currentDateRangeSelection = selectedRange;
       this.onDateRangeChange();
@@ -144,6 +200,9 @@ export default {
     },
     changeFilterSelection() {
       this.$emit('filter-change', this.currentSelectedFilter);
+    },
+    handleAgentsFilterSelection() {
+      this.$emit('agents-filter-change', this.selectedAgents);
     },
   },
 };

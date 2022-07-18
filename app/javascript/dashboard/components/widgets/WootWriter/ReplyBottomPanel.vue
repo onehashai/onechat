@@ -11,7 +11,6 @@
         size="small"
         @click="toggleEmojiPicker"
       />
-
       <!-- ensure the same validations for attachment types are implemented in  backend models as well -->
       <file-upload
         ref="upload"
@@ -50,6 +49,27 @@
         @click="toggleFormatMode"
       />
       <woot-button
+        v-if="showAudioRecorderButton"
+        :icon="!isRecordingAudio ? 'microphone' : 'microphone-off'"
+        emoji="🎤"
+        :color-scheme="!isRecordingAudio ? 'secondary' : 'alert'"
+        variant="smooth"
+        size="small"
+        :title="$t('CONVERSATION.REPLYBOX.TIP_AUDIORECORDER_ICON')"
+        @click="toggleAudioRecorder"
+      />
+      <woot-button
+        v-if="showAudioPlayStopButton"
+        :icon="audioRecorderPlayStopIcon"
+        emoji="🎤"
+        color-scheme="secondary"
+        variant="smooth"
+        size="small"
+        @click="toggleAudioRecorderPlayPause"
+      >
+        <span>{{ recordingAudioDurationText }}</span>
+      </woot-button>
+      <woot-button
         v-if="showMessageSignatureButton"
         v-tooltip.top-end="signatureToggleTooltip"
         icon="signature"
@@ -58,6 +78,16 @@
         size="small"
         :title="signatureToggleTooltip"
         @click="toggleMessageSignature"
+      />
+      <woot-button
+        v-if="hasWhatsappTemplates"
+        v-tooltip.top-end="'Whatsapp Templates'"
+        icon="whatsapp"
+        color-scheme="secondary"
+        variant="smooth"
+        size="small"
+        :title="'Whatsapp Templates'"
+        @click="$emit('selectWhatsappTemplate')"
       />
       <transition name="modal-fade">
         <div
@@ -110,7 +140,7 @@ import { ALLOWED_FILE_TYPES } from 'shared/constants/messages';
 
 import { REPLY_EDITOR_MODES } from './constants';
 export default {
-  name: 'ReplyTopPanel',
+  name: 'ReplyBottomPanel',
   components: { FileUpload },
   mixins: [eventListenerMixins, uiSettingsMixin, inboxMixin],
   props: {
@@ -126,11 +156,19 @@ export default {
       type: String,
       default: '',
     },
+    recordingAudioDurationText: {
+      type: String,
+      default: '',
+    },
     inbox: {
       type: Object,
       default: () => ({}),
     },
     showFileUpload: {
+      type: Boolean,
+      default: false,
+    },
+    showAudioRecorder: {
       type: Boolean,
       default: false,
     },
@@ -145,6 +183,22 @@ export default {
     toggleEmojiPicker: {
       type: Function,
       default: () => {},
+    },
+    toggleAudioRecorder: {
+      type: Function,
+      default: () => {},
+    },
+    toggleAudioRecorderPlayPause: {
+      type: Function,
+      default: () => {},
+    },
+    isRecordingAudio: {
+      type: Boolean,
+      default: false,
+    },
+    recordingAudioState: {
+      type: String,
+      default: '',
     },
     isSendDisabled: {
       type: Boolean,
@@ -174,6 +228,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    hasWhatsappTemplates: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     isNote() {
@@ -192,8 +250,27 @@ export default {
     showAttachButton() {
       return this.showFileUpload || this.isNote;
     },
+    showAudioRecorderButton() {
+      return this.showAudioRecorder;
+    },
+    showAudioPlayStopButton() {
+      return this.showAudioRecorder && this.isRecordingAudio;
+    },
     allowedFileTypes() {
       return ALLOWED_FILE_TYPES;
+    },
+    audioRecorderPlayStopIcon() {
+      switch (this.recordingAudioState) {
+        // playing paused recording stopped inactive destroyed
+        case 'playing':
+          return 'microphone-pause';
+        case 'paused':
+          return 'microphone-play';
+        case 'stopped':
+          return 'microphone-play';
+        default:
+          return 'microphone-stop';
+      }
     },
     showMessageSignatureButton() {
       return !this.isPrivate && this.isAnEmailChannel;
