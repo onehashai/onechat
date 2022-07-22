@@ -1,7 +1,7 @@
 {
   "INBOX_MGMT": {
     "HEADER": "Posteingänge",
-    "SIDEBAR_TXT": "<p><b>Inbox</b></p> <p> Wenn Sie eine Website oder eine Facebook-Seite mit Chatwoot verbinden, wird diese als bInbox</b> bezeichnet. Sie können unbegrenzte Posteingänge in Ihrem Chatwoot-Konto haben. </p><p Klicken Sie auf <b>Posteingang hinzufügen</b>, um eine Website oder eine Facebook-Seite zu verbinden. </p><p> Im Dashboard können Sie alle Konversationen aus all Ihren Posteingängen an einem einzigen Ort sehen und unter der Registerkarte 'Konversationen' darauf antworten. </p><p> Sie können auch zu einem Posteingang spezifische Konversationen anzeigen, indem Sie auf den Namen des Posteingangs im linken Bereich des Dashboards klicken. </p>",
+    "SIDEBAR_TXT": "<p><b>Inbox</b></p> <p> Wenn Sie eine Website oder eine Facebook-Seite mit OneChat verbinden, wird diese als bInbox</b> bezeichnet. Sie können unbegrenzte Posteingänge in Ihrem OneChat-Konto haben. </p><p Klicken Sie auf <b>Posteingang hinzufügen</b>, um eine Website oder eine Facebook-Seite zu verbinden. </p><p> Im Dashboard können Sie alle Konversationen aus all Ihren Posteingängen an einem einzigen Ort sehen und unter der Registerkarte 'Konversationen' darauf antworten. </p><p> Sie können auch zu einem Posteingang spezifische Konversationen anzeigen, indem Sie auf den Namen des Posteingangs im linken Bereich des Dashboards klicken. </p>",
     "LIST": {
       "404": "Diesem Konto sind keine Posteingänge zugeordnet."
     },
@@ -327,7 +327,7 @@
       },
       "AUTH": {
         "TITLE": "Wählen Sie einen Kanal",
-        "DESC": "Chatwoot unterstützt Live-Chat-Widgets, Facebook Messenger, Twitter-Profile, WhatsApp, E-Mails usw. als Kanäle. Wenn Sie einen benutzerdefinierten Kanal erstellen möchten, können Sie ihn mithilfe des API-Kanals erstellen. Wählen Sie zunächst einen der folgenden Kanäle aus."
+        "DESC": "OneChat unterstützt Live-Chat-Widgets, Facebook Messenger, Twitter-Profile, WhatsApp, E-Mails usw. als Kanäle. Wenn Sie einen benutzerdefinierten Kanal erstellen möchten, können Sie ihn mithilfe des API-Kanals erstellen. Wählen Sie zunächst einen der folgenden Kanäle aus."
       },
       "AGENTS": {
         "TITLE": "Agenten",

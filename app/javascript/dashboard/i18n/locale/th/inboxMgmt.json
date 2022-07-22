@@ -9,7 +9,7 @@
       {
         "title": "เลือกช่อง",
         "route": "settings_inbox_new",
-        "body": "เลือกผู้ให้บริการที่คุณต้องการจะใช้สำหรับ Chatwoot"
+        "body": "เลือกผู้ให้บริการที่คุณต้องการจะใช้สำหรับ OneChat"
       },
       {
         "title": "สร้างกล่องข้อความ",
@@ -327,7 +327,7 @@
       },
       "AUTH": {
         "TITLE": "เลือกช่องทาง",
-        "DESC": "Chatwoot supports live-chat widgets, Facebook Messenger, Twitter profiles, WhatsApp, Emails, etc., as channels. If you want to build a custom channel, you can create it using the API channel. To get started, choose one of the channels below."
+        "DESC": "OneChat supports live-chat widgets, Facebook Messenger, Twitter profiles, WhatsApp, Emails, etc., as channels. If you want to build a custom channel, you can create it using the API channel. To get started, choose one of the channels below."
       },
       "AGENTS": {
         "TITLE": "พนักงาน",
@@ -337,11 +337,11 @@
       },
       "DETAILS": {
         "TITLE": "รายละเอียดกล่องข้อความ",
-        "DESC": "คุณสามารถเลือก facebook Page ที่ต้องการเชื่อมต่อกับ Chatwoot จากรายการข้างล่าง คุณยังสามารถตั้งชื่อให้กล่องข้อความของคุณเพื่อการจัดการที่ง่ายขึ้น"
+        "DESC": "คุณสามารถเลือก facebook Page ที่ต้องการเชื่อมต่อกับ OneChat จากรายการข้างล่าง คุณยังสามารถตั้งชื่อให้กล่องข้อความของคุณเพื่อการจัดการที่ง่ายขึ้น"
       },
       "FINISH": {
         "TITLE": "เรียบร้อย!",
-        "DESC": "เชื่อมต่อ Facebook Page กับ Chatwoot สำเร็จแล้ว เมื่อมีคนส่งข้อความมาที่เพจของคุณ การสนทนาจะแสดงในกล่องข้อความของคุณโดยอัตโนมัติ<br>เรายังได้เตรียมสคริปท์สำหรับสร้าง widget เพื่อให้คุณนำไปติดตั้งที่เว็บไซต์ของคุณได้ง่ายขึ้นอีกด้วย เมื่อคุณติดตั้งสำเร็จแล้ว ลูกค้าสามารถส่งข้อความมาหาคุณได้โดยตรงจากทางเว็บไซต์ของคุณโดยที่ไม่ต้องใช้เครื่องมืออื่นๆ อีก และการสนทนาจะมาปรากฎบน Chatwoot <br>เจ๋งใช่มั้ยล่ะ? นั่นแหละที่พวกเราพยายามจะเป็น :)"
+        "DESC": "เชื่อมต่อ Facebook Page กับ OneChat สำเร็จแล้ว เมื่อมีคนส่งข้อความมาที่เพจของคุณ การสนทนาจะแสดงในกล่องข้อความของคุณโดยอัตโนมัติ<br>เรายังได้เตรียมสคริปท์สำหรับสร้าง widget เพื่อให้คุณนำไปติดตั้งที่เว็บไซต์ของคุณได้ง่ายขึ้นอีกด้วย เมื่อคุณติดตั้งสำเร็จแล้ว ลูกค้าสามารถส่งข้อความมาหาคุณได้โดยตรงจากทางเว็บไซต์ของคุณโดยที่ไม่ต้องใช้เครื่องมืออื่นๆ อีก และการสนทนาจะมาปรากฎบน OneChat <br>เจ๋งใช่มั้ยล่ะ? นั่นแหละที่พวกเราพยายามจะเป็น :)"
       }
     },
     "DETAILS": {

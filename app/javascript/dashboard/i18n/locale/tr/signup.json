@@ -31,7 +31,7 @@
     },
     "API": {
       "SUCCESS_MESSAGE": "Kayıt başarılı",
-      "ERROR_MESSAGE": "Woot Sunucusuna bağlanılamadı, Lütfen daha sonra tekrar deneyin"
+      "ERROR_MESSAGE": " Sunucusuna bağlanılamadı, Lütfen daha sonra tekrar deneyin"
     },
     "SUBMIT": "Yolla",
     "HAVE_AN_ACCOUNT": "Hesabın var mı?"

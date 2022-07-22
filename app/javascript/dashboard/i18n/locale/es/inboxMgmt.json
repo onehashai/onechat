@@ -1,7 +1,7 @@
 {
   "INBOX_MGMT": {
     "HEADER": "Entradas",
-    "SIDEBAR_TXT": "<p><b>Bandeja de entrada</b></p> <p> Cuando conecta un sitio web o una página de Facebook a Chatwoot, se llama una <b>Bandeja de entrada</b>. Puede tener bandejas de entrada ilimitadas en su cuenta de OneChat. </p><p> Haga clic en <b>Añadir bandeja de entrada</b> para conectar un sitio web o una página de Facebook. </p><p> en el panel, puede ver todas las conversaciones de todas su bandejas de entrada en un solo lugar y responder a ellas en la pestaña `Conversaciones`. </p><p> También puede ver conversaciones específicas de una bandeja de entrada haciendo clic en el nombre de la bandeja de entrada en el menú izquierdo del panel. </p>",
+    "SIDEBAR_TXT": "<p><b>Bandeja de entrada</b></p> <p> Cuando conecta un sitio web o una página de Facebook a OneChat, se llama una <b>Bandeja de entrada</b>. Puede tener bandejas de entrada ilimitadas en su cuenta de OneChat. </p><p> Haga clic en <b>Añadir bandeja de entrada</b> para conectar un sitio web o una página de Facebook. </p><p> en el panel, puede ver todas las conversaciones de todas su bandejas de entrada en un solo lugar y responder a ellas en la pestaña `Conversaciones`. </p><p> También puede ver conversaciones específicas de una bandeja de entrada haciendo clic en el nombre de la bandeja de entrada en el menú izquierdo del panel. </p>",
     "LIST": {
       "404": "No hay entradas adjuntas a esta cuenta."
     },
@@ -327,7 +327,7 @@
       },
       "AUTH": {
         "TITLE": "Elija un canal",
-        "DESC": "Chatwoot supports live-chat widgets, Facebook Messenger, Twitter profiles, WhatsApp, Emails, etc., as channels. If you want to build a custom channel, you can create it using the API channel. To get started, choose one of the channels below."
+        "DESC": "OneChat supports live-chat widgets, Facebook Messenger, Twitter profiles, WhatsApp, Emails, etc., as channels. If you want to build a custom channel, you can create it using the API channel. To get started, choose one of the channels below."
       },
       "AGENTS": {
         "TITLE": "Agentes",
@@ -341,7 +341,7 @@
       },
       "FINISH": {
         "TITLE": "¡Se ha clavado!",
-        "DESC": "Has terminado de integrar correctamente tu página de Facebook con OneChat. La próxima vez que un cliente envíe un mensaje a tu Página, la conversación aparecerá automáticamente en tu bandeja de entrada.<br>También le estamos proporcionando un script de widget que puede agregar fácilmente a su sitio web. Una vez que esto está en vivo en tu sitio web, los clientes pueden enviarle mensajes directamente desde su sitio web sin la ayuda de ninguna herramienta externa y la conversación aparecerá aquí, en Chatwoot.<br>¿Genial, eh? Bueno, estamos seguros de que intentaremos ser :)"
+        "DESC": "Has terminado de integrar correctamente tu página de Facebook con OneChat. La próxima vez que un cliente envíe un mensaje a tu Página, la conversación aparecerá automáticamente en tu bandeja de entrada.<br>También le estamos proporcionando un script de widget que puede agregar fácilmente a su sitio web. Una vez que esto está en vivo en tu sitio web, los clientes pueden enviarle mensajes directamente desde su sitio web sin la ayuda de ninguna herramienta externa y la conversación aparecerá aquí, en OneChat.<br>¿Genial, eh? Bueno, estamos seguros de que intentaremos ser :)"
       }
     },
     "DETAILS": {

@@ -1,7 +1,7 @@
 {
   "INBOX_MGMT": {
     "HEADER": "Kotak masuk",
-    "SIDEBAR_TXT": "<p><b>Kotak Masuk</b></p> <p> Saat Anda menghubungkan website atau Halaman Facebook ke Chatwoot, itu disebut <b>Kotak Masuk</b>. Anda dapat memiliki kotak masuk tak terbatas di akun OneChat Anda. </p><p> Klik pada <b>Tambah Kotak masuk</b> untuk menghubungkan situs web atau Halaman Facebook. </p><p> Di Dasbor, Anda dapat melihat semua percakapan dari semua kotak masuk Anda di satu tempat dan menanggapinya di bawah tab `Percakapan`. </p><p> Anda juga dapat melihat percakapan khusus untuk kotak masuk dengan mengklik nama kotak masuk di panel kiri dasbor. </p>",
+    "SIDEBAR_TXT": "<p><b>Kotak Masuk</b></p> <p> Saat Anda menghubungkan website atau Halaman Facebook ke OneChat, itu disebut <b>Kotak Masuk</b>. Anda dapat memiliki kotak masuk tak terbatas di akun OneChat Anda. </p><p> Klik pada <b>Tambah Kotak masuk</b> untuk menghubungkan situs web atau Halaman Facebook. </p><p> Di Dasbor, Anda dapat melihat semua percakapan dari semua kotak masuk Anda di satu tempat dan menanggapinya di bawah tab `Percakapan`. </p><p> Anda juga dapat melihat percakapan khusus untuk kotak masuk dengan mengklik nama kotak masuk di panel kiri dasbor. </p>",
     "LIST": {
       "404": "Tidak ada kotak masuk yang dilampirkan ke akun ini."
     },
@@ -327,7 +327,7 @@
       },
       "AUTH": {
         "TITLE": "Pilih sebuah channel",
-        "DESC": "Chatwoot supports live-chat widgets, Facebook Messenger, Twitter profiles, WhatsApp, Emails, etc., as channels. If you want to build a custom channel, you can create it using the API channel. To get started, choose one of the channels below."
+        "DESC": "OneChat supports live-chat widgets, Facebook Messenger, Twitter profiles, WhatsApp, Emails, etc., as channels. If you want to build a custom channel, you can create it using the API channel. To get started, choose one of the channels below."
       },
       "AGENTS": {
         "TITLE": "Agen",
@@ -341,7 +341,7 @@
       },
       "FINISH": {
         "TITLE": "Berhasil!",
-        "DESC": "Anda telah berhasil menyelesaikan integrasi Halaman Facebook Anda dengan OneChat. Saat pelanggan mengirim pesan ke Halaman Anda, percakapan akan otomatis muncul di kotak masuk Anda. <br> Kami juga menyediakan script widget yang dapat dengan mudah ditambahkan ke website Anda. Setelah ini aktif di website Anda, pelanggan dapat mengirimi Anda pesan langsung dari website Anda tanpa bantuan alat eksternal dan percakapan akan muncul di sini, di Chatwoot. <br> Keren, ya? Ya, kami pasti berusaha untuk :)"
+        "DESC": "Anda telah berhasil menyelesaikan integrasi Halaman Facebook Anda dengan OneChat. Saat pelanggan mengirim pesan ke Halaman Anda, percakapan akan otomatis muncul di kotak masuk Anda. <br> Kami juga menyediakan script widget yang dapat dengan mudah ditambahkan ke website Anda. Setelah ini aktif di website Anda, pelanggan dapat mengirimi Anda pesan langsung dari website Anda tanpa bantuan alat eksternal dan percakapan akan muncul di sini, di OneChat. <br> Keren, ya? Ya, kami pasti berusaha untuk :)"
       }
     },
     "DETAILS": {

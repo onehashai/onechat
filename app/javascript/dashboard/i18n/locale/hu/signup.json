@@ -31,7 +31,7 @@
     },
     "API": {
       "SUCCESS_MESSAGE": "Sikeres regisztráció",
-      "ERROR_MESSAGE": "Nem sikerült csatlakozni a Woot szerverhez, kérjük próbáld később"
+      "ERROR_MESSAGE": "Nem sikerült csatlakozni a  szerverhez, kérjük próbáld később"
     },
     "SUBMIT": "Elküldés",
     "HAVE_AN_ACCOUNT": "Már van fiókod?"

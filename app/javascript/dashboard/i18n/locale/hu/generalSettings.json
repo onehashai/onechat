@@ -86,7 +86,7 @@
   },
   "NETWORK": {
     "NOTIFICATION": {
-      "TEXT": "Disconnected from Chatwoot"
+      "TEXT": "Disconnected from OneChat"
     },
     "BUTTON": {
       "REFRESH": "Refresh"

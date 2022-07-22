@@ -5,7 +5,7 @@
       "SUBSCRIBED_EVENTS": "Subscribed Events",
       "FORM": {
         "CANCEL": "Cancel",
-        "DESC": "Webhook events provide you the realtime information about what's happening in your Chatwoot account. Please enter a valid URL to configure a callback.",
+        "DESC": "Webhook events provide you the realtime information about what's happening in your OneChat account. Please enter a valid URL to configure a callback.",
         "SUBSCRIPTIONS": {
           "LABEL": "Events",
           "EVENTS": {
@@ -31,7 +31,7 @@
       "HEADER_BTN_TXT": "Add new webhook",
       "LOADING": "Fetching attached webhooks",
       "SEARCH_404": "There are no items matching this query",
-      "SIDEBAR_TXT": "<p><b>Webhooks</b> </p> <p>Webhooks are HTTP callbacks which can be defined for every account. They are triggered by events like message creation in Chatwoot. You can create more than one webhook for this account. <br /><br /> For creating a <b>webhook</b>, click on the <b>Add new webhook</b> button. You can also remove any existing webhook by clicking on the Delete button.</p>",
+      "SIDEBAR_TXT": "<p><b>Webhooks</b> </p> <p>Webhooks are HTTP callbacks which can be defined for every account. They are triggered by events like message creation in OneChat. You can create more than one webhook for this account. <br /><br /> For creating a <b>webhook</b>, click on the <b>Add new webhook</b> button. You can also remove any existing webhook by clicking on the Delete button.</p>",
       "LIST": {
         "404": "There are no webhooks configured for this account.",
         "TITLE": "Manage webhooks",
@@ -45,7 +45,7 @@
         "TITLE": "Edit webhook",
         "API": {
           "SUCCESS_MESSAGE": "Webhook configuration updated successfully",
-          "ERROR_MESSAGE": "Could not connect to Woot Server, Please try again later"
+          "ERROR_MESSAGE": "Could not connect to  Server, Please try again later"
         }
       },
       "ADD": {
@@ -53,7 +53,7 @@
         "TITLE": "Add new webhook",
         "API": {
           "SUCCESS_MESSAGE": "Webhook configuration added successfully",
-          "ERROR_MESSAGE": "Could not connect to Woot Server, Please try again later"
+          "ERROR_MESSAGE": "Could not connect to  Server, Please try again later"
         }
       },
       "DELETE": {
@@ -88,7 +88,7 @@
     "DASHBOARD_APPS": {
       "TITLE": "Dashboard Apps",
       "HEADER_BTN_TXT": "Add a new dashboard app",
-      "SIDEBAR_TXT": "<p><b>Dashboard Apps</b></p><p>Dashboard Apps allow organizations to embed an application inside the Chatwoot dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that inside the dashboard to provide user information, their orders, or their previous payment history.</p><p>When you embed your application using the dashboard in Chatwoot, your application will get the context of the conversation and contact as a window event. Implement a listener for the message event on your page to receive the context.</p><p>To add a new dashboard app, click on the button 'Add a new dashboard app'.</p>",
+      "SIDEBAR_TXT": "<p><b>Dashboard Apps</b></p><p>Dashboard Apps allow organizations to embed an application inside the OneChat dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that inside the dashboard to provide user information, their orders, or their previous payment history.</p><p>When you embed your application using the dashboard in OneChat, your application will get the context of the conversation and contact as a window event. Implement a listener for the message event on your page to receive the context.</p><p>To add a new dashboard app, click on the button 'Add a new dashboard app'.</p>",
       "DESCRIPTION": "Dashboard Apps allow organizations to embed an application inside the dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that to provide user information, their orders, or their previous payment history.",
       "LIST": {
         "404": "There are no dashboard apps configured on this account yet",

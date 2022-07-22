@@ -5,7 +5,7 @@
       "SUBSCRIBED_EVENTS": "Eventi iscritti",
       "FORM": {
         "CANCEL": "annulla",
-        "DESC": "Gli eventi Webhook ti forniscono le informazioni in tempo reale su ciò che sta accadendo nel tuo account Chatwoot. Per favore inserisci un URL valido per configurare un callback.",
+        "DESC": "Gli eventi Webhook ti forniscono le informazioni in tempo reale su ciò che sta accadendo nel tuo account OneChat. Per favore inserisci un URL valido per configurare un callback.",
         "SUBSCRIPTIONS": {
           "LABEL": "Eventi",
           "EVENTS": {
@@ -45,7 +45,7 @@
         "TITLE": "Modifica webhook",
         "API": {
           "SUCCESS_MESSAGE": "Configurazione Webhook aggiornata correttamente",
-          "ERROR_MESSAGE": "Impossibile connettersi al server Woot, riprova più tardi"
+          "ERROR_MESSAGE": "Impossibile connettersi al server , riprova più tardi"
         }
       },
       "ADD": {
@@ -53,14 +53,14 @@
         "TITLE": "Aggiungi nuovo webhook",
         "API": {
           "SUCCESS_MESSAGE": "Configurazione Webhook aggiunta correttamente",
-          "ERROR_MESSAGE": "Impossibile connettersi al server Woot, riprova più tardi"
+          "ERROR_MESSAGE": "Impossibile connettersi al server , riprova più tardi"
         }
       },
       "DELETE": {
         "BUTTON_TEXT": "Elimina",
         "API": {
           "SUCCESS_MESSAGE": "Webhook eliminato con successo",
-          "ERROR_MESSAGE": "Impossibile connettersi al server Woot, riprova più tardi"
+          "ERROR_MESSAGE": "Impossibile connettersi al server , riprova più tardi"
         },
         "CONFIRM": {
           "TITLE": "Conferma eliminazione",
@@ -73,7 +73,7 @@
     "SLACK": {
       "HELP_TEXT": {
         "TITLE": "Stai utilizzando l'integrazione Slack",
-        "BODY": "<br/><p>Chatwoot ora sincronizzerà tutte le conversazioni in arrivo nel canale <b><i>conversazioni dei clienti</i></b> all'interno del tuo spazio di lavoro Slack.</p><p>Rispondendo a un thread di conversazione nel canale Slack <b><i>conversazioni dei clienti</i></b> verrà creata una risposta al cliente attraverso chatwoot.</p><p>Inizia le risposte con <b><i>nota:</i></b> per creare note private invece che risposte.</p><p>Se il replicante su slack ha un profilo agente in chatwoot sotto la stessa email, le risposte saranno associate di conseguenza.</p><p>Quando il replicante non ha un profilo di agente associato, le risposte saranno fatte dal profilo del bot.</p>"
+        "BODY": "<br/><p>OneChat ora sincronizzerà tutte le conversazioni in arrivo nel canale <b><i>conversazioni dei clienti</i></b> all'interno del tuo spazio di lavoro Slack.</p><p>Rispondendo a un thread di conversazione nel canale Slack <b><i>conversazioni dei clienti</i></b> verrà creata una risposta al cliente attraverso chatwoot.</p><p>Inizia le risposte con <b><i>nota:</i></b> per creare note private invece che risposte.</p><p>Se il replicante su slack ha un profilo agente in chatwoot sotto la stessa email, le risposte saranno associate di conseguenza.</p><p>Quando il replicante non ha un profilo di agente associato, le risposte saranno fatte dal profilo del bot.</p>"
       }
     },
     "DELETE": {
@@ -88,7 +88,7 @@
     "DASHBOARD_APPS": {
       "TITLE": "App dashboard",
       "HEADER_BTN_TXT": "Aggiungi una nuova app dashboard",
-      "SIDEBAR_TXT": "<p><b>App dashboard</b></p><p>Le app dashboard consentono alle organizzazioni di incorporare un'applicazione all'interno del cruscotto Chatwoot per fornire il contesto per gli agenti di assistenza clienti. Questa funzione consente di creare un'applicazione in modo indipendente e incorporata all'interno della dashboard per fornire informazioni all'utente, i loro ordini, o la loro cronologia di pagamento precedente.</p><p>Quando hai incorporato la tua applicazione usando il cruscotto in Chatwoot, la tua applicazione avrà il contesto della conversazione e del contatto come evento finestra. Implementa un ascoltatore per l'evento del messaggio sulla tua pagina per ricevere il contesto.</p><p>Per aggiungere una nuova app dashboard, clicca sul pulsante 'Aggiungi una nuova app dashboard'.</p>",
+      "SIDEBAR_TXT": "<p><b>App dashboard</b></p><p>Le app dashboard consentono alle organizzazioni di incorporare un'applicazione all'interno del cruscotto OneChat per fornire il contesto per gli agenti di assistenza clienti. Questa funzione consente di creare un'applicazione in modo indipendente e incorporata all'interno della dashboard per fornire informazioni all'utente, i loro ordini, o la loro cronologia di pagamento precedente.</p><p>Quando hai incorporato la tua applicazione usando il cruscotto in OneChat, la tua applicazione avrà il contesto della conversazione e del contatto come evento finestra. Implementa un ascoltatore per l'evento del messaggio sulla tua pagina per ricevere il contesto.</p><p>Per aggiungere una nuova app dashboard, clicca sul pulsante 'Aggiungi una nuova app dashboard'.</p>",
       "DESCRIPTION": "Le app dashboard consentono alle organizzazioni di incorporare un'applicazione all'interno della dashboard per fornire il contesto per gli agenti di assistenza clienti. Questa funzione consente di creare un'applicazione in modo indipendente e incorporare che per fornire informazioni sull'utente, i suoi ordini o la loro cronologia di pagamento precedente.",
       "LIST": {
         "404": "Non ci sono ancora app dashboard configurate su questo account",

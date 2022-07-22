@@ -5,7 +5,7 @@
       "SUBSCRIBED_EVENTS": "Subscribed Events",
       "FORM": {
         "CANCEL": "ביטול",
-        "DESC": "אירועי Webhook מספקים לך מידע בזמן אמת על מה שקורה בחשבון Chatwoot שלך. אנא הזן כתובת אתר חוקית כדי להגדיר התקשרות חוזרת.",
+        "DESC": "אירועי Webhook מספקים לך מידע בזמן אמת על מה שקורה בחשבון OneChat שלך. אנא הזן כתובת אתר חוקית כדי להגדיר התקשרות חוזרת.",
         "SUBSCRIPTIONS": {
           "LABEL": "Events",
           "EVENTS": {
@@ -31,7 +31,7 @@
       "HEADER_BTN_TXT": "הוסף Webhook חדש",
       "LOADING": "מביאים ל-webhooks מחוברים",
       "SEARCH_404": "אין פריטים התואמים לשאילתה זו",
-      "SIDEBAR_TXT": "<p><b>Webhooks</b> </p> <p>Webhooks הם התקשרות חוזרת של HTTP שניתן להגדיר עבור כל חשבון. הם מופעלים על ידי אירועים כמו יצירת הודעות ב-Chatwoot. אתה יכול ליצור יותר מ-webhook אחד עבור חשבון זה. <br /><br /> ליצירת <b>הוסף אינטרנט</b>, לחץ על הלחצן <b>הוסף אינטרנט חדש</b>. אתה יכול גם להסיר כל webhook קיים על ידי לחיצה על הלחצן Delete.</p>",
+      "SIDEBAR_TXT": "<p><b>Webhooks</b> </p> <p>Webhooks הם התקשרות חוזרת של HTTP שניתן להגדיר עבור כל חשבון. הם מופעלים על ידי אירועים כמו יצירת הודעות ב-OneChat. אתה יכול ליצור יותר מ-webhook אחד עבור חשבון זה. <br /><br /> ליצירת <b>הוסף אינטרנט</b>, לחץ על הלחצן <b>הוסף אינטרנט חדש</b>. אתה יכול גם להסיר כל webhook קיים על ידי לחיצה על הלחצן Delete.</p>",
       "LIST": {
         "404": "לא הוגדרו webhooks עבור חשבון זה.",
         "TITLE": "נהל webhooks",
@@ -45,7 +45,7 @@
         "TITLE": "ערוך webhook",
         "API": {
           "SUCCESS_MESSAGE": "Webhook configuration updated successfully",
-          "ERROR_MESSAGE": "לא ניתן להתחבר לשרת Woot, נסה שוב מאוחר יותר"
+          "ERROR_MESSAGE": "לא ניתן להתחבר לשרת , נסה שוב מאוחר יותר"
         }
       },
       "ADD": {
@@ -53,14 +53,14 @@
         "TITLE": "הוסף Webhook חדש",
         "API": {
           "SUCCESS_MESSAGE": "Webhook configuration added successfully",
-          "ERROR_MESSAGE": "לא ניתן להתחבר לשרת Woot, נסה שוב מאוחר יותר"
+          "ERROR_MESSAGE": "לא ניתן להתחבר לשרת , נסה שוב מאוחר יותר"
         }
       },
       "DELETE": {
         "BUTTON_TEXT": "מחק",
         "API": {
           "SUCCESS_MESSAGE": "Webhook נמחק בהצלחה",
-          "ERROR_MESSAGE": "לא ניתן להתחבר לשרת Woot, נסה שוב מאוחר יותר"
+          "ERROR_MESSAGE": "לא ניתן להתחבר לשרת , נסה שוב מאוחר יותר"
         },
         "CONFIRM": {
           "TITLE": "אשר מחיקה",
@@ -88,7 +88,7 @@
     "DASHBOARD_APPS": {
       "TITLE": "Dashboard Apps",
       "HEADER_BTN_TXT": "Add a new dashboard app",
-      "SIDEBAR_TXT": "<p><b>Dashboard Apps</b></p><p>Dashboard Apps allow organizations to embed an application inside the Chatwoot dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that inside the dashboard to provide user information, their orders, or their previous payment history.</p><p>When you embed your application using the dashboard in Chatwoot, your application will get the context of the conversation and contact as a window event. Implement a listener for the message event on your page to receive the context.</p><p>To add a new dashboard app, click on the button 'Add a new dashboard app'.</p>",
+      "SIDEBAR_TXT": "<p><b>Dashboard Apps</b></p><p>Dashboard Apps allow organizations to embed an application inside the OneChat dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that inside the dashboard to provide user information, their orders, or their previous payment history.</p><p>When you embed your application using the dashboard in OneChat, your application will get the context of the conversation and contact as a window event. Implement a listener for the message event on your page to receive the context.</p><p>To add a new dashboard app, click on the button 'Add a new dashboard app'.</p>",
       "DESCRIPTION": "Dashboard Apps allow organizations to embed an application inside the dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that to provide user information, their orders, or their previous payment history.",
       "LIST": {
         "404": "There are no dashboard apps configured on this account yet",

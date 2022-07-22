@@ -86,7 +86,7 @@
   },
   "NETWORK": {
     "NOTIFICATION": {
-      "TEXT": "Desconectado do Chatwoot"
+      "TEXT": "Desconectado do OneChat"
     },
     "BUTTON": {
       "REFRESH": "Atualizar"

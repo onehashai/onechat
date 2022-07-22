@@ -5,7 +5,7 @@
       "SUBSCRIBED_EVENTS": "Subscribed Events",
       "FORM": {
         "CANCEL": "Mégse",
-        "DESC": "Webhook események valós idejű információt adnak arról, hogy mi történik a Chatwoot fiókodban. Kérünk a visszahívás beállításánál egy helyes URL-t adj meg.",
+        "DESC": "Webhook események valós idejű információt adnak arról, hogy mi történik a OneChat fiókodban. Kérünk a visszahívás beállításánál egy helyes URL-t adj meg.",
         "SUBSCRIPTIONS": {
           "LABEL": "Events",
           "EVENTS": {
@@ -45,7 +45,7 @@
         "TITLE": "Edit webhook",
         "API": {
           "SUCCESS_MESSAGE": "Webhook configuration updated successfully",
-          "ERROR_MESSAGE": "Nem sikerült csatlakozni a Woot szerverhez, kérjük próbáld később"
+          "ERROR_MESSAGE": "Nem sikerült csatlakozni a  szerverhez, kérjük próbáld később"
         }
       },
       "ADD": {
@@ -53,14 +53,14 @@
         "TITLE": "Új webhook hozzáadása",
         "API": {
           "SUCCESS_MESSAGE": "Webhook configuration added successfully",
-          "ERROR_MESSAGE": "Nem sikerült csatlakozni a Woot szerverhez, kérjük próbáld később"
+          "ERROR_MESSAGE": "Nem sikerült csatlakozni a  szerverhez, kérjük próbáld később"
         }
       },
       "DELETE": {
         "BUTTON_TEXT": "Törlés",
         "API": {
           "SUCCESS_MESSAGE": "Webhook sikeresen törölve",
-          "ERROR_MESSAGE": "Nem sikerült csatlakozni a Woot szerverhez, kérjük próbáld később"
+          "ERROR_MESSAGE": "Nem sikerült csatlakozni a  szerverhez, kérjük próbáld később"
         },
         "CONFIRM": {
           "TITLE": "Törlés megerősítése",
@@ -88,7 +88,7 @@
     "DASHBOARD_APPS": {
       "TITLE": "Dashboard Apps",
       "HEADER_BTN_TXT": "Add a new dashboard app",
-      "SIDEBAR_TXT": "<p><b>Dashboard Apps</b></p><p>Dashboard Apps allow organizations to embed an application inside the Chatwoot dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that inside the dashboard to provide user information, their orders, or their previous payment history.</p><p>When you embed your application using the dashboard in Chatwoot, your application will get the context of the conversation and contact as a window event. Implement a listener for the message event on your page to receive the context.</p><p>To add a new dashboard app, click on the button 'Add a new dashboard app'.</p>",
+      "SIDEBAR_TXT": "<p><b>Dashboard Apps</b></p><p>Dashboard Apps allow organizations to embed an application inside the OneChat dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that inside the dashboard to provide user information, their orders, or their previous payment history.</p><p>When you embed your application using the dashboard in OneChat, your application will get the context of the conversation and contact as a window event. Implement a listener for the message event on your page to receive the context.</p><p>To add a new dashboard app, click on the button 'Add a new dashboard app'.</p>",
       "DESCRIPTION": "Dashboard Apps allow organizations to embed an application inside the dashboard to provide the context for customer support agents. This feature allows you to create an application independently and embed that to provide user information, their orders, or their previous payment history.",
       "LIST": {
         "404": "There are no dashboard apps configured on this account yet",
