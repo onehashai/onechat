@@ -131,9 +131,11 @@ class Account < ApplicationRecord
 
   def subscribe_for_plan(name = 'Free', end_time = ChatwootApp.free_plan_ending_time)
     _plan = Enterprise::BillingProduct.find_by(product_name: name)
-    plan_price = _plan.billing_product_prices.last
-    account_billing_subscriptions.create!(billing_product_price: plan_price, current_period_end: end_time)
-    # set_limits_for_account plan_price
+    if _plan.present?
+      plan_price = _plan.billing_product_prices.last
+      account_billing_subscriptions.create!(billing_product_price: plan_price, current_period_end: end_time)
+    end
+      # set_limits_for_account plan_price
   end
 
   def set_limits_for_account(plan_price)

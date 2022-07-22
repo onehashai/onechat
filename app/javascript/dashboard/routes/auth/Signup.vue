@@ -79,7 +79,6 @@
                 <VuePhoneNumberInput
                   v-model="credentials.phone"
                   :default-country-code="country"
-                  no-example="true"
                   valid-color="#6cb8ff"
                   error-color="#F94B4A"
                   size="lg"
@@ -129,16 +128,15 @@
               />
             </div>
           </div>
-          <div id="recaptcha-container"></div>
+          <div id="recaptcha-container" />
 
           <woot-submit-button
             :disabled="isSignupInProgress"
             :button-text="$t('REGISTER.SUBMIT')"
             :loading="isSignupInProgress"
             button-class="large expanded width-50 m-auto"
-          >
-          </woot-submit-button>
-          <p class="accept--terms" v-html="termsLink"></p>
+          />
+          <p class="accept--terms" v-html="termsLink" />
         </form>
         <div class="column text-center sigin--footer">
           <span>{{ $t('REGISTER.HAVE_AN_ACCOUNT') }}</span>
@@ -153,7 +151,7 @@
         </div>
       </div>
     </div>
-    <div v-if="openConfirmation" class="confirmation-modal-back-draw"></div>
+    <div v-if="openConfirmation" class="confirmation-modal-back-draw" />
     <div v-if="openConfirmation" class="confirmation-modal-container">
       <div class="confirmation-modal-header">
         <div class="confirmation-modal-header-text">
@@ -220,7 +218,6 @@ export default {
         phone: '',
         // subdomain: '',
       },
-      didCaptchaReset: false,
       isSignupInProgress: false,
       error: '',
       openConfirmation: false,
@@ -267,6 +264,15 @@ export default {
             containsSpecial &&
             minLengthOfPassword
           );
+        },
+      },
+      confirmPassword: {
+        required,
+        isEqPassword(value) {
+          if (value !== this.credentials.password) {
+            return false;
+          }
+          return true;
         },
       },
     },
@@ -340,7 +346,6 @@ export default {
       } catch (error) {
         let errorMessage = this.$t('REGISTER.API.ERROR_MESSAGE');
         if (error.response && error.response.data.message) {
-          this.resetCaptcha();
           errorMessage = error.response.data.message;
         }
         this.showAlert(errorMessage);
@@ -350,7 +355,6 @@ export default {
     },
     async checkEmailStatus() {
       await Auth.checkEmailStatus(this.credentials.email).then(res => {
-        console.log(res, 'response');
         if (res.data.found) {
           this.showAlert('Email Already Exist');
         } else {
